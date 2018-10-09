@@ -10,16 +10,16 @@ Contents:
 
 .. toctree::
    :maxdepth: 2
-   :glob:
+   :caption: Introduction
 
-   *
+   intro/introduction
 
 
 
-Indices and tables
-==================
 
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
+.. toctree::
+    :maxdepth: 2
+    :caption: API
 
+    api/node_api
+    api/wallet_api
