@@ -23,3 +23,9 @@ Contents:
 
     api/node_api
     api/wallet_api
+
+Indices and tables
+==================
+* :ref:`genindex`
+* :ref:`modindex`
+* :ref:`search`
