@@ -17,12 +17,20 @@ Contents:
 
 
 
+
+
 .. toctree::
     :maxdepth: 2
     :caption: API
 
     api/node_api
     api/wallet_api
+
+.. toctree::
+    :maxdepth: 2
+    :caption: Others
+
+    others/wallet
 
 Indices and tables
 ==================
