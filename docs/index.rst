@@ -31,25 +31,23 @@ Welcome to YOYOW's documentation!
    :maxdepth: 2
    :caption: Platform
 
-   platform/how_to
-   platform/auth
-   platform/asset
+   platform/intro
+   platform/ops
 
 .. toctree::
    :maxdepth: 2
    :caption: Witness
    :name: 见证人
 
-   witness/how_to
-   witness/build
-   witness/salary
+   witness/intro
+   witness/ops
 
 .. toctree::
    :maxdepth: 2
    :caption: Committee
 
-   committee/committee_intro
-   committee/how_to
+   committee/intro
+   committee/ops
 
 
 .. toctree::
