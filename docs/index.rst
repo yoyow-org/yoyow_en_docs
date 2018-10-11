@@ -16,16 +16,16 @@ Welcome to YOYOW's documentation!
 .. toctree::
    :maxdepth: 2
    :caption: TestNet
-   :glob:
 
-   testnet/*
+   testnet/public_testnet
+   testnet/private
 
 .. toctree::
    :maxdepth: 2
    :caption: Usage
-   :glob:
 
-   usage/*
+   usage/how_to
+   usage/build
 
 .. toctree::
    :maxdepth: 2
