@@ -29,12 +29,27 @@ Welcome to YOYOW's documentation!
 
 .. toctree::
    :maxdepth: 2
-   :caption: 详情
-   :glob:
+   :caption: Platform
 
-   platform/*
-   witness/*
-   committee/*
+   platform/how_to
+   platform/auth
+   platform/asset
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Witness
+   :name: 见证人
+
+   witness/how_to
+   witness/build
+   witness/salary
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Committee
+
+   committee/committee_intro
+   committee/how_to
 
 
 .. toctree::
