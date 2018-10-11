@@ -6,7 +6,6 @@
 Welcome to YOYOW's documentation!
 ==================================================
 
-Contents:
 
 .. toctree::
    :maxdepth: 2
@@ -14,9 +13,28 @@ Contents:
 
    intro/introduction
 
+.. toctree::
+   :maxdepth: 2
+   :caption: TestNet
+   :glob:
 
+   testnet/*
 
+.. toctree::
+   :maxdepth: 2
+   :caption: Usage
+   :glob:
 
+   usage/*
+
+.. toctree::
+   :maxdepth: 2
+   :caption: 详情
+   :glob:
+
+   platform/*
+   witness/*
+   committee/*
 
 
 .. toctree::
