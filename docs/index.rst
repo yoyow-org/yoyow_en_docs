@@ -59,6 +59,12 @@ Welcome to YOYOW's documentation!
 
 .. toctree::
     :maxdepth: 2
+    :caption: SDK
+
+    sdk/intro
+
+.. toctree::
+    :maxdepth: 2
     :caption: Others
 
     others/wallet
