@@ -5,7 +5,7 @@
 ./witness_node  --seed-nodes='["127.0.0.1:1999"]'  --rpc-endpoint 0.0.0.0:8091  -d test_net --genesis-json genesis.json
 ```
 
-如果不像自己搭建测试网节点，可以直接使用公共的api
+如果不想自己搭建测试网节点，可以直接使用公共的api
 ```
 websocket 接口地址： ws://47.52.155.181:10011
 jsonrpc 接口地址： http://47.52.155.181:10011/rpc

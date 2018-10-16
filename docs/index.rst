@@ -68,7 +68,7 @@ Welcome to YOYOW's documentation!
     :caption: Others
 
     others/wallet
-    others/chaim_params
+    others/chain_params
 
 Indices and tables
 ==================
