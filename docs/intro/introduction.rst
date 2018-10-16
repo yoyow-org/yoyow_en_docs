@@ -1,4 +1,4 @@
-YOYOW 介绍
+YOYOW 简介
 =============
 .. contents:: Table of Contents
    :local:
@@ -6,4 +6,4 @@ YOYOW 介绍
 -------
 
 
-Introduction of YOYOW......
+YOYOW 的名称来自英文 You Own Your Own Words，其目标是建立一个利用区块链技术，使用去中心化的共识方式为内容生产领域进行贡献定价和权益回报的网络，构建一套合理的内容收益分配机制使内容生产者、内容投资者、内容筛选者和生态建设者都能得到合理的激励与回报，同时构建一个基于用户内容评价的价值网络。 

@@ -1,7 +1,5 @@
 # SDK 使用说明
 
-# yoyow-middleware
-
 ### 开始
 
 #### 1. 创建测试网账号
