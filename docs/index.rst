@@ -69,6 +69,8 @@ Welcome to YOYOW's documentation!
 
     others/wallet
     others/chain_params
+    others/forexchanges
+    others/forplatforms
 
 Indices and tables
 ==================
