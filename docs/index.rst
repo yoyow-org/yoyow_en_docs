@@ -53,8 +53,8 @@ Welcome to YOYOW's documentation!
     :maxdepth: 2
     :caption: Votes & Pledge
 
-    "vote& pledge"/vote
-    "vote& pledge"/pledge
+    vote_pledge/vote
+    vote_pledge/pledge
 
 
 .. toctree::

@@ -30,7 +30,7 @@ yoyow_client 一般被叫称为客户端程序，对节点程序提供的API进�
 ```
 ./programs/yoyow_node/yoyow_node
 ```
-节点程序执行时，会在当前目录下自动创建存放链数据的文件夹（witness_node_data_dir），其中也包含配置文件。链数据同步会花费几个小时，同步完成后，可以通过 Ctrl+C 停止运行。
+节点程序运行时会自动创建存放数据和配置文件的目录```witness_node_data_dir```，会花费几个小时同步完所有的数据。同步完成后，可以通过 Ctrl+C 停止运行。
 
 需要注意的是，输入Ctrl+C后，程序依然会继续运行一会，不要再次键入Ctrl+C，否则会导致数据库不一致，下次启动node可能需要长时间的replay。收到Ctrl+C后，程序会在日志中打印出
 ```
@@ -39,7 +39,7 @@ yoyow_client 一般被叫称为客户端程序，对节点程序提供的API进�
 ```
 此时耐心等待程序退出即可。
 
-节点程序运行时会自动创建存放数据和配置文件的目录```witness_node_data_dir```，会花费几个小时同步完所有的数据。默认并不会开放websockt接口，需要在执行时添加参数 
+节点程序运行时，默认并不会开放websockt接口，需要在执行时添加参数 
 ```
 ./programs/yoyow_node/yoyow_node --rpc-endpoint 127.0.0.1:8090
 ```
