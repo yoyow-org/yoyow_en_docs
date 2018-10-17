@@ -1,1 +1,1 @@
-guzzle-sphinx-theme==0.7.11
+sphinx-markdown-tables

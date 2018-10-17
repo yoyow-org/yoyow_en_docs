@@ -49,6 +49,13 @@ Welcome to YOYOW's documentation!
    committee/intro
    committee/ops
 
+.. toctree::
+    :maxdepth: 2
+    :caption: Votes & Pledge
+
+    "vote& pledge"/vote
+    "vote& pledge"/pledge
+
 
 .. toctree::
     :maxdepth: 2
@@ -69,6 +76,7 @@ Welcome to YOYOW's documentation!
 
     others/wallet
     others/chain_params
+    others/fees
     others/forexchanges
     others/forplatforms
     others/csaf
