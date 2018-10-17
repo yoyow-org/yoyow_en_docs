@@ -1143,20 +1143,20 @@ JSON-RPC:
 """"""""""""""""
 ::
 
-{
-  "id": 1,
-  "jsonrpc": "2.0",
-  "result": {
-    "id": "1.4.0",
-    "account": 25997,
-    "name": "init1",
-    "sequence": 1,
-    "is_valid": true,
-    "pledge": 0,
-    "total_votes": 567814657,
-    "url": ""
-  }
-}
+    {
+      "id": 1,
+      "jsonrpc": "2.0",
+      "result": {
+        "id": "1.4.0",
+        "account": 25997,
+        "name": "init1",
+        "sequence": 1,
+        "is_valid": true,
+        "pledge": 0,
+        "total_votes": 567814657,
+        "url": ""
+      }
+    }
 
 
 2.2.9 list_committee_members

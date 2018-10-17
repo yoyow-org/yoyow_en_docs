@@ -248,7 +248,7 @@
     
 启动正常情况如下图
 
-![启动正常情况如图](https://github.com/bulangnisi/yoyow-node-sdk/blob/master/middleware/public/images/step4.png)
+![启动正常情况如图](/images/sdk/sdk_start.png)
      
 ### 请求返回 error code 状态说明
  
