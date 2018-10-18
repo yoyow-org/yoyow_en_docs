@@ -81,7 +81,6 @@ Welcome to YOYOW's documentation!
     :maxdepth: 2
     :caption: Others
 
-    others/wallet
     others/chain_params
     others/fees
     others/forexchanges

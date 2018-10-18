@@ -411,7 +411,7 @@ curl -d '{"jsonrpc": "2.0", "method": "get_block", "params": [160000], "id": 1}'
 
 * 为了保证可以正确解密MEMO，client 需要出于 `unlocked`状态。同时，memo private key 需要已导入至钱包中
 
-## 处理提现强求
+## 处理提现请求
 
 ### 检查节点状态
 
