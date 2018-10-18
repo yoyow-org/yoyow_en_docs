@@ -3754,7 +3754,7 @@ WebSocket:
 ::
 
     wscat -c ws://localhost:8091
-    {"id":1, "method":"call", "params":[0, "create_asset", ["250926091","TOTOTO", 4, {"max_supply":300000,"market_fee_percent":0,"max_market_fee":0,"issuer_permissions":4}, 200000, true]]}
+    {"id":1, "method":"call", "params":[0, "create_asset", ["250926091","TOTOTO", 4, {"max_supply":300000,"mare_percent":0,"max_market_fee":0,"issuer_permissions":4}ket_fe, 200000, true]]}
 
 JSON-RPC:
 ::
