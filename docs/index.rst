@@ -56,6 +56,13 @@ Welcome to YOYOW's documentation!
     vote_pledge/vote
     vote_pledge/pledge
 
+.. toctree::
+    :maxdepth: 2
+    :caption: Assets
+
+    asset/yoyo
+    asset/uia
+    asset/csaf
 
 .. toctree::
     :maxdepth: 2

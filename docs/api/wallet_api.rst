@@ -935,7 +935,7 @@ WebSocket; JSON-RPC
 
 :lower_bound:   以此作为起始 uid 开始查询，设为 0 则从头开始查
 :limit:  返回数量限制，最多不能超过 101
-:ops:   排序类型。取值范围[0,1,2]。 0:按uid由大到小排序；1:按得票数从多到少排序；2:按抵押从多到少排序
+:order_by:   排序类型。取值范围[0,1,2]。 0:按uid由大到小排序；1:按得票数从多到少排序；2:按抵押从多到少排序
 
 
 注意事项
@@ -1185,7 +1185,7 @@ WebSocket; JSON-RPC
 """"""""""""""""
 :lower_bound:   以此作为起始 uid 开始查询，设为 0 则从头开始查
 :limit:  返回数量限制，最多不能超过 101
-:ops:   排序类型。取值范围[0,1,2]。 0:按uid由大到小排序；1:按得票数从多到少排序；2:按抵押从多到少排序
+:order_by:   排序类型。取值范围[0,1,2]。 0:按uid由大到小排序；1:按得票数从多到少排序；2:按抵押从多到少排序
 
 
 注意事项
@@ -1478,7 +1478,7 @@ WebSocket; JSON-RPC
 请求参数
 """"""""""""""""
 
-:lowerbound:  以此作为起始 uid 开始查询，设为 0 则从头开始查
+:lower_bound:  以此作为起始 uid 开始查询，设为 0 则从头开始查
 :limit:  返回数量限制，最多不能超过 100
 :order_by:   排序类型。取值范围[0,1,2]。 0:按uid由大到小排序；1:按得票数从多到少排序；2:按抵押从多到少排序
 
@@ -2437,6 +2437,7 @@ JSON-RPC:
 返回结果
 """"""""""""""""
 ::
+
     {
       "ref_block_num": 58457,
       "ref_block_prefix": 2372452101,
@@ -2872,12 +2873,12 @@ WebSocket:
 ::
 
     wscat -c ws://localhost:8091
-    {"id":1, "method":"call", "params":[0, "update_witness_votes", ["250926091", "abit", [], true]]}
+    {"id":1, "method":"call", "params":[0, "update_witness_votes", ["250926091", ["abit"], [], true]]}
 
 JSON-RPC:
 ::
 
-    curl --data '{"jsonrpc": "2.0", "method": "call", "params":[0, "update_witness_votes", ["250926091", "abit", [], true]], "id": 1}' http://localhost:8091/rpc
+    curl --data '{"jsonrpc": "2.0", "method": "call", "params":[0, "update_witness_votes", ["250926091", ["abit"], [], true]], "id": 1}' http://localhost:8091/rpc
 
 
 返回结果
@@ -3252,12 +3253,12 @@ WebSocket:
 ::
 
     wscat -c ws://localhost:8091
-    {"id":1, "method":"call", "params":[0, "create_platform", ["223331844", "baidu", "10000", "YOYO", "", "", true]]}
+    {"id":1, "method":"call", "params":[0, "create_platform", ["223331844", "yoyo.club", "10000", "YOYO", "", "", true]]}
 
 JSON-RPC:
 ::
 
-    curl --data '{"jsonrpc": "2.0", "method": "call", "params":[0, "create_platform", ["223331844", "baidu", "10000", "YOYO", "", "", true]], "id": 1}' http://localhost:8091/rpc
+    curl --data '{"jsonrpc": "2.0", "method": "call", "params":[0, "create_platform", ["223331844", "yoyow.club", "10000", "YOYO", "", "", true]], "id": 1}' http://localhost:8091/rpc
 
 
 返回结果
