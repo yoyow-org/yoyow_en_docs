@@ -1,4 +1,3 @@
-[TOC]
 # YOYO Token
 
 YOYOW的核心资产是YOYO，YOYO可以存放在账户的余额或者零钱中。
