@@ -166,9 +166,9 @@ ul.fas li .fa-large:before {
   padding: 6px;
   color: #fcfcfc;
 }
-.rst-versions.rst-badge {
+.rst-versions.rst-badge.shift-up {
   width: auto;
-  bottom: 20px;
+  bottom: 0px;
   right: 20px;
   left: 0px;
   border: none;
