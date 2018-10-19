@@ -268,3 +268,7 @@ texinfo_documents = [
 source_parsers = {
    '.md': 'recommonmark.parser.CommonMarkParser',
 }
+
+def setup(app):
+    app.add_stylesheet('theme/css/badge_only.css')
+    app.add_stylesheet('css/badge_only.css')
