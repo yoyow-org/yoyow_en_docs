@@ -63,6 +63,7 @@ Welcome to YOYOW's documentation!
     asset/yoyo
     asset/uia
     asset/csaf
+    asset/ops
 
 .. toctree::
     :maxdepth: 2
@@ -85,7 +86,6 @@ Welcome to YOYOW's documentation!
     others/fees
     others/forexchanges
     others/forplatforms
-    others/csaf
 
 Indices and tables
 ==================
