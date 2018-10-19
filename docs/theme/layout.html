@@ -50,9 +50,9 @@
   <link rel="stylesheet" href="{{ pathto(css, 1) }}" type="text/css" />
     {%- endif %}
   {%- endfor %} #}
-  {%- for cssfile in extra_css_files %}
+  {# {%- for cssfile in extra_css_files %}
     <link rel="stylesheet" href="{{ pathto(cssfile, 1) }}" type="text/css" />
-  {%- endfor %}
+  {%- endfor %} #}
 
   {%- block linktags %}
     {%- if hasdoc('about') %}
