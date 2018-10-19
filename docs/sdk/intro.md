@@ -1,6 +1,6 @@
 # SDK 使用说明
 
-[yoyow-node-sdk](https://github.com/yoyow-org/yoyow-node-sdk/tree/master/middleware)为提供了HTTP的接口。本质上是对yoyow_client接口的封装，提供了包括序列化，加密签名，链上操作，数据
+[yoyow-node-sdk](https://github.com/yoyow-org/yoyow-node-sdk/tree/master/middleware)为一些应用场景提供了更简洁的HTTP接口。yoyow-node-sdk本质上是对yoyow_client接口的封装，直接提供了包括发布文章，发帖回帖，交易验证，授权登录等接口。
 
 ### 开始
 
