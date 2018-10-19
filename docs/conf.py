@@ -270,5 +270,4 @@ source_parsers = {
 }
 
 def setup(app):
-    app.add_stylesheet('theme/css/badge_only.css')
     app.add_stylesheet('css/badge_only.css')
