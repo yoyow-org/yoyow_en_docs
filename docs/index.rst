@@ -18,7 +18,6 @@ Welcome to YOYOW's documentation!
    :caption: TestNet
 
    testnet/public_testnet
-   testnet/private
 
 .. toctree::
    :maxdepth: 2
