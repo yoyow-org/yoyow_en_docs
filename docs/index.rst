@@ -82,7 +82,6 @@ Welcome to YOYOW's documentation!
     :caption: Others
 
     others/chain_params
-    others/fees
     others/forexchanges
     others/forplatforms
 
