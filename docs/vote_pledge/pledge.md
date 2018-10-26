@@ -4,7 +4,11 @@
 
 ## 平台抵押
 
-平台的抵押金额是一个定值，根据当前抵押值判断平台的资格。该值可以由理事会修改，可以参考[参数表说明](https://yoyow.bts.ai/fees/index#tab-parameters)中参数`platform_min_pledge`
+当前平台的最低抵押金额为10000 YOYO，根据当前抵押值判断平台的资格。该值可以由理事会修改，可以参考[参数表说明](https://yoyow.bts.ai/fees/index#tab-parameters)中参数`platform_min_pledge`
+
+## 理事会抵押
+
+理事会的最低抵押金额为1000 YOYO
 
 
 ## 矿工见证人抵押

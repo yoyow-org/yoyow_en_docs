@@ -49,6 +49,3 @@ list_committee_members 0 5 1
 list_committee_proposals 
 ```
 详见：[list_committee_members](../api/wallet_api.html#list-committee-proposals)
-
-## 发提案
-【待补充】

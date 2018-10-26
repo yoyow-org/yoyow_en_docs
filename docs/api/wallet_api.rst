@@ -3706,9 +3706,9 @@ WebSocket; JSON-RPC
           // 该资产在任何给定时间可能存在的最大供应量。 这可以和 GRAPHENE_MAX_SHARE_SUPPLY 一样大 
           // 特别说明：该最大供应量为最小单位Token的数量，比如发行的最大供应量为30000，精度设为2，则实际的供应量为30000/(10^2)=300个Token，最小的交易单位为0.01。
           max_supply = GRAPHENE_MAX_SHARE_SUPPLY;
-          // 当这个资产在市场上交易时，这个交易总额的百分比将被提取并支付给发行人。 这是一个固定点值，代表百分之一百，即在此字段中值为100意味着此资产的市场交易收取1％的费用。（预留字段，暂未使用，必须为 0 ）
+          // （预留字段，暂未使用，必须为 0 ）
           market_fee_percent = 0;
-          // 以交易量的 market_fee_percent计算的市场费用限制为此值。 （预留字段，暂未使用，必须为 0 ）
+          // （预留字段，暂未使用，必须为 0 ）
           max_market_fee = GRAPHENE_MAX_SHARE_SUPPLY;
 
           // 发行人有权更新的标志
@@ -3716,15 +3716,14 @@ WebSocket; JSON-RPC
           // 此权限上的当前活动标志
           flags = 0;
 
-          // 一组维护白名单的账户可以使用此资产。 如果whitelist_authorities不为空，则只有whitelist_authorities中的帐户才可以持有，使用或转让资产。
+          // 一组白名单的账户可以使用此资产。 如果whitelist_authorities不为空，则只有whitelist_authorities中的帐户才可以持有，使用或转让资产。
           whitelist_authorities;
-          // 一组维护黑名单以查询此资产的帐户。 如果设置了标志＆white_list，则如果这些帐户中没有一个帐户出现在其account_object :: blacklisting_accounts字段中，
-          // 则该帐户只能在此资产中发送，接收，交易等。 如果该帐户被列入黑名单，即使该资产也列入白名单，该用户也不能在该资产中进行交易。
+          // 一组黑名单的帐户，不可以持有，使用此资产。 
           blacklist_authorities;
 
-          // 定义该资产可能在市场上交易的资产
+          // 定义该资产可能在市场上交易的资产（预留字段，暂未使用）
           whitelist_markets;
-          // 定义该资产不得在市场上交易的资产，不得重叠白名单 
+          // 定义该资产不得在市场上交易的资产，不得重叠白名单 （预留字段，暂未使用）
           blacklist_markets;
 
           // 描述该资产的含义/目的的数据，费用将按照描述的大小进行收费。
