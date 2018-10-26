@@ -1,5 +1,7 @@
 # 编译运行yoyow-core
 
+## 推荐硬件环境
+系统配置: 两核，4G内存
 推荐系统： Ubuntu 16.04 LTS (64-bit)
 
 ## 安装依赖:
@@ -23,7 +25,9 @@ make yoyow_client
 
 ## 运行:
 编译完成后主要生成两个二进制文件，yoyow_node和yoyow_client。
+
 yoyow_node一般被称为节点程序，主要用来连接区块链网络，作用包括同步链上数据，广播交易，提供基础的[API](../api/node_api.html)等。
+
 yoyow_client 一般被叫称为客户端程序，对节点程序提供的API进一步封装，为用户提供更友好的API，同时提供了私钥保存管理，加密签名的功能，因此也被称为钱包程序。
 
 ### 节点程序
@@ -32,7 +36,9 @@ yoyow_client 一般被叫称为客户端程序，对节点程序提供的API进�
 ```
 节点程序运行时会自动创建存放数据和配置文件的目录```witness_node_data_dir```，会花费几个小时同步完所有的数据。同步完成后，可以通过 Ctrl+C 停止运行。
 
-需要注意的是，输入Ctrl+C后，程序依然会继续运行一会，不要再次键入Ctrl+C，否则会导致数据库不一致，下次启动node可能需要长时间的replay。收到Ctrl+C后，程序会在日志中打印出
+需要注意的是，输入Ctrl+C后，程序依然会继续运行一会，不要再次键入Ctrl+C，否则会导致数据库不一致，下次启动node可能需要长时间的replay。
+
+收到Ctrl+C后，程序会在日志中打印出
 ```
 1553960ms asio       main.cpp:238                  operator()           ] Caught SIGINT attempting to exit cleanly
 1553960ms th_a       main.cpp:251                  main                 ] Exiting from signal 2

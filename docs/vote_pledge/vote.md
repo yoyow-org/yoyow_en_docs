@@ -3,7 +3,7 @@ YOYOW采用DPoS共识算法，根据这种算法，全网持有代币的人可�
 
 ## 投票资格
 
-- 持币数量达到一定数量 N 后，即获得投票资格。持币数量低于该数量 N ，自动失去投票资格。当前参数值为 N = 10000，参见参数表中min_governance_voting_balance字段。
+- 持币数量到达一定数量后，即可以获得投票资格，当前为10000 YOYO，参见[参数表](https://yoyow.bts.ai/fees/index#tab-parameters)中`min_governance_voting_balance`字段。
 - 被理事会设置黑名单的账户，丧失投票资格。
 
 ## 投票有效期

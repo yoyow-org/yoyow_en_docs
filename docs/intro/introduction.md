@@ -49,4 +49,4 @@ YOYOW网络内有三类资产：**YOYO代币**，**用户发行资产**（IOU）
 
 ## 白皮书
 
-[白皮书下载](https://yoyow.org/files/white-paper3.pdf)
+白皮书内容请移步[白皮书下载](https://yoyow.org/files/white-paper3.pdf)
