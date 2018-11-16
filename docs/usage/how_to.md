@@ -18,16 +18,27 @@ You can refer to: [Web Wallet Registration Method](https://steemit.com/cn/@peter
 Special attention is needed here. The system will generate a private Owner Key when registering. The private key only appears once upon successful registration. Please make sure to back up and save it properly since the web wallet and client wallet will not store your private Owner Key. 
 
 ## 密钥权限说明
+## Private Key Authority
+
 YOYOW的体系中，每个账户有四类密钥
 主控密钥：最高权限，能修改本账号的其它权限的密钥。注册成功时显示的密钥即是主控密钥。
 资金密钥：拥有动用余额资金的权限，比如控制转账操作。
 次级密钥：拥有动用零钱包的权限，其中包括对平台的授权操作，也被称作零钱密钥。
 备注密钥：用于查看转账等操作的备注信息。
 
+In the YOYOW system, there are four types of private keys for each account.
+- Owner Key: it has the highest authority. It is the priavate key that can modify other authorities of the account. The private key that appears upon successful registration is the Owner Key.
+- Active Key: it has the authority to use the assets in the balance, such as controlling the actions of the transfer.
+- Secondary Key: it has the authority to use the liquid assets, including the actions of authorizing the platforms. It is also called Liquid Asset Key.
+- Memo Key: it is used to check the memo information of the transfer actions.
+
 不同的密钥权限只能做权限内的事情，既不能不能向上越权也不能向下越权。资金密钥没有动用零钱的权限，次级密钥也没有动用余额的权限；主控密钥也没有动用余额和零钱的权限，但主控密钥可以重置其他权限的密钥，在网页钱包中导入账号主控密钥即可重置其他三类密钥。
+
+Authorization at each level is for actions within that level only. No action beyond or below one's authorization is allowed. Active Key does not have the right to tranfer liquid assets, and Secondary Key does not have the right to transfer balances either. The private Owner Key does not have the authority to use balances and liquid assets either, but it can reset the private keys of other authority levels. Other three types of private keys can be reset by importing the Owner Key of the account in the web wallet.
 
 更多密钥相关的信息可以参考[yoyow私钥教程](https://steemit.com/cn/@peterchen145/yoyow-keys-tutorial-yoyow)
 
+For more info about private keys, you can refer to [yoyow private key tutorials](https://steemit.com/cn/@peterchen145/yoyow-keys-tutorial-yoyow)
 
 ## 密钥的保存
 ## Private Key Saving
