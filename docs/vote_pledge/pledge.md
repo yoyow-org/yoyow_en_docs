@@ -34,7 +34,7 @@ The minimum collateral value for the committee is 1000 YOYO.
 
 降低抵押金额或者解除抵押时，押金延迟一段时间后退还，当前设置为7天。
 
-The refunding of collateral deposits will be delayed for a certain period of time when the collateral amount is decreased or the collateral is cancelled. Current value: 1 day.
+The refunding of collateral deposits will be delayed for a certain period of time when the collateral amount is decreased or the collateral is cancelled. Current value: 7 day.
 
 注：
 1. 连续多次降低抵押时，金额累加一起退还，计划退还时间以最后一次降低时间为准进行延迟
