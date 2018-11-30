@@ -68,7 +68,7 @@ There are three types of assets in the YOYOW network: **YOYO token**, **user-iss
 ### YOYO Token
 在YOYOW的账户里，基础资产为YOYO 代币，有两处可进行存放：『**余额**』和『**零钱**』。
 
-In YOYO's account, the base asset is YOYO token, and there are two places to store: 『**balance**』和『**liquid assets**』
+In YOYO's account, the base asset is YOYO token, and there are two places to store: 『**balance**』and『**liquid assets**』
 
 - 『**余额**』拥有较高的安全性，建议大额的YOYO在余额中存储。
 - 『**零钱**』进行小额的存储与转账，当用户授予零钱权限给平台时，平台可以拥有操作”零钱” 的权限，可理解为免密支付。
