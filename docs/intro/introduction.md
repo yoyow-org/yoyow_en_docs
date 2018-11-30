@@ -80,7 +80,7 @@ In YOYO's account, the base asset is YOYO token, and there are two places to sto
 ### User-Issued Assets（UIA）
 用户可以发行自定义的资产：根据自身业务，创建在自己平台内流通的Token。后续会提供用户发行资产（UIA）与YOYO之间的便捷兑换方式，共享便捷的变现渠道。  
 
-Users can issue customised assets: users can create Tokens that circulate within their own platforms based on their business. A convenient exchange method between the user-issued assets (UIA) and YOYO will be provided subsequently, sharing convenient monetization channels.
+Users can issue custom assets: users can create Tokens that circulate within their own platforms based on their business. A convenient exchange method between the user-issued assets (UIA) and YOYO will be provided subsequently, sharing convenient monetization channels.
 
 ### 积分
 ### Points
