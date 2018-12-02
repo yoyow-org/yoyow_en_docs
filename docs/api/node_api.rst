@@ -1,41 +1,48 @@
 
-节点API说明
+Node API Descriptions
 =============
 .. contents:: :depth: 3
 
-节点连接方式
+Node Connection Method
 -------------
 
-测试环境：
+Testing Environment：
 :: 
-  websocket 接口地址： ws://47.52.155.181:10011
-  jsonrpc 接口地址： http://47.52.155.181:10011/rpc
+  websocket interface address： ws://47.52.155.181:10011
+  jsonrpc interface address： http://47.52.155.181:10011/rpc
 
-正式环境：
+Formal Environment：
 ::
-  websocket 接口地址：ws://139.198.1.234:9000
-  jsonrpc 接口地址： http://139.198.1.234:9000/rpc
+  websocket interface address：ws://139.198.1.234:9000
+  jsonrpc interface address： http://139.198.1.234:9000/rpc
 
 
-使用wscat连接， `wscat安装方法 <https://www.npmjs.com/package/wscat>`_  
+use wscat to connect， `wscat installation method <https://www.npmjs.com/package/wscat>`_  
   wscat -c ws://47.52.155.181:10011
 
 
-使用curl post data 连接
+use curl post data to connect
   curl --data '{"jsonrpc": "2.0", "method": "call", "params": [0, "get_accounts_by_uid", [["250926091"]]], "id": 1}' http://47.52.155.181:10011/rpc
 
-API分类
+API Classification
 ----------------
 YOYOW的API分类与BTS类似，以下重点介绍database api和history api。
 在通过websocket 请求时，参数为一个json字符串，格式如下：
 
-    {"id":1, "method":"call", "params":[API等级,"函数名",[具体参数]]}
+YOYOW's API classification is similar to BTS. The following focuses on database api and history api. When requesting via websocket, the parameter is a json string in the following format:
+
+    {"id":1, "method":"call", "params":[API level,"function name",[specific parameters]]}
 
 在使用时，需要填写API等级，函数名，和具体参数3项，其中API等级可以通过websocket 发送
+
+In use, you need to fill in API level, function name, and specific parameters, of which the API level can be obtained by sending the following strings via websocket:
 
     {"id":2, "method":"call", "params":[1,"history",[]]}
 
 来获取。比如以上请求会返回：
+
+For example, the above request will return:
+
 ::
     {
       "id": 2,
@@ -45,14 +52,18 @@ YOYOW的API分类与BTS类似，以下重点介绍database api和history api。
 
 其中result 为 2，代表着使用history api 时，API等级需要填写2.（注意：不一定每个YOYOW节点都返回同样的配置，这取决于每个节点对暴露API的限制）
 
+Here the result is 2, which means that when using the history api, the API level needs to be filled in 2. (Note: not every YOYOW node returns the same configuration; it depends on each node's limit on exposing the API)
+
 database的API默认可以直接通过指定API等级为0来调用，也可以使用通过
+
+The database API can be called directly by default by specifying the API level to 0 or by querying the result value through using the following strings:
 
     {"id":2, "method":"call", "params":[1,"database",[]]}
 
 查询到的result的值来调用。
 
 
-database API
+Database API
 ----------------
 
 1.1.1 get_required_signatures
@@ -62,33 +73,40 @@ database API
  备用公钥集合的一个可用子集，可以用来签署该交易
  可能还需要的公钥（不在签名中，也不在备用公钥集合中）
  交易中已包含的多余签名
+ 
+ Return the 3 sets associated with signing the transaction based on the given transaction (which may already contain the signature), and the given set of spare public keys:
+::
+A subset of the available spare public key set, can be used to sign the transaction
+Public key that may also be needed (not in the signature, nor in the set of spare public keys)
+Extra signature already included in the transaction
 
-支持格式
+Supported format
 """"""""""""""""
 JSON 
 
-请求方式
+Request method
 """"""""""""""""
 WebSocket; JSON-RPC
 
 
-访问授权限制
+Access authorization limit
 """"""""""""""""""
 
-无
+null
 
 
-请求参数
+Request parameters
 """"""""""""""""
 
-:trx:             交易，可能已包含签名
-:available_keys:  公钥的数组 例如：["YYW5eDSFYeiqyFRajfPP8tTZMm7fUeyc7H65zmnHtDW4SQJdwqTBD"]
+:trx:             transaction, may have already contained signature
+:available_keys:  array of public keys 
+For example：["YYW5eDSFYeiqyFRajfPP8tTZMm7fUeyc7H65zmnHtDW4SQJdwqTBD"]
 
-注意事项
+Precautions
 """"""""""""""""
-无
+null
 
-调用样例及调试工具
+Call sample and debug tools
 """""""""""""""""""""""""""""""""
 WebSocket:
 ::
@@ -101,7 +119,7 @@ JSON-RPC:
 
     curl --data '{"jsonrpc": "2.0", "method": "call", "params": [0, "get_accounts_by_uid", [{"operations":[[0,{"fee":{"total":{"amount":100000,"asset_id":0}},"from":250926091,"to":223331844,"amount":{"amount":100000,"asset_id":0},"extensions":{}}]]}, ["YYW5eDSFYeiqyFRajfPP8tTZM7mfUeyc7H65zmnHtDW4SQJdwqTBD"]]], "id": 1}' http://47.52.155.181:10011/rpc
 
-返回结果
+Return results
 """"""""""""""""
 ::
 
@@ -112,13 +130,13 @@ JSON-RPC:
         [
           [
             "YYW5eDSFYeiqyFRajfPP8tTZM7mfUeyc7H65zmnHtDW4SQJdwqTBD"
-          ],  //备用公钥集合的一个可用子集，可以用来签署该交易
+          ],  //a subset of the available spare public key set, can be used to sign the transaction
           [
             "YYW6fU7Th8uESW9FZnpkhYaTUwtSvn3f2TQxFVA3ef2SSiwdZES71",
             "YYW7UoNSEQAUPvnvoBRVKyPAD9845esnpiK6MgHinsn5yqr5UgT5W"
-          ] //还需要的公钥（不在签名中，也不在备用公钥集合中）
+          ] //public key that may also be needed (not in the signature, nor in the set of spare public keys)
         ],
-        []  // 交易中已包含的多余签名
+        []  // extra signature already included in the transaction
       ]
     }
 
@@ -128,30 +146,34 @@ JSON-RPC:
 
 如果该 uid 不存在，对应位置结果为 null 。
 
-支持格式
+Return multiple account information based on uid. The quantity must be <= 1000.
+
+If the uid does not exist, the corresponding position result is null .
+
+Supported format
 """"""""""""""""
 JSON 
 
-请求方式
+Request method
 """"""""""""""""
 WebSocket; JSON-RPC
 
 
-访问授权限制
+Access authorization limit
 """"""""""""""""""
-无
+null
 
 
-请求参数
+Request parameters
 """"""""""""""""
 
-:account_uids:   uid数组，长度小于1000 例如：["250926091"]
+:account_uids:   uid array，length is less than 1000 for example：["250926091"]
 
-注意事项
+Precautions
 """"""""""""""""
-无
+null
 
-调用样例及调试工具
+Call sample and debug tools
 """""""""""""""""""""""""""""""""
 WebSocket:
 ::
@@ -165,7 +187,7 @@ JSON-RPC:
     curl --data '{"jsonrpc": "2.0", "method": "call", "params": [0, "get_accounts_by_uid", [["250926091"]]], "id": 1}' http://47.52.155.181:10011/rpc
 
 
-返回结果
+Return results
 """"""""""""""""
 ::
 
@@ -247,34 +269,35 @@ JSON-RPC:
 1.1.3 get_account_balances
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 根据 uid和资产类型查询资产余额。
+Query the asset balance based on uid and asset type.
 
 
-支持格式
+Supported format
 """"""""""""""""
 JSON 
 
-请求方式
+Request method
 """"""""""""""""
 WebSocket; JSON-RPC
 
 
 
-访问授权限制
+Access authorization limit
 """"""""""""""""""
-无
+null
 
 
-请求参数
+Request parameters
 """"""""""""""""
 
-:uid:   uid，例如:"250926091"
-:assets:    资产种类id的列表,0代表核心资产。例如：[0,1]。如果该值为空([]) 则返回该账户里的所有资产余额
+:uid:   uid，for example:"250926091"
+:assets:    a list of asset type id, with 0 representing core assets. For example: [0,1]. If the value is empty ([]), return all asset balances in the account
 
-注意事项
+Precautions
 """"""""""""""""
-无
+null
 
-调用样例及调试工具
+Call sample and debug tools
 """""""""""""""""""""""""""""""""
 WebSocket:
 ::
@@ -288,7 +311,7 @@ JSON-RPC:
     curl --data '{"jsonrpc": "2.0", "method": "call", "params": [0, "get_account_balances", ["250926091", [0,1]]], "id": 1}' http://47.52.155.181:10011/rpc
 
 
-返回结果
+Return results
 """"""""""""""""
 ::
 
@@ -313,34 +336,35 @@ JSON-RPC:
 1.1.4 get_post
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 根据平台所有者 uid 、发帖者 uid 、帖子 pid 返回帖子信息。
+Return post information based on platform owner uid, poster uid, and post pid.
 
-支持格式
+Supported format
 """"""""""""""""
 JSON 
 
-请求方式
+Request method
 """"""""""""""""
 WebSocket; JSON-RPC
 
 
 
-访问授权限制
+Access authorization limit
 """"""""""""""""""
-无
+null
 
 
-请求参数
+Request parameters
 """"""""""""""""
 
-:platform_owner:   平台owner的id
-:poster_uid:   poster的id
-:post_pid:   post的id 例如：1
+:platform_owner:   platform owner id
+:poster_uid:   poster id
+:post_pid:   post id (for exmaple：1)
 
-注意事项
+Precautions
 """"""""""""""""
-无
+null
 
-调用样例及调试工具
+Call sample and debug tools
 """""""""""""""""""""""""""""""""
 WebSocket:
 ::
@@ -354,7 +378,7 @@ JSON-RPC:
     curl --data '{"jsonrpc": "2.0", "method": "call", "params": [0, "get_post", [["250926091"]]], "id": 1}' http://47.52.155.181:10011/rpc
 
 
-返回结果
+Return results
 """"""""""""""""
 ::
 
@@ -381,34 +405,36 @@ JSON-RPC:
 1.1.5 get_posts_by_platform_poster
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 根据平台所有者 uid 、 发帖者 uid 、发帖时间段 查询帖子列表。
+Query the list of posts according to the platform owner uid, poster uid, post time period.
 
-支持格式
+Supported format
 """"""""""""""""
 JSON 
 
-请求方式
+Request method
 """"""""""""""""
 WebSocket; JSON-RPC
 
 
-访问授权限制
+Access authorization limit
 """"""""""""""""""
-无
+null
 
 
-请求参数
+Request parameters
 """"""""""""""""
 
-:platform_owner:   平台owner的id
-:poster_uid:   poster的id。poster_uid可以为 null ，此时查询所有用户的帖子。
-:create_time_range:   限制时间段，由两个时间点组成，先后不限，查询范围为 最早时间 < 发帖时间 <= 最晚时间
-:limit:   限制条数，不能超过 100
+:platform_owner: platform owner id
+:poster_uid: poster id; poster_uid can be null, query all users' posts at this time.
+:create_time_range: The time limit is limited by two time points whose time orders are not limited. The query range is like this: the earliest time < Posting time <= latest time.
 
-注意事项
+:limit: the number is limited, not exceeding 100.
+
+Precautions
 """"""""""""""""
-无
+null
 
-调用样例及调试工具
+Call sample and debug tools
 """""""""""""""""""""""""""""""""
 WebSocket:
 ::
@@ -422,10 +448,11 @@ JSON-RPC:
     curl --data '{"jsonrpc": "2.0", "method": "call", "params": [0, "get_accounts_by_uid", [223331844, null, ["2018-04-03T12:42:36","2018-05-03T12:42:36"], 100]], "id": 1}' http://47.52.155.181:10011/rpc
 
 
-返回结果
+Return results
 """"""""""""""""
 
 结果按时间排序，最新的排最前。时间相同的，按实际入块顺序，后入块的排在前面。
+The results are sorted by time, with the latest one being the top. If the time is the same, the results are sorted by the actual order of receiving blocks, with the later block reception being in the front.
 ::
 
     {
@@ -453,42 +480,43 @@ JSON-RPC:
 1.1.6 get_required_fee_data
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 给定一组操作，返回操作需要的手续费信息。该 API 只支持核心资产。
+Give a set of operations, return the fee information required for the operation. The API only supports core assets.
 
-其中，
+wherein，
 ::
     required_fee_data
     {
-       account_uid_type fee_payer_uid; // 付费人 uid
-       int64_t          min_fee;       // 最低总费用，单位是核心资产去掉小数点后的值（与 asset 类型用法相同）；
-       int64_t          min_real_fee;  // 最低真实费用（不能用币天抵扣的部分），单位同上
+       account_uid_type fee_payer_uid; // payer uid
+       int64_t          min_fee;       // 最低总费用，单位是核心资产去掉小数点后的值（与 asset 类型用法相同）；The lowest total cost and the unit is the value of core asset after being removed the part after the decimal point (same usage as the asset type)
+       int64_t          min_real_fee;  // 最低真实费用（不能用币天抵扣的部分），单位同上 The lowest real cost (the part that cannot be deducted using tokens), and the unit is the same as above
     };
 
 
-支持格式
+Supported format
 """"""""""""""""
 JSON 
 
-请求方式
+Request method
 """"""""""""""""
 WebSocket; JSON-RPC
 
 
 
-访问授权限制
+Access authorization limit
 """"""""""""""""""
-无
+null
 
 
-请求参数
+Request parameters
 """"""""""""""""
 
-:ops:   uid数组，长度小于1000 例如：["250926091"]
+:ops:   uid array，the length is less than 1000; for example：["250926091"]
 
-注意事项
+Precautions
 """"""""""""""""
-无
+null
 
-调用样例及调试工具
+Call sample and debug tools
 """""""""""""""""""""""""""""""""
 WebSocket:
 ::
@@ -501,7 +529,7 @@ JSON-RPC:
 
     curl --data '{"jsonrpc": "2.0", "method": "call", "params": [0, "get_required_fee_data", [[[0,{"fee":{"total":{"amount":200000,"asset_id":0},"options":{"from_balance":{"amount":200000,"asset_id":0}}},"from":236542328,"to":228984329,"amount":{"amount":100000,"asset_id":0},"extensions":{"from_balance":{"amount":100000,"asset_id":0},"to_balance":{"amount":100000,"asset_id":0}}}]]]], "id": 1}' http://47.52.155.181:10011/rpc
 
-返回结果
+Return results
 """"""""""""""""
 ::
 
@@ -525,29 +553,30 @@ JSON-RPC:
 1.1.7 get_full_accounts_by_uid
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 根据一组账户 uid 获取对应信息。
+Get the corresponding information based on a set of account uid.
 
-支持格式
+Supported format
 """"""""""""""""
 JSON 
 
-请求方式
+Request method
 """"""""""""""""
 WebSocket; JSON-RPC
 
 
 
-访问授权限制
+Access authorization limit
 """"""""""""""""""
-无
+null
 
 
-请求参数
+Request parameters
 """"""""""""""""
 
-:uids:   uid数组，长度小于1000 例如：["250926091"]
-:options:   options 数组 
+:uids:   uid array，the length is less than 1000; for example：["250926091"]
+:options:   options array 
 
-Options 数组可以有如下参数
+Options The array can have the following parameters
 ::
     {
     optional fetch_account_object;
@@ -565,11 +594,11 @@ Options 数组可以有如下参数
     optional fetch_balances;
     }
 
-注意事项
+Precautions
 """"""""""""""""
-无
+null
 
-调用样例及调试工具
+Call sample and debug tools
 """""""""""""""""""""""""""""""""
 WebSocket:
 ::
@@ -585,7 +614,7 @@ JSON-RPC:
     curl --data '{"jsonrpc": "2.0", "method": "call", "params": [0, "get_full_accounts_by_uid", [["250926091"],{}]], "id": 1}' http://47.52.155.181:10011/rpc
 
 
-返回结果
+Return results
 """"""""""""""""
 ::
 
@@ -703,27 +732,27 @@ JSON-RPC:
 
 
 
-返回字段说明
+Return field description
 """""""""""""""""""""""""""""""""""
-返回 map 中 full_account 的结构定义为：
+return the structure definition of full_account in map as：
 
 ::
 
    full_account
    {
-      account;                   // 账户基本信息
-      statistics;                // 账户动态信息
-      csaf_leases_in;            // 手续费币龄借入明细
-      csaf_leases_out;           // 手续费币龄借出明细
-      voter;                     // 账户投票信息汇总
-      witness;                   // 见证人信息
-      witness_votes;             // 见证人投票明细（投出票）
-      committee_member;          // 候选理事信息
-      committee_member_votes;    // 理事会选举投票明细（投出票）
-      platform;                  // 该账户拥有的平台信息
-      platform_votes;            // 平台投票明细（投出票）
-      assets;                    // 该账户为资产发行人的资产类型 id 清单
-      balances;                  // 余额表
+      account;                   // account basic info
+      statistics;                // account dynamic info
+      csaf_leases_in;            // fee token age borrowing details
+      csaf_leases_out;           // fee token age lending details
+      voter;                     // summary of account voting information
+      witness;                   // witness information
+      witness_votes;             // witness vote details (voting votes)
+      committee_member;          // committee candidate info
+      committee_member_votes;    // committee election voting details (voting votes)
+      platform;                  // platform information owned by this account
+      platform_votes;            // platform voting details (voting votes)
+      assets;                    // this account is the asset issuer's asset type id list
+      balances;                  // balance sheet
 
    };
 
@@ -731,33 +760,34 @@ JSON-RPC:
 1.1.8 get_witness_by_account
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 给定一个账户的 uid ，返回对应的见证人信息
+Give the uid of an account, return the corresponding witness information
 
-支持格式
+Supported format
 """"""""""""""""
 JSON 
 
-请求方式
+Request method
 """"""""""""""""
 WebSocket; JSON-RPC
 
 
 
-访问授权限制
+Access authorization limit
 """"""""""""""""""
-无
+null
 
 
-请求参数
+Request parameters
 """"""""""""""""
 
-:account:   uid数组，长度小于1000 例如：["250926091"]
+:account:   uid array，the length is less than 1000; for example：["250926091"]
 
 
-注意事项
+Precautions
 """"""""""""""""
-无
+null
 
-调用样例及调试工具
+Call sample and debug tools
 """""""""""""""""""""""""""""""""
 WebSocket:
 ::
@@ -771,7 +801,7 @@ JSON-RPC:
     curl --data '{"jsonrpc": "2.0", "method": "call", "params": [0, "get_witness_by_account", ["132826789"], "id": 1}' http://47.52.155.181:10011/rpc
 
 
-返回结果
+Return results
 """"""""""""""""
 ::
 
@@ -807,43 +837,49 @@ JSON-RPC:
     }
 
 
-返回字段说明
+Return field descriptions
 """""""""""""""""""""""""""""""""""
 只有当 options 中对应选项为 true 时，返回结果中才包含对应字段数据。
 其中，币龄借入明细、借出明细只返回前 100 条
 
 如果 uid 不存在，则返回 map 中没有相应 uid 。
 
+The corresponding field data is only included in the returned result if the corresponding option in options is true.
+Among them, the token age borrowing details and lending details are only returned for the top 100 items.
+
+If uid does not exist, there is no corresponding uid in the returned map.
+
 
 1.1.9 get_witnesses
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 给定一组 uid ，返回对应的见证人信息
+Give a set of uids, return the corresponding witness information
 
-支持格式
+Supported format
 """"""""""""""""
 JSON 
 
-请求方式
+Request method
 """"""""""""""""
 WebSocket; JSON-RPC
 
 
 
-访问授权限制
+Access authorization limit
 """"""""""""""""""
-无
+null
 
 
-请求参数
+Request parameters
 """"""""""""""""
 
-:account_uids:   uid数组，例如：[132826789,25997]
+:account_uids:   uid array，for example：[132826789,25997]
 
-注意事项
+Precautions
 """"""""""""""""
-无
+null
 
-调用样例及调试工具
+Call sample and debug tools
 """""""""""""""""""""""""""""""""
 WebSocket:
 ::
@@ -857,7 +893,7 @@ JSON-RPC:
     curl --data '{"jsonrpc": "2.0", "method": "call", "params": [0, "get_witnesses", [[132826789,25997]]], "id": 1}' http://47.52.155.181:10011/rpc
 
 
-返回结果
+Return results
 """"""""""""""""
 ::
 
@@ -923,35 +959,37 @@ JSON-RPC:
 
 1.1.10 lookup_witnesses
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-列出当前有效的见证人清单。 
+列出当前有效的见证人清单。
+List current valid witnesses
 
-支持格式
+Supported format
 """"""""""""""""
 JSON 
 
-请求方式
+Request method
 """"""""""""""""
 WebSocket; JSON-RPC
 
 
 
-访问授权限制
+Access authorization limit
 """"""""""""""""""
-无
+null
 
 
-请求参数
+Request parameters
 """"""""""""""""
 
-:lower_bound_uid:  以此作为起始 uid 开始查询，设为 0 则从头开始查
-:limit:  返回数量限制，最多不能超过 101
-:ops:  排序类型; 取值范围[0,1,2]。 0:按uid由大到小排序；1:按得票数从多到少排序；2:按抵押从多到少排序
+:lower_bound_uid:  Start the query with this as the starting uid, set it to 0 and start from the beginning.
+:limit:  Return quantity limit, up to 101
+:ops:  Sort type; value range [0, 1, 2]. 
+0:Sort by uid from big to small; 1: Sort by number of votes; 2: Sort by collateral amount
 
-注意事项
+Precautions
 """"""""""""""""
-无
+null
 
-调用样例及调试工具
+Call sample and debug tools
 """""""""""""""""""""""""""""""""
 WebSocket:
 ::
@@ -965,7 +1003,7 @@ JSON-RPC:
     curl --data '{"jsonrpc": "2.0", "method": "call", "params": [0, "lookup_witnesses", [0,2,1]], "id": 1}' http://47.52.155.181:10011/rpc
 
 
-返回结果
+Return results
 """"""""""""""""
 ::
 
@@ -1029,34 +1067,34 @@ JSON-RPC:
 
 1.1.11 get_committee_member_by_account
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-给定一个 uid ，返回对应的候选理事信息
+Give a uid, return the corresponding committee candidate information
 
-支持格式
+Supported format
 """"""""""""""""
 JSON 
 
-请求方式
+Request method
 """"""""""""""""
 WebSocket; JSON-RPC
 
 
 
-访问授权限制
+Access authorization limit
 """"""""""""""""""
-无
+null
 
 
-请求参数
+Request parameters
 """"""""""""""""
 
-:account:   uid 例如："250926091"
+:account:   uid; for example："250926091"
 
 
-注意事项
+Precautions
 """"""""""""""""
-无
+null
 
-调用样例及调试工具
+Call sample and debug tools
 """""""""""""""""""""""""""""""""
 WebSocket:
 ::
@@ -1070,7 +1108,7 @@ JSON-RPC:
     curl --data '{"jsonrpc": "2.0", "method": "call", "params": [0, "get_committee_member_by_account", [25997], "id": 1}' http://47.52.155.181:10011/rpc
 
 
-返回结果
+Return results
 """"""""""""""""
 ::
 
@@ -1096,33 +1134,33 @@ JSON-RPC:
 
 1.1.12 get_committee_members
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-根据一组账户 uid 获取对应信息。
+Get the corresponding information based on a set of account uid.
 
-支持格式
+Supported format
 """"""""""""""""
 JSON 
 
-请求方式
+Request method
 """"""""""""""""
 WebSocket; JSON-RPC
 
 
 
-访问授权限制
+Access authorization limit
 """"""""""""""""""
-无
+null
 
 
-请求参数
+Request parameters
 """"""""""""""""
 
-:committee_member_uids:   uid数组 例如：[25997,26264] 
+:committee_member_uids:   uid array; for example：[25997,26264] 
 
-注意事项
+Precautions
 """"""""""""""""
-无
+null
 
-调用样例及调试工具
+Call sample and debug tools
 """""""""""""""""""""""""""""""""
 WebSocket:
 ::
@@ -1136,7 +1174,7 @@ JSON-RPC:
     curl --data '{"jsonrpc": "2.0", "method": "call", "params": [0, "get_committee_members", [[25997,26264]]], "id": 1}' http://47.52.155.181:10011/rpc
 
 
-返回结果
+Return results
 """"""""""""""""
 ::
 
@@ -1173,34 +1211,36 @@ JSON-RPC:
 1.1.13 lookup_committee_members
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 列出当前有效的候选理事清单
+List the current valid committee candidate list
 
-支持格式
+Supported format
 """"""""""""""""
 JSON 
 
-请求方式
+Request method
 """"""""""""""""
 WebSocket; JSON-RPC
 
 
 
-访问授权限制
+Access authorization limit
 """"""""""""""""""
-无
+null
 
 
-请求参数
+Request parameters
 """"""""""""""""
 
-:lower_bound_uid:   以此作为起始 uid 开始查询，设为 0 则从头开始查
-:limit:  返回数量限制，最多不能超过 101
-:ops:   排序类型取值范围[0,1,2]。 0:按uid由大到小排序；1:按得票数从多到少排序；2:按抵押从多到少排序
+:lower_bound_uid:   Start the query with this as the starting uid, set it to 0 and start from the beginning
+:limit:  Return quantity limit, up to 101
+:ops:   Sort type, value range [0,1,2] 
+0:Sort by uid from big to small; 1: Sort by number of votes; 2: Sort by collateral amount
 
-注意事项
+Precautions
 """"""""""""""""
-无
+null
 
-调用样例及调试工具
+Call sample and debug tools
 """""""""""""""""""""""""""""""""
 WebSocket:
 ::
@@ -1214,7 +1254,7 @@ JSON-RPC:
     curl --data '{"jsonrpc": "2.0", "method": "call", "params": [0, "lookup_committee_members", [0,2,1]], "id": 1}'
 
 
-返回结果
+Return results
 """"""""""""""""
 ::
 
@@ -1251,31 +1291,32 @@ JSON-RPC:
 1.1.14 list_committee_proposals
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 列出所有尚未成功执行的理事会提案，包含正在投票表决的、已表决通过但还没到执行时间的。
+List all the committee proposals that have not been successfully implemented, including those that are being voted on, have been voted through but have not yet reached the execution time.
 
-支持格式
+Supported format
 """"""""""""""""
 JSON 
 
-请求方式
+Request method
 """"""""""""""""
 WebSocket; JSON-RPC
 
 
 
-访问授权限制
+Access authorization limit
 """"""""""""""""""
-无
+null
 
 
-请求参数
+Request parameters
+""""""""""""""""
+null
+
+Precautions
 """"""""""""""""
 无
 
-注意事项
-""""""""""""""""
-无
-
-调用样例及调试工具
+Call sample and debug tools
 """""""""""""""""""""""""""""""""
 WebSocket:
 ::
@@ -1289,7 +1330,7 @@ JSON-RPC:
     curl --data '{"jsonrpc": "2.0", "method": "call", "params": [0, "list_committee_proposals", []], "id": 1}' http://47.52.155.181:10011/rpc
 
 
-返回结果
+Return results
 """"""""""""""""
 ::
 
@@ -1306,33 +1347,35 @@ JSON-RPC:
 1.1.15 lookup_accounts_by_name
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 根据名称查找账号UID。
+Find the account UID by name.
 普通账户名称目前为yoyo+uid
+The normal account name is currently yoyo+uid
 
-支持格式
+Supported format
 """"""""""""""""
 JSON 
 
-请求方式
+Request method
 """"""""""""""""
 WebSocket; JSON-RPC
 
 
 
-访问授权限制
+Access authorization limit
 """"""""""""""""""
-无
+null
 
 
-请求参数
+Request parameters
 """"""""""""""""
-:lower_bound_name:   以此作为起始名称开始查询，设为空串则从头开始查
-:limit:  返回数量限制，最多不能超过 1001
+:lower_bound_name:   Start the query with this as the starting name, set it to an empty string and start from the beginning.
+:limit:  Return quantity limit, up to 1001
 
-注意事项
+Precautions
 """"""""""""""""
-无
+null
 
-调用样例及调试工具
+Call sample and debug tools
 """""""""""""""""""""""""""""""""
 WebSocket:
 ::
@@ -1345,7 +1388,7 @@ JSON-RPC:
 
     curl --data '{"jsonrpc": "2.0", "method": "call", "params": [0, "lookup_accounts_by_name", ["",2]], "id": 1}' http://47.52.155.181:10011/rpc
 
-返回结果
+Return results
 """"""""""""""""
 ::
 
@@ -1364,32 +1407,33 @@ JSON-RPC:
 1.1.16 get_platform_by_account
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 给定一个 uid ，返回对应的账户拥有的平台信息
+Give a uid, return the platform information owned by the corresponding account
 
-支持格式
+Supported format
 """"""""""""""""
 JSON 
 
-请求方式
+Request method
 """"""""""""""""
 WebSocket; JSON-RPC
 
 
 
-访问授权限制
+Access and authorization limit
 """"""""""""""""""
-无
+null
 
 
-请求参数
+Request parameters
 """"""""""""""""
 
-:account:  一个账户 uid
+:account:  one account uid
 
-注意事项
+Precautions
 """"""""""""""""
-无
+null
 
-调用样例及调试工具
+Call sample and debug tools
 """""""""""""""""""""""""""""""""
 WebSocket:
 ::
@@ -1403,7 +1447,7 @@ JSON-RPC:
     curl --data '{"jsonrpc": "2.0", "method": "call", "params": [0, "get_platform_by_account", [224006453]], "id": 1}' http://47.52.155.181:10011/rpc
 
 
-返回结果
+Return results
 """"""""""""""""
 ::
 
@@ -1433,33 +1477,33 @@ JSON-RPC:
 
 1.1.17 get_platforms
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-给定一组 uid ，返回对应的平台信息，uid为平台的所有者id
+Give a set of uids, return the corresponding platform information; uid is the owner id of the platform
 
-支持格式
+Supported format
 """"""""""""""""
 JSON 
 
-请求方式
+Request method
 """"""""""""""""
 WebSocket; JSON-RPC
 
 
 
-访问授权限制
+Access authorization limit
 """"""""""""""""""
-无
+null
 
 
-请求参数
+Request parameters
 """"""""""""""""
 
-:account_uids:   uid 列表 [224006453,217895094]
+:account_uids:   uid list [224006453,217895094]
 
-注意事项
+Precautions
 """"""""""""""""
-无
+null
 
-调用样例及调试工具
+Call sample and debug tools
 """""""""""""""""""""""""""""""""
 WebSocket:
 ::
@@ -1473,7 +1517,7 @@ JSON-RPC:
     curl --data '{"jsonrpc": "2.0", "method": "call", "params": [0, "get_platforms", [[224006453,217895094]]], "id": 1}' http://47.52.155.181:10011/rpc
 
 
-返回结果
+Return results
 """"""""""""""""
 ::
 
@@ -1523,35 +1567,36 @@ JSON-RPC:
 1.1.18 lookup_platforms
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 按平台拥有者进行查询，列出当前有效的平台清单。
+Query by platform owner to list the current valid platforms
 
-
-支持格式
+Supported format
 """"""""""""""""
 JSON 
 
-请求方式
+Request method
 """"""""""""""""
 WebSocket; JSON-RPC
 
 
 
-访问授权限制
+Access authorization limit
 """"""""""""""""""
-无
+null
 
 
-请求参数
+Request parameters
 """"""""""""""""
 
-:lower_bound_uid:   以此作为起始 uid 开始查询，设为 0 则从头开始查
-:limit:  返回数量限制，最多不能超过 101
-:ops:   排序类型取值范围[0,1,2]。 0:按uid由大到小排序；1:按得票数从多到少排序；2:按抵押从多到少排序
+:lower_bound_uid: Start the query with this as the starting uid, set it to 0 and start from the beginning.
+:limit:  Return quantity limit, up to 101
+:ops:   Sort type, value range [0,1,2] 
+0: Sort by uid from big to small; 1: Sort by number of votes; 2: Sort by collateral amount
 
-注意事项
+Precautions
 """"""""""""""""
-无
+null
 
-调用样例及调试工具
+Call sample and debug tools
 """""""""""""""""""""""""""""""""
 WebSocket:
 ::
@@ -1565,7 +1610,7 @@ JSON-RPC:
     curl --data '{"jsonrpc": "2.0", "method": "call", "params": [0, "lookup_platforms", [0,2,1]], "id": 1}' http://47.52.155.181:10011/rpc
 
 
-返回结果
+Return results
 """"""""""""""""
 ::
 
@@ -1616,31 +1661,32 @@ JSON-RPC:
 1.1.19 get_platform_count
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 返回平台总数量
+Return the total number of platforms
 
-支持格式
+Supported format
 """"""""""""""""
 JSON 
 
-请求方式
+Request method
 """"""""""""""""
 WebSocket; JSON-RPC
 
 
 
-访问授权限制
+Access authorization limit
 """"""""""""""""""
-无
+null
 
 
-请求参数
+Request parameters
 """"""""""""""""
-无
+null
 
-注意事项
+Precautions
 """"""""""""""""
-无
+null
 
-调用样例及调试工具
+Call sample and debug tools
 """""""""""""""""""""""""""""""""
 WebSocket:
 ::
@@ -1654,7 +1700,7 @@ JSON-RPC:
     curl --data '{"jsonrpc": "2.0", "method": "call", "params": [0, "get_platform_count", []], "id": 1}' http://47.52.155.181:10011/rpc
 
 
-返回结果
+Return results
 """"""""""""""""
 ::
 
@@ -1671,37 +1717,37 @@ JSON-RPC:
 1.1.20 get_assets
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 给定一组资产 id ，返回对应的资产的详细信息。
+Give a set of asset ids, return the details of the corresponding assets.
 
+Parameters：
+asset_ids a set of assets id
 
-参数：
-asset_ids 一组资产 id
-
-支持格式
+Supported format
 """"""""""""""""
 JSON 
 
-请求方式
+Request method
 """"""""""""""""
 WebSocket; JSON-RPC
 
 
 
-访问授权限制
+Access authorization limit
 """"""""""""""""""
-无
+null
 
 
-请求参数
+Request parameters
 """"""""""""""""
 
-:asset_ids:   资产id数组，暂时只要核心资产YOYO，例如： [0]
+:asset_ids:   asset id array; for the time being, only the core asset YOYO is accepted，for example： [0]
 
 
-注意事项
+Precautions
 """"""""""""""""
-无
+null
 
-调用样例及调试工具
+Call sample and debug tools
 """""""""""""""""""""""""""""""""
 WebSocket:
 ::
@@ -1715,7 +1761,7 @@ JSON-RPC:
     curl --data '{"jsonrpc": "2.0", "method": "call", "params": [0, "get_assets", [[0]]], "id": 1}' http://47.52.155.181:10011/rpc
 
 
-返回结果
+Return results
 """"""""""""""""
 ::
 
@@ -1759,33 +1805,34 @@ JSON-RPC:
 1.1.21 list_assets
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 分页查询资产详细信息。返回结果按资产代码的 ASCII 码顺序排序。
+Query asset details by page. The returned results are sorted in ASCII code order of the asset code.
 
-支持格式
+Supported format
 """"""""""""""""
 JSON 
 
-请求方式
+Request method
 """"""""""""""""
 WebSocket; JSON-RPC
 
 
 
-访问授权限制
+Access authorization limit
 """"""""""""""""""
-无
+null
 
 
-请求参数
+Request parameters
 """"""""""""""""
 
-:lower_bound_symbol:   以此作为起始代码开始查询
-:limit:   返回数量限制，最多不能超过 101
+:lower_bound_symbol:   Start with this as the starting code
+:limit:   Return quantity limit, up to 101
 
-注意事项
+Precautions
 """"""""""""""""
-无
+null
 
-调用样例及调试工具
+Call sample and debug tools
 """""""""""""""""""""""""""""""""
 WebSocket:
 ::
@@ -1799,7 +1846,7 @@ JSON-RPC:
     curl --data '{"jsonrpc": "2.0", "method": "call", "params": [0, "list_assets", ["YOY",4]], "id": 1}' http://47.52.155.181:10011/rpc
 
 
-返回结果
+Return results
 """"""""""""""""
 ::
 
@@ -1920,32 +1967,33 @@ JSON-RPC:
 1.1.22 lookup_asset_symbols
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 给定一组资产代码或 id ，返回对应的资产的详细信息。
+Give a set of asset codes or ids, return the details of the corresponding assets.
 
-支持格式
+Supported format
 """"""""""""""""
 JSON 
 
-请求方式
+Request method
 """"""""""""""""
 WebSocket; JSON-RPC
 
 
 
-访问授权限制
+Access authorization limit
 """"""""""""""""""
-无
+null
 
 
-请求参数
+Request parameters
 """"""""""""""""
 
-:symbols_or_ids:   数组形式，要检索的资产的符号代码或ID，例如：["YOYO"] 或者 [0]
+:symbols_or_ids:   Array form, the symbol code or ID of the asset to be retrieved, for example: ["YOYO"] or [0]
 
-注意事项
+Precautions
 """"""""""""""""
-无
+null
 
-调用样例及调试工具
+Call sample and debug tools
 """""""""""""""""""""""""""""""""
 WebSocket:
 ::
@@ -1960,7 +2008,7 @@ JSON-RPC:
     curl --data '{"jsonrpc": "2.0", "method": "call", "params": [0, "lookup_asset_symbols", [["YOYO"]]], "id": 1}' http://47.52.155.181:10011/rpc
 
 
-返回结果
+Return results
 """"""""""""""""
 ::
 
@@ -2004,40 +2052,43 @@ History API
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 获取账户历史。
+Get account history
 
-
-支持格式
+Supported format
 """"""""""""""""
 JSON 
 
-请求方式
+Request method
 """"""""""""""""
 WebSocket; JSON-RPC
 
 
-访问授权限制
+Access authorization limit
 """"""""""""""""""
-无
+null
 
 
-请求参数
+Request parameters
 """"""""""""""""
 
-:account:   可以是 uid 或者账户昵称
-:op_type:   限制操作类型，参见操作类型。值为 null 时，则返回所有操作类型；为 0 时可获得所有transfer操作.
-:start:   查询起始编号（sequence number）
-:limit:   返回结果总数
-:end:  值为 0 时，可得到最多的最近操作记录.
+:account:   can be uid or account nickname
+:op_type:   the type of limited operation, see the type of operation. When the value is null, all operation types are returned; when 0, all transfer operations are available.
+:start:   Query start number（sequence number）
+:limit:   Return the total number of results
+:end:  When the value is 0, the most recent history of operations can be obtained.
 
 
 返回结果的数量会在end - start 范围之内；如果limit值比end - start 要小，则返回满足limit条件的最新操作记录。
 返回结果的排序方式为： 最新的优先
 
-注意事项
-""""""""""""""""
-无
+The number of returned results will be in the end - start range; if the limit value is smaller than end - start, the latest operation record that satisfies the limit condition is returned.
+The returned results are sorted in the way that the latest ones are returned first.
 
-调用样例及调试工具
+Precautions
+""""""""""""""""
+null
+
+Call sample and debug tools
 """""""""""""""""""""""""""""""""
 WebSocket:
 ::
@@ -2051,9 +2102,11 @@ JSON-RPC:
     curl --data '{"jsonrpc": "2.0", "method": "call", "params": [0, "get_relative_account_history", [223331844, null, 1,3,10]], "id": 1}' http://47.52.155.181:10011/rpc
 
 
-返回结果
+Return results
 """"""""""""""""
 返回列表中每条数据是 pair 类型，pair 中第一个元素为该条记录在该账号历史中的序列号（sequence），第二个元素为具体操作
+
+Each piece of data in the returned list is a pair type. The first element in the pair is the sequence number recorded in the account history, and the second element is the specific operation.
 
 ::
 
