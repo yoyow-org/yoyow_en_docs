@@ -69,12 +69,11 @@ Database API
 1.1.1 get_required_signatures
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 根据给定的交易（可能已包含签名），和给定的备用公钥集合，返回与签署该交易有关的 3 个集合：
+Return the 3 sets associated with signing the transaction based on the given transaction (which may already contain the signature), and the given set of spare public keys:
 ::
  备用公钥集合的一个可用子集，可以用来签署该交易
  可能还需要的公钥（不在签名中，也不在备用公钥集合中）
  交易中已包含的多余签名
- 
- Return the 3 sets associated with signing the transaction based on the given transaction (which may already contain the signature), and the given set of spare public keys:
 ::
 A subset of the available spare public key set, can be used to sign the transaction
 Public key that may also be needed (not in the signature, nor in the set of spare public keys)
