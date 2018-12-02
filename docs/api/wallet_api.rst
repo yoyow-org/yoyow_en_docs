@@ -1,102 +1,105 @@
 
-钱包 API说明
+Wallet API Descriptions
 =============
 
 .. contents:: :depth: 3
 
-钱包连接方式
+Wallet Connection Method
 -------------
 
-下载方式：
+Download Method：
 ^^^^^^^^^^^^^^
 
-`测试网络钱包地址 <https://github.com/yoyow-org/yoyow-core-testnet/releases>`_
+`Testnet wallet address <https://github.com/yoyow-org/yoyow-core-testnet/releases>`_
 
-`正式网络钱包地址 <https://github.com/yoyow-org/yoyow-core/releases>`_
+`Official web wallet address <https://github.com/yoyow-org/yoyow-core/releases>`_
 
-启动方式：
+Starting Method：
 ^^^^^^^^^^^^^^^
 
-wallet的使用:
+Using wallet:
 
-可以通过交互的命令行，也可以通过websocket和http的接口。
-参考 `交易指南 <https://github.com/yoyow-org/yoyow-core/wiki/%E4%BA%A4%E6%98%93%E6%89%80%E5%AF%B9%E6%8E%A5%E6%8C%87%E5%8D%97%EF%BC%88%E4%B8%AD%E6%96%87%EF%BC%89#%E5%90%AF%E5%8A%A8-yoyow-client>`_
+It can be through the interactive command line, or through the websocket and http interface.
+Refer to `Transaction Instructions <https://github.com/yoyow-org/yoyow-core/wiki/%E4%BA%A4%E6%98%93%E6%89%80%E5%AF%B9%E6%8E%A5%E6%8C%87%E5%8D%97%EF%BC%88%E4%B8%AD%E6%96%87%EF%BC%89#%E5%90%AF%E5%8A%A8-yoyow-client>`_
 ::
 
     ./yoyow_client -s ws://127.0.0.1:8090/ -r 0.0.0.0:8091 -H 127.0.0.1:8093
 
-    注意:
+    Note:
 
-    使用 -s 来指定，连接到的节点程序的IP与端口；
-    使用 -r 选项来开启一个websocket接口；
-    使用 -H 选项来开启一个HTTP-RPC服务，方便我们其他程序进行访问。如：单独处理充值/提现的脚本程序。
-    yoyow_node 只有完成同步后，才会监听RPC端口，所以请耐心等待 yoyow_node 同步完成。
-    您可以启动多个client 连接同一个yoyow_node。但请注意不要使用相同的-H，会因为端口被占用而监听失败。
-
-
-在本文档的测试用例中，均使用本机地址。
-
-websocket 接口地址： ws://localhost:8091
-
-http rpc接口地址： http://localhost:8093
-
-**连接方法如下：**
+    Use -s to specify the IP and port of the connected node program;
+    Use the -r option to open a websocket interface;
+    Use the -H option to open an HTTP-RPC service for easy access by our other programs. For example, the script program for processing recharge/withdrawal separately.
+    Yoyow_node will only listen to the RPC port after the synchronization is completed, so please be patient and wait for the yoyow_node synchronization to complete.
+    You can start multiple clients to connect to the same yoyow_node. But please be careful not to use the same -H, the monitor will fail because the port is occupied.
 
 
-1. 使用wscat连接 websocket 接口: 
+The native address is used in the test cases in this document.
+
+websocket interface address： ws://localhost:8091
+
+http rpc interface address： http://localhost:8093
+
+**Connection Method：**
+
+
+1. Use wscat to connect to websocket interface: 
 ::
     wscat -c ws://localhost:8091
 
 
-2. 使用curl 连接 websocket 接口:
+2. Use curl to connect to websocket interface:
 ::
     curl --data '{"jsonrpc": "2.0", "method": "call", "params": [0, "get_accounts_by_uid", [["250926091"]]], "id": 1}' http://localhost:8091
 
-3. 使用curl 连接 http 接口:
+3. Use curl to connect http interface:
 ::
     curl --data '{"method": "call", "params": [0, "get_accounts_by_uid", [["250926091"]]], "id": 1}' http://localhost:8093
 
 备注：websocket和http接口的区别：websocket接口同样可以使用curl获取数据，会遵循jsonrpc格式，请求和返回的json数据均需携带{"jsonrpc": "2.0"}。http 的接口不需携带{"jsonrpc": "2.0"}的标签。
 
+Remarks: The difference between websocket and http interface: websocket interface can also use curl to get data, and it will follow jsonrpc format, and the requested and returned json data must carry {"jsonrpc": "2.0"}. The interface of http does not need to carry the label of {"jsonrpc": "2.0"}.
 
-2.1 工具类 API
+
+2.1 Tools API
 ----------------
 
 2.1.1 calculate_account_uid
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 给定一个数，计算出对应的账户 uid
+Give a number, calculate the corresponding account uid
 
-支持格式
+Supported format
 """"""""""""""""""
 
 JSON 
 
-请求方式
+Request method
 """"""""""""""""""
 
 WebSocket; JSON-RPC
 
-所需密钥权限
+Required private key authority
 """"""""""""""""""
-无
+null
 
-访问授权限制
+Access authorization limit
 """"""""""""""""""
 
-| 访问级别: 普通接口
-| 频次限制: 是
+| Access level: normal interface
+| Frequency limit: True
 
-请求参数
+Request parameters
 """"""""""""""""
 
-:n:  数字
+:n:  number
 
 
-注意事项
+Precautions
 """"""""""""""""
-无
+null
 
-调用样例及调试工具
+Call sample and debug tools
 """""""""""""""""""""""""""""""""
 WebSocket:
 ::
@@ -110,7 +113,7 @@ JSON-RPC:
     curl --data '{"jsonrpc": "2.0", "method": "call", "params":[0,"calculate_account_uid",[12]], "id": 1}' http://localhost:8093
 
 
-返回结果
+Return results
 """"""""""""""""
 ::
 
@@ -123,34 +126,35 @@ JSON-RPC:
 2.1.2 suggest_brain_key
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 随机生成一个脑密钥，根据脑密钥得出一对公私钥
+Randomly generate a brain key and derive a pair of public and private keys based on the brain key
 
-支持格式
+Supported format
 """"""""""""""""
 JSON 
 
-请求方式
+Request Method
 """"""""""""""""
 WebSocket; JSON-RPC
 
-所需密钥权限
+Required private key authority
 """"""""""""""""""
-无
+null
 
-访问授权限制
+Access authorization limit
 """"""""""""""""""
-| 访问级别: 普通接口
-| 频次限制: 是
+| Access level: normal interface
+| Frequency limit: True
 
 
-请求参数
+Request parameters
 """"""""""""""""
-无
+null
 
-注意事项
+Precautions
 """"""""""""""""
-无
+null
 
-调用样例及调试工具
+Call sample and debug tools
 """""""""""""""""""""""""""""""""
 WebSocket:
 ::
@@ -164,7 +168,7 @@ JSON-RPC:
     curl --data '{"jsonrpc": "2.0", "method": "call", "params":[0,"suggest_brain_key",[]], "id": 1}' http://localhost:8091
 
 
-返回结果
+Return results
 """"""""""""""""
 ::
 
@@ -182,34 +186,35 @@ JSON-RPC:
 2.1.3 get_transaction_id
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 返回给定交易的 tx id （交易 ID ，或称交易哈希）
+Return the tx id (transaction ID, or transaction hash) of a given transaction
 
-支持格式
+Supported format
 """"""""""""""""
 JSON 
 
-请求方式
+Request Method
 """"""""""""""""
 WebSocket; JSON-RPC
 
-所需密钥权限
+Required private key authority
 """"""""""""""""""
-无
+null
 
-访问授权限制
+Access authorization limit
 """"""""""""""""""
-| 访问级别: 普通接口
-| 频次限制: 是
+| Access level: normal interface
+| Frequency limit: True
 
 
-请求参数
+Request parameters
 """"""""""""""""
-:trx: JSON格式的完整交易
+:trx: Complete transaction in JSON format
 
-注意事项
+Precautions
 """"""""""""""""
-无
+null
 
-调用样例及调试工具
+Call sample and debug tools
 """""""""""""""""""""""""""""""""
 WebSocket:
 ::
@@ -223,7 +228,7 @@ JSON-RPC:
     curl --data '{"jsonrpc": "2.0", "method": "call", "params":[0,"suggest_brain_key",[{"operations":[[0,{"fee":{"total":{"amount":100000,"asset_id":0}},"from":250926091,"to":223331844,"amount":{"amount":100000,"asset_id":0},"extensions":{}}]]}]], "id": 1}' http://localhost:8091
 
 
-返回结果
+Return results
 """"""""""""""""
 ::
 
@@ -234,41 +239,42 @@ JSON-RPC:
     }
 
 
-2.2 查询类 API
+2.2 Queries API
 -----------------------
 
 2.2.1 get_account
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 获取账户基本信息。
+Get basic account information
 
-支持格式
+Supported format
 """"""""""""""""
 JSON 
 
-请求方式
+Request Method
 """"""""""""""""
 WebSocket; JSON-RPC
 
-所需密钥权限
+Required private key authority
 """"""""""""""""""
-无
+null
 
-访问授权限制
+Access authorization limit
 """"""""""""""""""
-| 访问级别: 普通接口
-| 频次限制: 是
+| Access level: normal interface
+| Frequency limit: True
 
 
-请求参数
+Request parameters
 """"""""""""""""
 
-:account_name_or_id:   uid或者账户昵称name，例如:"250926091"
+:account_name_or_id: uid or account nickname, for example: "250926091"
 
-注意事项
+Precautions
 """"""""""""""""
-无
+null
 
-调用样例及调试工具
+Call sample and debug tools
 """""""""""""""""""""""""""""""""
 WebSocket:
 ::
@@ -282,7 +288,7 @@ JSON-RPC:
     curl --data '{"jsonrpc": "2.0", "method": "call", "params":[0,"get_account",[250926091]], "id": 1}' http://localhost:8091
 
 
-返回结果
+Return results
 """"""""""""""""
 ::
 
@@ -360,34 +366,35 @@ JSON-RPC:
 2.2.2 get_full_account
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 获取账户详细信息。
+Get account details
 
-支持格式
+Supported format
 """"""""""""""""
 JSON 
 
-请求方式
+Request Method
 """"""""""""""""
 WebSocket; JSON-RPC
 
-所需密钥权限
+Required private key authority
 """"""""""""""""""
-无
+null
 
-访问授权限制
+Access authorization limit
 """"""""""""""""""
-| 访问级别: 普通接口
-| 频次限制: 是
+| Access level: normal interface
+| Frequency limit: True
 
-请求参数
+Request parameters
 """"""""""""""""
 
-:account_name_or_id:   uid或者账户昵称name，例如:"250926091"
+:account_name_or_id:   uid or account nickname, for example: "250926091"
 
-注意事项
+Precautions
 """"""""""""""""
-无
+null
 
-调用样例及调试工具
+Call sample and debug tools
 """""""""""""""""""""""""""""""""
 WebSocket:
 ::
@@ -401,7 +408,7 @@ JSON-RPC:
     curl --data '{"jsonrpc": "2.0", "method": "call", "params": [0, "get_full_account", [["250926091"]]], "id": 1}' http://localhost:8091/rpc
 
 
-返回结果
+Return results
 """"""""""""""""
 ::
 
@@ -523,44 +530,47 @@ JSON-RPC:
 2.2.3 get_relative_account_history
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 获取账户历史。
+Get the account history
 
 
-支持格式
+Supported format
 """"""""""""""""
 JSON 
 
-请求方式
+Request Method
 """"""""""""""""
 WebSocket; JSON-RPC
 
-所需密钥权限
+Required private key authority
 """"""""""""""""""
-无
+null
 
-访问授权限制
+Access authorization limit
 """"""""""""""""""
-| 访问级别: 普通接口
-| 频次限制: 是
+| Access level: normal interface
+| Frequency limit: True
 
 
-请求参数
+Request parameters
 """"""""""""""""
 
-:account:   可以是 uid 或者账户昵称
-:op_type:   限制操作类型，参见操作类型。值为 null 时，则返回所有操作类型；为 0 时可获得所有transfer操作.
-:start:   查询起始编号（sequence number）
-:limit:   返回结果总数
-:end:  值为 0 时，可得到最多的最近操作记录.
-
+:account:   can be uid or account nickname
+:op_type:   the type of limited operation; see the types of operation. When the value is null, all operation types are returned; when 0, all transfer operations are available.
+:start:   query start number（sequence number）
+:limit:   Return the total number of results
+:end:  When the value is 0, the most recent operation record is available.
 
 返回结果的数量会在end - start 范围之内；如果limit值比end - start 要小，则返回满足limit条件的最新操作记录。
 返回结果的排序方式为： 最新的优先
 
-注意事项
-""""""""""""""""
-无
+The number of returned results will be in the end - start range; if the limit value is smaller than end - start, the latest operation record that satisfies the limit condition is returned.
+The returned results are sorted in the way that the latest ones are returned first.
 
-调用样例及调试工具
+Precautions
+""""""""""""""""
+null
+
+Call sample and debug tools
 """""""""""""""""""""""""""""""""
 WebSocket:
 ::
@@ -574,7 +584,7 @@ JSON-RPC:
     curl --data '{"jsonrpc": "2.0", "method": "call", "params":[0,"get_relative_account_history",["250926091",null,10,10,0]], "id": 1}' http://localhost:8091
 
 
-返回结果
+Return results
 """"""""""""""""
 ::
 
@@ -670,35 +680,36 @@ JSON-RPC:
 2.2.4 list_account_balances
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 获取账户余额。
+Get the account balance
 
-支持格式
+Supported format
 """"""""""""""""
 JSON 
 
-请求方式
+Request Method
 """"""""""""""""
 WebSocket; JSON-RPC
 
-所需密钥权限
+Required private key authority
 """"""""""""""""""
-无
+null
 
-访问授权限制
+Access authorization limit
 """"""""""""""""""
-| 访问级别: 普通接口
-| 频次限制: 是
+| Access level: normal interface
+| Frequency limit: True
 
 
-请求参数
+Request parameters
 """"""""""""""""
 
-:account:   uid或者账户昵称name，例如:"250926091"
+:account:   uid or account nickname, for example: "250926091"
 
-注意事项
+Precautions
 """"""""""""""""
-无
+null
 
-调用样例及调试工具
+Call sample and debug tools
 """""""""""""""""""""""""""""""""
 WebSocket:
 ::
@@ -711,7 +722,7 @@ JSON-RPC:
 
     curl --data '{"jsonrpc": "2.0", "method": "call", "params":[0,"list_account_balances",["250926091"]], "id": 1}' http://localhost:8091
 
-返回结果
+Return results
 """"""""""""""""
 ::
 
@@ -729,36 +740,37 @@ JSON-RPC:
 2.2.5 list_accounts_by_name
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 根据名称查找账号UID。
+Find the account UID by name
 
-支持格式
+Supported format
 """"""""""""""""
 JSON 
 
-请求方式
+Request Method
 """"""""""""""""
 WebSocket; JSON-RPC
 
-所需密钥权限
+Required private key authority
 """"""""""""""""""
-无
+null
 
-访问授权限制
+Access authorization limit
 """"""""""""""""""
-| 访问级别: 普通接口
-| 频次限制: 是
+| Access level: normal interface
+| Frequency limit: True
 
 
-请求参数
+Request parameters
 """"""""""""""""
 
-:lowerbound:   以此作为起始名称开始查询，设为空串则从头开始查
-:limit:  返回数量限制，最多不能超过 1001
+:lowerbound:   Start the query with this as the starting name, set it to the empty string and start from the beginning.
+:limit:  Return quantity limit, up to 1001
 
-注意事项
+Precautions
 """"""""""""""""
-无
+null
 
-调用样例及调试工具
+Call sample and debug tools
 """""""""""""""""""""""""""""""""
 WebSocket:
 ::
@@ -771,7 +783,7 @@ JSON-RPC:
 
     curl --data '{"jsonrpc": "2.0", "method": "call", "params":[0,"list_accounts_by_name",["yoyo",10]], "id": 1}' http://localhost:8091
 
-返回结果
+Return results
 """"""""""""""""
 ::
 
@@ -827,35 +839,36 @@ JSON-RPC:
 2.2.6 get_witness
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 获取见证人信息。
+Get witness information.
 
-支持格式
+Supported format
 """"""""""""""""
 JSON 
 
-请求方式
+Request Method
 """"""""""""""""
 WebSocket; JSON-RPC
 
-所需密钥权限
+Required private key authority
 """"""""""""""""""
-无
+null
 
-访问授权限制
+Access authorization limit
 """"""""""""""""""
-| 访问级别: 普通接口
-| 频次限制: 是
+| Access level: normal interface
+| Frequency limit: True
 
 
-请求参数
+Request parameters
 """"""""""""""""
 
-:owner_account:   参数可以是 uid 或者账户昵称。
+:owner_account:   The parameter can be uid or an account nickname.
 
-注意事项
+Precautions
 """"""""""""""""
-无
+null
 
-调用样例及调试工具
+Call sample and debug tools
 """""""""""""""""""""""""""""""""
 WebSocket:
 ::
@@ -869,7 +882,7 @@ JSON-RPC:
     curl --data '{"jsonrpc": "2.0", "method": "call", "params":[0,"get_witness",["132826789"]], "id": 1}' http://localhost:8091
 
 
-返回结果
+Return results
 """"""""""""""""
 ::
 
@@ -908,41 +921,44 @@ JSON-RPC:
 2.2.7 list_witnesses
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 查询指定借出人的币龄租借（借出）清单。
-
+Query the list of the token age rental (lending) of the specified lender.
 
 结果按借入人  uid 从小到大排序
+Results are sorted by borrower uid from small to large.
 
-支持格式
+Supported format
 """"""""""""""""
 JSON 
 
-请求方式
+Request Method
 """"""""""""""""
 WebSocket; JSON-RPC
 
-所需密钥权限
+Required private key authority
 """"""""""""""""""
-无
+null
 
-访问授权限制
+Access authorization limit
 """"""""""""""""""
-| 访问级别: 普通接口
-| 频次限制: 是
+| Access level: normal interface
+| Frequency limit: True
 
 
-请求参数
+Request parameters
 """"""""""""""""
 
-:lower_bound:   以此作为起始 uid 开始查询，设为 0 则从头开始查
-:limit:  返回数量限制，最多不能超过 101
-:order_by:   排序类型。取值范围[0,1,2]。 0:按uid由大到小排序；1:按得票数从多到少排序；2:按抵押从多到少排序
+:lower_bound:   Start the query with this as the starting uid, set it to 0 and start from the beginning.
+:limit: Return quantity limit, up to 101
+:order_by:   Sort type. The value range is [0, 1, 2]. 
+0:Sort by uid from big to small; 1: Sort by number of votes; 2: Sort by collateral amout.
 
 
-注意事项
+Precautions
 """"""""""""""""
 接口采用分页设计，若要获取全部的见证人，可以循环调用，直至返回见证人数小于limit为止。
+The interface uses a pagination design. To get all the witnesses, you can cycle through them until the number of witnesses returned is less than the limit.
 
-调用样例及调试工具
+Call sample and debug tools
 """""""""""""""""""""""""""""""""
 WebSocket:
 ::
@@ -956,7 +972,7 @@ JSON-RPC:
     curl --data '{"jsonrpc": "2.0", "method": "call", "params":[0,"list_witnesses",["132"]], "id": 1}' http://localhost:8091
 
 
-返回结果
+Return results
 """"""""""""""""
 ::
 
@@ -1097,35 +1113,36 @@ JSON-RPC:
 2.2.8 get_committee_member
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 获取理事成员信息。
+Get the committee member information
 
-支持格式
+Supported format
 """"""""""""""""
 JSON 
 
-请求方式
+Request Method
 """"""""""""""""
 WebSocket; JSON-RPC
 
-所需密钥权限
+Required private key authority
 """"""""""""""""""
-无
+null
 
-访问授权限制
+Access authorization limit
 """"""""""""""""""
-| 访问级别: 普通接口
-| 频次限制: 是
+| Access level: normal interface
+| Frequency limit: True
 
 
-请求参数
+Request parameters
 """"""""""""""""
 
-:owner_account:   uid 或者账户昵称。 例如："25997"
+:owner_account:   Uid or account nickname. For example: "25997"
 
-注意事项
+Precautions
 """"""""""""""""
-无
+null
 
-调用样例及调试工具
+Call sample and debug tools
 """""""""""""""""""""""""""""""""
 WebSocket:
 ::
@@ -1139,7 +1156,7 @@ JSON-RPC:
     curl --data '{"jsonrpc": "2.0", "method": "call", "params":[0,"get_committee_member",["25997"]], "id": 1}' http://localhost:8091
 
 
-返回结果
+Return results
 """"""""""""""""
 ::
 
@@ -1162,37 +1179,38 @@ JSON-RPC:
 2.2.9 list_committee_members
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 列出当前有效的候选理事清单。
+List the current valid committee candidates
 
-支持格式
+Supported format
 """"""""""""""""
 JSON 
 
-请求方式
+Request Method
 """"""""""""""""
 WebSocket; JSON-RPC
 
-所需密钥权限
+Required private key authority
 """"""""""""""""""
-无
+null
 
-访问授权限制
+Access authorization limit
 """"""""""""""""""
-| 访问级别: 普通接口
-| 频次限制: 是
+| Access level: normal interface
+| Frequency limit: True
 
-
-请求参数
+Request parameters
 """"""""""""""""
-:lower_bound:   以此作为起始 uid 开始查询，设为 0 则从头开始查
-:limit:  返回数量限制，最多不能超过 101
-:order_by:   排序类型。取值范围[0,1,2]。 0:按uid由大到小排序；1:按得票数从多到少排序；2:按抵押从多到少排序
+:lower_bound:   Start the query with this as the starting uid, set it to 0 and start from the beginning.
+:limit:  Return quantity limit, up to 101
+:order_by:   Sort type. Value range is [0, 1, 2]. 
+0:Sort by uid from big to small; 1: Sort by number of votes; 2: Sort by collateral amount.
 
-
-注意事项
+Precautions
 """"""""""""""""
 接口采用分页设计，若要获取全部的理事会，可以循环调用，直至返回理事会人数小于limit为止。
+The interface adopts a pagination design. To obtain all the committees, you can call them cyclically until the number of committee members returned is less than the limit.
 
-调用样例及调试工具
+Call sample and debug tools
 """""""""""""""""""""""""""""""""
 WebSocket:
 ::
@@ -1206,7 +1224,7 @@ JSON-RPC:
     curl --data '{"jsonrpc": "2.0", "method": "call", "params":[0,"list_committee_members",[0,5,1]], "id": 1}' http://localhost:8091
 
 
-返回结果
+Return results
 """"""""""""""""
 ::
 
@@ -1272,34 +1290,35 @@ JSON-RPC:
 2.2.10 list_committee_proposals
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 列出所有尚未成功执行的理事会提案，包含正在投票表决的、已表决通过但还没到执行时间的。
+List all the Board proposals that have not been successfully implemented, including those that are being voted on, have been voted through but have not yet reached the execution time.
 
-支持格式
+Supported format
 """"""""""""""""
 JSON 
 
-请求方式
+Request Method
 """"""""""""""""
 WebSocket; JSON-RPC
 
-所需密钥权限
+Required private key authority
 """"""""""""""""""
-无
+null
 
-访问授权限制
+Access authorization limit
 """"""""""""""""""
-| 访问级别: 普通接口
-| 频次限制: 是
+| Access level: normal interface
+| Frequency limit: True
 
 
-请求参数
+Request parameters
 """"""""""""""""
-无
+null
 
-注意事项
+Precautions
 """"""""""""""""
-无
+null
 
-调用样例及调试工具
+Call sample and debug tools
 """""""""""""""""""""""""""""""""
 WebSocket:
 ::
@@ -1313,7 +1332,7 @@ JSON-RPC:
     curl --data '{"jsonrpc": "2.0", "method": "call", "params":[0, "list_committee_proposals", []], "id": 1}' http://localhost:8091/rpc
 
 
-返回结果
+Return results
 """"""""""""""""
 ::
 
@@ -1328,35 +1347,36 @@ JSON-RPC:
 2.2.11 get_platform_count
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 获取网络上平台的总数量
+Get the total number of platforms on the network
 
-支持格式
+Supported format
 """"""""""""""""
 JSON 
 
-请求方式
+Request method
 """"""""""""""""
 WebSocket; JSON-RPC
 
-所需密钥权限
+Required private key authority
 """"""""""""""""""
-无
+null
 
-访问授权限制
+Access authorization limit
 """"""""""""""""""
-| 访问级别: 普通接口
-| 频次限制: 是
+| Access level: normal interface
+| Frequency limit: True
 
 
-请求参数
+Request parameters
 """"""""""""""""
 
-无
+null
 
-注意事项
+Precautions
 """"""""""""""""
-无
+null
 
-调用样例及调试工具
+Call sample and debug tools
 """""""""""""""""""""""""""""""""
 WebSocket:
 ::
@@ -1370,7 +1390,7 @@ JSON-RPC:
     curl --data '{"jsonrpc": "2.0", "method": "call", "params":[0, "get_platform_count", []], "id": 1}' http://localhost:8091/rpc
 
 
-返回结果
+Return results
 """"""""""""""""
 ::
 
@@ -1384,35 +1404,36 @@ JSON-RPC:
 2.2.12 get_platform
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 根据平台所有人（owner）账号，获取平台对象信息
+Get platform object information according to the platform owner account
 
-支持格式
+Supported format
 """"""""""""""""
 JSON 
 
-请求方式
+Request method
 """"""""""""""""
 WebSocket; JSON-RPC
 
-所需密钥权限
+Required private key authority
 """"""""""""""""""
-无
+null
 
-访问授权限制
+Access authorization limit
 """"""""""""""""""
-| 访问级别: 普通接口
-| 频次限制: 是
+| Access level: normal interface
+| Frequency limit: True
 
 
-请求参数
+Request parameters
 """"""""""""""""
 
-:owner_account:  平台所有人账号
+:owner_account:  Platform owner account
 
-注意事项
+Precautions
 """"""""""""""""
-无
+null
 
-调用样例及调试工具
+Call sample and debug tools
 """""""""""""""""""""""""""""""""
 WebSocket:
 ::
@@ -1426,7 +1447,7 @@ JSON-RPC:
     curl --data '{"jsonrpc": "2.0", "method": "call", "params":[0, "update_committee_account", [0, "get_platform", ["250926091"]], "id": 1}' http://localhost:8091/rpc
 
 
-返回结果
+Return results
 """"""""""""""""
 ::
 
@@ -1455,39 +1476,41 @@ JSON-RPC:
 2.2.13 list_platforms
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 按平台拥有者进行查询，列出当前有效的平台清单。
+Query by platform owner to list the current valid platforms
 
 
-支持格式
+Supported format
 """"""""""""""""
 JSON 
 
-请求方式
+Request method
 """"""""""""""""
 WebSocket; JSON-RPC
 
-所需密钥权限
+Required private key authority
 """"""""""""""""""
-无
+null
 
-访问授权限制
+Access authorization limit
 """"""""""""""""""
-| 访问级别: 普通接口
-| 频次限制: 是
+| Access level: normal interface
+| Frequency limit: True
 
 
-请求参数
+Request parameters
 """"""""""""""""
 
-:lower_bound:  以此作为起始 uid 开始查询，设为 0 则从头开始查
-:limit:  返回数量限制，最多不能超过 100
-:order_by:   排序类型。取值范围[0,1,2]。 0:按uid由大到小排序；1:按得票数从多到少排序；2:按抵押从多到少排序
+:lower_bound:  Start the query with this as the starting uid, set it to 0 and start from the beginning.
+:limit:  Return quantity limit, up to 100
+:order_by:   Sort type. The value range is [0, 1, 2]. 
+0:Sort by uid from big to small; 1: Sort by number of votes; 2: Sort by collateral amount.
 
 
-注意事项
+Precautions
 """"""""""""""""
-无
+null
 
-调用样例及调试工具
+Call sample and debug tools
 """""""""""""""""""""""""""""""""
 WebSocket:
 ::
@@ -1501,7 +1524,7 @@ JSON-RPC:
     curl --data '{"jsonrpc": "2.0", "method": "call", "params":[0, "list_platforms", [0, "list_platforms", [0,5,1]], "id": 1}' http://localhost:8091/rpc
 
 
-返回结果
+Return results
 """"""""""""""""
 ::
 
@@ -1570,35 +1593,36 @@ JSON-RPC:
 2.2.14 get_asset
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 根据给定的资产代码或者 id ，返回资产详细信息。
+Return the asset details based on the given asset code or id
 
-支持格式
+Supported format
 """"""""""""""""
 JSON 
 
-请求方式
+Request method
 """"""""""""""""
 WebSocket; JSON-RPC
 
-所需密钥权限
+Required private key authority
 """"""""""""""""""
-无
+null
 
-访问授权限制
+Access authorization limit
 """"""""""""""""""
-| 访问级别: 普通接口
-| 频次限制: 是
+| Access level: normal interface
+| Frequency limit: True
 
 
-请求参数
+Request parameters
 """"""""""""""""
 
-:asset_name_or_id:  资产符号或者资产id
+:asset_name_or_id:  Asset symbol or asset id
 
-注意事项
+Precautions
 """"""""""""""""
-无
+null
 
-调用样例及调试工具
+Call sample and debug tools
 """""""""""""""""""""""""""""""""
 WebSocket:
 ::
@@ -1612,7 +1636,7 @@ JSON-RPC:
     curl --data '{"jsonrpc": "2.0", "method": "call", "params":[0, "get_asset", [ 3]], "id": 1}' http://localhost:8091/rpc
 
 
-返回结果
+Return results
 """"""""""""""""
 ::
 
@@ -1642,38 +1666,39 @@ JSON-RPC:
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 分页查询资产详细信息。
-
+Query asset details by page
 
 返回结果按资产代码的 ASCII 码顺序排序
+The returned results are sorted by the ASCII code order of the asset code.
 
-支持格式
+Supported format
 """"""""""""""""
 JSON 
 
-请求方式
+Request method
 """"""""""""""""
 WebSocket; JSON-RPC
 
-所需密钥权限
+Required private key authority
 """"""""""""""""""
-无
+null
 
-访问授权限制
+Access authorization limit
 """"""""""""""""""
-| 访问级别: 普通接口
-| 频次限制: 是
+| Access level: normal interface
+| Frequency limit: True
 
 
-请求参数
+Request parameters
 """"""""""""""""
-:lower_bound_symbol:  以此作为起始代码开始查询，顺序按资产代码的 ASCII 码排序
-:limit:  返回数量限制，最多不能超过 101
+:lower_bound_symbol:  Start the query with this as the starting code, sorted by the ASCII code of the asset code.
+:limit:  Return quantity limit, up to 101
 
-注意事项
+Precautions
 """"""""""""""""
-无
+null
 
-调用样例及调试工具
+Call sample and debug tools
 """""""""""""""""""""""""""""""""
 WebSocket:
 ::
@@ -1687,7 +1712,7 @@ JSON-RPC:
     curl --data '{"jsonrpc": "2.0", "method": "call", "params":[0, "list_assets", ["YOY", 4]], "id": 1}' http://localhost:8091/rpc
 
 
-返回结果
+Return results
 """"""""""""""""
 ::
 
@@ -1805,43 +1830,44 @@ JSON-RPC:
 
 
 
-2.3 钱包/私钥管理类 API
+2.3 Wallet/Private Key Management API
 ---------------------------------------
 
 
 2.3.1 save_wallet_file
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 保存钱包文件，会保存到yoyo_client的执行文件夹下
+Save the wallet file and it will be saved to the yoyo_client executable folder
 
-支持格式
+Supported format
 """"""""""""""""
 JSON 
 
-请求方式
+Request method
 """"""""""""""""
 WebSocket; JSON-RPC
 
-所需密钥权限
+Required private key authority
 """"""""""""""""""
-wallet需要处于unlock状态
+Wallet needs to be in unlock state.
 
-访问授权限制
+Access authorization limit
 """"""""""""""""""
-| 访问级别: 普通接口
-| 频次限制: 是
+| Access level: normal interface
+| Frequency limit: True
 
 
-请求参数
+Request parameters
 """"""""""""""""
 
-:wallet_filename:   字符串，为备份的文件名。
+:wallet_filename:   String, the name of the backup file
 
 
-注意事项
+Precautions
 """"""""""""""""
-无
+null
 
-调用样例及调试工具
+Call sample and debug tools
 """""""""""""""""""""""""""""""""
 WebSocket:
 ::
@@ -1855,7 +1881,7 @@ JSON-RPC:
     curl --data '{"jsonrpc": "2.0", "method": "call", "params":[0, "save_wallet_file", ["t3.json"]], "id": 1}' http://localhost:8091/rpc
 
 
-返回结果
+Return results
 """"""""""""""""
 ::
 
@@ -1870,37 +1896,38 @@ JSON-RPC:
 2.3.2 set_password
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 设置钱包密码
+Set the wallet password
 
-支持格式
+Supported format
 """"""""""""""""
 JSON 
 
-请求方式
+Request method
 """"""""""""""""
 WebSocket; JSON-RPC
 
-所需密钥权限
+Required private key authority
 """"""""""""""""""
-wallet需要处于new或者unlocked状态
+Wallet needs to be in new or unlocked state.
 
-new状态为wallet第一次运行，未曾设置password的状态。
+The new state exists when it is the first time that the wallet has been run, and the password state has not been set.
 
-访问授权限制
+Access authorization limit
 """"""""""""""""""
-| 访问级别: 普通接口
-| 频次限制: 是
+| Access level: normal interface
+| Frequency limit: True
 
 
-请求参数
+Request parameters
 """"""""""""""""
 
-:password:   密码字符串 例如："1234"
+:password:   Password string, for example: "1234"
 
-注意事项
+Precautions
 """"""""""""""""
-无
+null
 
-调用样例及调试工具
+Call sample and debug tools
 """""""""""""""""""""""""""""""""
 WebSocket:
 ::
@@ -1914,7 +1941,7 @@ JSON-RPC:
     curl --data '{"jsonrpc": "2.0", "method": "call", "params":[0, "set_password", ["1234"]], "id": 1}' http://localhost:8091/rpc
 
 
-返回结果
+Return results
 """"""""""""""""
 ::
 
@@ -1927,35 +1954,36 @@ JSON-RPC:
 2.3.3 unlock
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 解锁钱包
+Unlock the wallet
 
-支持格式
+Supported format
 """"""""""""""""
 JSON 
 
-请求方式
+Request method
 """"""""""""""""
 WebSocket; JSON-RPC
 
-所需密钥权限
+Required private key authority
 """"""""""""""""""
-wallet处于locked状态
+The wallet is in locked state.
 
-访问授权限制
+Access authorization limit
 """"""""""""""""""
-| 访问级别: 普通接口
-| 频次限制: 是
+| Access level: normal interface
+| Frequency limit: True
 
 
-请求参数
+Request parameters
 """"""""""""""""
 
-:password:   密码字符串 例如："1234"
+:password:   Password string, for example: "1234"
 
-注意事项
+Precautions
 """"""""""""""""
-无
+null
 
-调用样例及调试工具
+Call sample and debug tools
 """""""""""""""""""""""""""""""""
 WebSocket:
 ::
@@ -1969,7 +1997,7 @@ JSON-RPC:
     curl --data '{"jsonrpc": "2.0", "method": "call", "params":[0, "unlock", ["1234"]], "id": 1}'
 
 
-返回结果
+Return results
 """"""""""""""""
 ::
 
@@ -1984,34 +2012,35 @@ JSON-RPC:
 2.3.4 lock
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 锁定钱包
+Lock the wallet
 
-支持格式
+Supported format
 """"""""""""""""
 JSON 
 
-请求方式
+Request method
 """"""""""""""""
 WebSocket; JSON-RPC
 
-所需密钥权限
+Required private key authority
 """"""""""""""""""
-无
+null
 
-访问授权限制
+Access authorization limit
 """"""""""""""""""
-| 访问级别: 普通接口
-| 频次限制: 是
+| Access level: normal interface
+| Frequency limit: True
 
 
-请求参数
+Request parameters
 """"""""""""""""
-无
+null
 
-注意事项
+Precautions
 """"""""""""""""
-无
+null
 
-调用样例及调试工具
+Call sample and debug tools
 """""""""""""""""""""""""""""""""
 WebSocket:
 ::
@@ -2025,7 +2054,7 @@ JSON-RPC:
     curl --data '{"jsonrpc": "2.0", "method": "call", "params": [0, "lock", []], "id": 1}' http://localhost:8091/rpc
 
 
-返回结果
+Return results
 """"""""""""""""
 ::
 
@@ -2038,35 +2067,35 @@ JSON-RPC:
 2.3.5 import_key
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 将一个私钥导入钱包，并指定一个相关账号。私钥和账号并不一定要有关联。
+Import a private key into your wallet and assign a related account. The private key and account number do not have to be associated.
 
-支持格式
+Supported format
 """"""""""""""""
 JSON 
 
-请求方式
+Request method
 """"""""""""""""
 WebSocket; JSON-RPC
 
-所需密钥权限
+Required private key authority
 """"""""""""""""""
-wallet需要处于unlocked状态
+Wallet needs to be in unlocked state.
 
-访问授权限制
+Access authorization limit
 """"""""""""""""""
-| 访问级别: 普通接口
-| 频次限制: 是
+| Access level: normal interface
+| Frequency limit: True
 
-
-请求参数
+Request parameters
 """"""""""""""""
-:account_name_or_id:   账号 uid 或者昵称
-:wif_key:  私钥字符串
+:account_name_or_id:  Account uid or nickname
+:wif_key:  Private key string
 
-注意事项
+Precautions
 """"""""""""""""
-无
+null
 
-调用样例及调试工具
+Call sample and debug tools
 """""""""""""""""""""""""""""""""
 WebSocket:
 ::
@@ -2079,7 +2108,7 @@ JSON-RPC:
 
     curl --data '{"jsonrpc": "2.0", "method": "call", "params":[0, "lock", []]}{"id":1, "method":"call", "params":[0, "import_key", ["250926091","5JLaW7u3EC4vVLbTmLo1XeSBGiTeRtqER1UsoLtYbFNnBafgPKG"]], "id": 1}' http://localhost:8091/rpc
 
-返回结果
+Return results
 """"""""""""""""
 ::
 
@@ -2091,36 +2120,36 @@ JSON-RPC:
 
 2.3.6 dump_private_keys
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-列出钱包内所有私钥及对应公钥。
+List all private keys and corresponding public keys in the wallet
 
 
-支持格式
+Supported format
 """"""""""""""""
 JSON 
 
-请求方式
+Request method
 """"""""""""""""
 WebSocket; JSON-RPC
 
-所需密钥权限
+Required private key authority
 """"""""""""""""""
-wallet需要处于unlocked状态
+Wallet needs to be in unlocked state
 
-访问授权限制
+Access authorization limit
 """"""""""""""""""
-| 访问级别: 普通接口
-| 频次限制: 是
+| Access level: normal interface
+| Frequency limit: True
 
 
-请求参数
+Request parameters
 """"""""""""""""
-无
+null
 
-注意事项
+Precautions
 """"""""""""""""
-无
+null
 
-调用样例及调试工具
+Call sample and debug tools
 """""""""""""""""""""""""""""""""
 WebSocket:
 ::
@@ -2133,7 +2162,7 @@ JSON-RPC:
 
     curl --data '{"jsonrpc": "2.0", "method": "call", "params": [0, "dump_private_keys",[]], "id": 1}' http://localhost:8091/rpc
 
-返回结果
+Return results
 """"""""""""""""
 ::
 
@@ -2156,36 +2185,38 @@ JSON-RPC:
 2.3.7 list_my_accounts_cached
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 列出钱包文件中所有缓存的账户（导入私钥时指定的账户）的信息。
+List the information about all cached accounts in the wallet file (the account specified when the private key was imported)
 
 注：该缓存信息不一定与链上数据同步。要想进行同步，请重新打开钱包文件。
+Note: This cached information is not necessarily synchronized with the data on the chain. To sync, reopen the wallet file.
 
-支持格式
+Supported format
 """"""""""""""""
 JSON 
 
-请求方式
+Request method
 """"""""""""""""
 WebSocket; JSON-RPC
 
-所需密钥权限
+Required private key authority
 """"""""""""""""""
-wallet需要处于unlocked状态
+Wallet needs to be in unlocked state.
 
-访问授权限制
+Access authorization limit
 """"""""""""""""""
-| 访问级别: 普通接口
-| 频次限制: 是
+| Access level: normal interface
+| Frequency limit: True
 
 
-请求参数
+Request parameters
 """"""""""""""""
-无
+null
 
-注意事项
+Precautions
 """"""""""""""""
-无
+null
 
-调用样例及调试工具
+Call sample and debug tools
 """""""""""""""""""""""""""""""""
 WebSocket:
 ::
@@ -2199,7 +2230,7 @@ JSON-RPC:
     curl --data '{"jsonrpc": "2.0", "method": "call", "params": [0, "list_my_accounts_cached",[]], "id": 1}' http://localhost:8091/rpc
 
 
-返回结果
+Return results
 """"""""""""""""
 ::
 
@@ -2279,49 +2310,50 @@ JSON-RPC:
 
 
 
-2.4 操作/交易类 API
+2.4 Operations/Transactions API
 -----------------------------
 以下操作涉及密钥权限的，需要导入相关的私钥，同时，保证wallet需处于解锁（unlocked）状态
-
+The following operations involve key authority. You need to import the relevant private keys. At the same time, ensure that the wallet is in unlocked state.
 
 2.4.1 transfer
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 根据uid列表 查询平台
+Query the platforms according to the uid list
 
-支持格式
+Supported format
 """"""""""""""""
 JSON 
 
-请求方式
+Request method
 """"""""""""""""
 WebSocket; JSON-RPC
 
-所需密钥权限
+Required private key authority
 """"""""""""""""""
-需要转出人active key
+It needs the active key of the transferrer.
 
-访问授权限制
+Access authorization limit
 """"""""""""""""""
-| 访问级别: 普通接口
-| 频次限制: 是
+| Access level: normal interface
+| Frequency limit: True
 
 
-请求参数
+Request parameters
 """"""""""""""""
 
-:from:  转出人（UID或昵称）
-:to:  转入人（UID或昵称）
-:amount:  金额，如果金额为小数建议使用字符串传参
-:asset_symbol:   币种, 资产类型，当前只有"YOYO"
-:memo:   备注（不带备注的话用空串""）
-:broadcast:  是否广播，true or false
+:from:  Transferrer (UID or nickname)
+:to:  Transferee (UID or nickname)
+:amount:  Amount, if the amount is a decimal, it is recommended to use the string to pass the parameter
+:asset_symbol:   token type; the asset type is currently only "YOYO".
+:memo:   Memo (use an empty string "" if without a memo)
+:broadcast:  Whether to broadcast，true or false
 
 
-注意事项
+Precautions
 """"""""""""""""
-无
+null
 
-调用样例及调试工具
+Call sample and debug tools
 """""""""""""""""""""""""""""""""
 WebSocket:
 ::
@@ -2335,7 +2367,7 @@ JSON-RPC:
     curl --data '{"jsonrpc": "2.0", "method": "call", "params":[0, "transfer",[250926091, 209414065, "10", "YOYO", "feho", true]], "id": 1}' http://localhost:8091/rpc
 
 
-返回结果
+Return results
 """"""""""""""""
 ::
 
@@ -2386,42 +2418,42 @@ JSON-RPC:
 
 2.4.2 create_witness
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-创建见证人。
+Create a witness
 
-支持格式
+Supported format
 """"""""""""""""
 JSON 
 
-请求方式
+Request method
 """"""""""""""""
 WebSocket; JSON-RPC
 
-所需密钥权限
+Required private key authority
 """"""""""""""""
-需要见证人所有者的active key
+It needs the active key of the witness owner.
 
-访问授权限制
+Access authorization limit
 """"""""""""""""""
-| 访问级别: 普通接口
-| 频次限制: 是
+| Access level: normal interface
+| Frequency limit: True
 
 
-请求参数
+Request parameters
 """"""""""""""""
-:owner_account:  账号（UID或昵称）
-:block_signing_key:  出块签名公钥,
-:pledge_amount:  抵押金额
-:pledge_asset_symbol:   抵押币种（YOYO）
-:url: 介绍链接
-:broadcast:  是否广播
+:owner_account:  Account（UID or nickname）
+:block_signing_key:  Block production signature public keys
+:pledge_amount:  Collateral amount
+:pledge_asset_symbol:   Collateral token type（YOYO）
+:url: Introduction link
+:broadcast:  Whether to broadcast
 
-其中：签名公钥为 YYW1111111111111111111111111111111114T1Anm 表示暂时离线
+Wherein: if the signature public key is YYW1111111111111111111111111111111114T1Anm, it means temporary offline.
 
-注意事项
+Precautions
 """"""""""""""""
-无
+null
 
-调用样例及调试工具
+Call sample and debug tools
 """""""""""""""""""""""""""""""""
 WebSocket:
 ::
@@ -2435,7 +2467,7 @@ JSON-RPC:
     curl --data '{"jsonrpc": "2.0", "method": "call", "params":[0, "create_witness", ["223331844", "YYW1111111111111111111111111111111114T1Anm","100", "YOYO", "http://www.yoyow.org", true]], "id": 1}' http://localhost:8091/rpc
 
 
-返回结果
+Return results
 """"""""""""""""
 ::
 
@@ -2471,43 +2503,43 @@ JSON-RPC:
 2.4.3 update_witness
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 修改见证人信息。
+Modify witness information
 
-支持格式
+Supported format
 """"""""""""""""
 JSON 
 
-请求方式
+Request method
 """"""""""""""""
 WebSocket; JSON-RPC
 
-所需密钥权限
+Required private key authority
 """"""""""""""""""
-需要见证人所有者的active key
+It needs the active key of the witness owner.
 
-访问授权限制
+Access authorization limit
 """"""""""""""""""
-| 访问级别: 普通接口
-| 频次限制: 是
+| Access level: normal interface
+| Frequency limit: True
 
-
-请求参数
+Request parameters
 """"""""""""""""
 
-:witness_account:  账号（UID或昵称）
-:block_signing_key:  新的出块签名公钥，不需修改则输入 null
-:pledge_amount:  新的抵押金额，不需修改则输入 null
-:pledge_asset_symbol:   新的抵押币种（YOYO），不需修改则输入 null
-:url: 新的介绍链接，不需修改则输入 null
-:broadcast:  是否广播
+:witness_account:  Account（UID or nickname）
+:block_signing_key:  New block production signature public key; enter null if without modification
+:pledge_amount:  New collateral amount; enter null if without modification
+:pledge_asset_symbol:   New collateral token type (YOYO); enter null if without modification
+:url: New intro link; enter null if without modification
+:broadcast:  Whether to broadcast
 
-其中，抵押金额和币种必须同时出现或者同时不出现，目前币种只能是 YOYO 
+Among them, the amount of the collateral and the token type must appear at the same time or not at the same time, the current token type can only be YOYO.
 
 
-注意事项
+Precautions
 """"""""""""""""
-无
+null
 
-调用样例及调试工具
+Call sample and debug tools
 """""""""""""""""""""""""""""""""
 WebSocket:
 ::
@@ -2521,7 +2553,7 @@ JSON-RPC:
     curl --data '{"jsonrpc": "2.0", "method": "call", "params":[0, "update_witness", ["223331844", null,"100345", "YOYO", null, true]], "id": 1}' http://localhost:8091/rpc
 
 
-返回结果
+Return results
 """"""""""""""""
 ::
 
@@ -2566,39 +2598,40 @@ JSON-RPC:
 2.4.4 create_committee_member
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 创建候选理事身份。
+Create a committee candidate identity
 
-支持格式
+Supported format
 """"""""""""""""
 JSON 
 
-请求方式
+Request method
 """"""""""""""""
 WebSocket; JSON-RPC
 
-所需密钥权限
+Required private key authority
 """"""""""""""""""
 否
 
-访问授权限制
+Access authorization limit
 """"""""""""""""""
-| 访问级别: 普通接口
-| 频次限制: 是
+| Access level: normal interface
+| Frequency limit: True
 
 
-请求参数
+Request parameters
 """"""""""""""""
 
-:owner_account:  账号（UID或昵称）
-:pledge_amount:  抵押金额
-:pledge_asset_symbol:   抵押币种（YOYO）
-:url: 介绍链接
-:broadcast:  是否广播
+:owner_account:  Account（UID or nickname）
+:pledge_amount:  Collateral amount
+:pledge_asset_symbol:   Collateral token type（YOYO）
+:url: into link
+:broadcast:  Whether to broadcast
 
-注意事项
+Precautions
 """"""""""""""""
-查询到的资产实际只有YOYO可用。
+Among the assets found, only YOYO can actually be used.
 
-调用样例及调试工具
+Call sample and debug tools
 """""""""""""""""""""""""""""""""
 WebSocket:
 ::
@@ -2612,7 +2645,7 @@ JSON-RPC:
     curl --data '{"jsonrpc": "2.0", "method": "call", "params":[0, "create_committee_member", ["223331844","1000", "YOYO", "http://www.yoyow.org", true]], "id": 1}' http://localhost:8091/rpc
 
 
-返回结果
+Return results
 """"""""""""""""
 
 ::
@@ -2653,39 +2686,40 @@ JSON-RPC:
 2.4.5 update_committee_member
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 修改候选理事信息。
+Modify committee candidate information
 
-支持格式
+Supported format
 """"""""""""""""
 JSON 
 
-请求方式
+Request method
 """"""""""""""""
 WebSocket; JSON-RPC
 
-所需密钥权限
+Required private key authority
 """"""""""""""""""
 否
 
-访问授权限制
+Access authorization limit
 """"""""""""""""""
-| 访问级别: 普通接口
-| 频次限制: 是
+| Access level: normal interface
+| Frequency limit: True
 
 
-请求参数
+Request parameters
 """"""""""""""""
 
-:committee_member_account:  账号（UID或昵称）
-:pledge_amount:  新的抵押金额，不需修改则输入 null
-:pledge_asset_symbol:   新的抵押币种（YOYO），不需修改则输入 null
-:url: 新的介绍链接，不需修改则输入 null
-:broadcast:  是否广播
+:committee_member_account:  Account（UID or nickname）
+:pledge_amount:  New collateral amount; enter null if without modification
+:pledge_asset_symbol:   New collateral token type (YOYO); enter null if without modification
+:url: New intro link; enter null if without modification
+:broadcast:  Whether to broadcast
 
-注意事项
+Precautions
 """"""""""""""""
-无
+null
 
-调用样例及调试工具
+Call sample and debug tools
 """""""""""""""""""""""""""""""""
 WebSocket:
 ::
@@ -2699,7 +2733,7 @@ JSON-RPC:
     curl --data '{"jsonrpc": "2.0", "method": "call", "params":[0, "update_committee_account", ["250926091","10000", "YOYO", null, true]], "id": 1}' http://localhost:8091/rpc
 
 
-返回结果
+Return results
 """"""""""""""""
 ::
 
@@ -2745,39 +2779,41 @@ JSON-RPC:
 2.4.6 set_voting_proxy
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 设置投票代理。
+Set up a voting proxy
 
 账户A设置账户B为投票代理，则B的投票对象得到的票数为A的有效票数+B的有效票数。 A 称之为委托人，B 称之为代理人
+Account A sets account B as a voting proxy, and the number of votes obtained by the voting object of B is the number of valid votes of A + the number of valid votes of B. A is called the principal, and B is called the proxy.
 
-支持格式
+Supported format
 """"""""""""""""
 JSON 
 
-请求方式
+Request method
 """"""""""""""""
 WebSocket; JSON-RPC
 
-所需密钥权限
+Required private key authority
 """"""""""""""""""
-需要委托人账号的active key
+It needs the active key of the principal.
 
-访问授权限制
+Access authorization limit
 """"""""""""""""""
-| 访问级别: 普通接口
-| 频次限制: 是
+| Access level: normal interface
+| Frequency limit: True
 
 
-请求参数
+Request parameters
 """"""""""""""""
 
-:account_to_modify:  委托人账号（UID或昵称）
-:voting_account:  代理人账号（用UID或昵称设置代理，null为取消代理）
-:broadcast:  是否广播
+:account_to_modify:  Principal account（UID or nickname）
+:voting_account:  Proxy account（set the proxy with a UID or nickname; null is for canceling the proxy）
+:broadcast:  Whether to broadcast
 
-注意事项
+Precautions
 """"""""""""""""
-无
+null
 
-调用样例及调试工具
+Call sample and debug tools
 """""""""""""""""""""""""""""""""
 WebSocket:
 ::
@@ -2791,7 +2827,7 @@ JSON-RPC:
     curl --data '{"jsonrpc": "2.0", "method": "call", "params":[0, "set_voting_proxy", ["250926091", "abit", true]], "id": 1}' http://localhost:8091/rpc
 
 
-返回结果
+Return results
 """"""""""""""""
 ::
 
@@ -2835,40 +2871,41 @@ JSON-RPC:
 2.4.7 update_witness_votes
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 见证人投票。
+Witness voting
 
-支持格式
+Supported format
 """"""""""""""""
 JSON 
 
-请求方式
+Request method
 """"""""""""""""
 WebSocket; JSON-RPC
 
-所需密钥权限
+Required private key authority
 """"""""""""""""""
-需要投票人的active key
+It needs the active key of the voter.
 
-访问授权限制
+Access authorization limit
 """"""""""""""""""
-| 访问级别: 普通接口
-| 频次限制: 是
+| Access level: normal interface
+| Frequency limit: True
 
 
-请求参数
+Request parameters
 """"""""""""""""
 
-:voting_account:  账号（UID或昵称）
-:witnesses_to_add:  增加支持的见证人清单（UID或昵称）
-:witnesses_to_remove:   移除支持的见证人清单（UID或昵称）
-:broadcast:  是否广播
+:voting_account:  Account（UID of nickname）
+:witnesses_to_add:  Add a list of supported witnesses (UID or nickname)
+:witnesses_to_remove:   Remove the list of supported witnesses (UID or nickname)
+:broadcast:  Whether to broadcast
 
-witnesses_to_add和witnesses_to_remove两个清单可以都为空"[]"，表示刷新投票意向。
+Both the witnesses_to_add and the witnesses_to_remove lists can be empty "[]", indicating that the voting intention is refreshed.
 
-注意事项
+Precautions
 """"""""""""""""
-无
+null
 
-调用样例及调试工具
+Call sample and debug tools
 """""""""""""""""""""""""""""""""
 WebSocket:
 ::
@@ -2882,7 +2919,7 @@ JSON-RPC:
     curl --data '{"jsonrpc": "2.0", "method": "call", "params":[0, "update_witness_votes", ["250926091", ["abit"], [], true]], "id": 1}' http://localhost:8091/rpc
 
 
-返回结果
+Return results
 """"""""""""""""
 ::
 
@@ -2929,40 +2966,41 @@ JSON-RPC:
 2.4.8 update_committee_member_votes
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 理事会选举投票。
+The committee election voting
 
-支持格式
+Supported format
 """"""""""""""""
 JSON 
 
-请求方式
+Request method
 """"""""""""""""
 WebSocket; JSON-RPC
 
-所需密钥权限
+Required private key authority
 """"""""""""""""""
-需要投票人的active key
+It needs the active key of the voter.
 
-访问授权限制
+Access authorization limit
 """"""""""""""""""
-| 访问级别: 普通接口
-| 频次限制: 是
+| Access level: normal interface
+| Frequency limit: True
 
 
-请求参数
+Request parameters
 """"""""""""""""
 
-:voting_account:  投票人账号（UID或昵称）
-:committee_members_to_add:  数组，增加支持的候选理事清单（UID或昵称）
-:committee_members_to_remove:  数组，移除支持的候选理事清单（UID或昵称）
-:broadcast:  是否广播
+:voting_account:  Voter account（UID或昵称）
+:committee_members_to_add:  Array; add a list of supported committee candidates (UID or nickname)
+:committee_members_to_remove:  Array; remove a list of supported committee candidates (UID or nickname)
+:broadcast:  Whether to broadcast
 
-committee_members_to_add，committee_members_to_remove两个清单可以都为空"[]"，表示刷新投票意向。
+Both committee_members_to_add and committee_members_to_remove lists can be empty "[]", indicating the voting intention is refreshed.
 
-注意事项
+Precautions
 """"""""""""""""
-无
+null
 
-调用样例及调试工具
+Call sample and debug tools
 """""""""""""""""""""""""""""""""
 WebSocket:
 ::
@@ -2976,7 +3014,7 @@ JSON-RPC:
     curl --data '{"jsonrpc": "2.0", "method": "call", "params":[0, "update_committee_member_votes", ["250926091", ["init1"], [],  true]], "id": 1}' http://localhost:8091/rpc
 
 
-返回结果
+Return results
 """"""""""""""""
 ::
 
@@ -3022,40 +3060,41 @@ JSON-RPC:
 2.4.9 collect_csaf_with_time
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 领取积分，需指定时间参数，领取积累到指定时间的积分。
+To collect points, you need to specify the time parameters to collect the points accumulated to the specified time.
 
-支持格式
+Supported format
 """"""""""""""""
 JSON 
 
-请求方式
+Request method
 """"""""""""""""
 WebSocket; JSON-RPC
 
-所需密钥权限
+Required private key authority
 """"""""""""""""""
-需要领取者的Secondary key
+It needs the Secondary Key of the collector.
 
-访问授权限制
+Access authorization limit
 """"""""""""""""""
-| 访问级别: 普通接口
-| 频次限制: 是
+| Access level: normal interface
+| Frequency limit: True
 
 
-请求参数
+Request parameters
 """"""""""""""""
 
-:from:  领取账号（UID或昵称）
-:to:  接收账号（UID或昵称）
-:amount:   领取金额
-:asset_symbol: 领取币种( 币种只能是 YOYO )
-:time:  指定时间，例如："2018-04-16T02:44:00" ，该时间为UTC时间，且不得早于当前链上新出块的时间5分钟。
-:broadcast:  是否广播
+:from:  Collecting account（UID or nickname）
+:to:  Receiving account（UID or nickname）
+:amount:   Collect the amount
+:asset_symbol: Collect the token type (the token type can only be YOYO)
+:time:  Specified time，for example: "2018-04-16T02:44:00". This time is UTC time and must not be 5 minutes before the time of newly produced block on the current chain.
+:broadcast:  Whether to broadcast
 
-注意事项
+Precautions
 """"""""""""""""
-无
+null
 
-调用样例及调试工具
+Call sample and debug tools
 """""""""""""""""""""""""""""""""
 WebSocket:
 ::
@@ -3069,7 +3108,7 @@ JSON-RPC:
     curl --data '{"jsonrpc": "2.0", "method": "call", "params":[0, "collect_csaf_with_time", ["223331844", "223331844", "0.5", "YOYO", "2018-04-16T02:44:00" true]], "id": 1}' http://localhost:8091/rpc
 
 
-返回结果
+Return results
 """"""""""""""""
 ::
 
@@ -3118,39 +3157,40 @@ JSON-RPC:
 2.4.10 collect_csaf
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 领取积分，领取积累到当前时间（分钟）的积分。
+Collect points and collect points accumulated to the current time (minutes).
 
-支持格式
+Supported format
 """"""""""""""""
 JSON 
 
-请求方式
+Request method
 """"""""""""""""
 WebSocket; JSON-RPC
 
-所需密钥权限
+Required private key authority
 """"""""""""""""""
-需要领取者的Secondary key
+It needs the Secondary Key of the collector.
 
-访问授权限制
+Access authorization limit
 """"""""""""""""""
-| 访问级别: 普通接口
-| 频次限制: 是
+| Access level: normal interface
+| Frequency limit: True
 
 
-请求参数
+Request parameters
 """"""""""""""""
 
-:from:  领取账号（UID或昵称）
-:to:  接收账号（UID或昵称）
-:amount:   领取金额
-:asset_symbol: 领取币种( 币种只能是 YOYO )
-:broadcast:  是否广播
+:from:  Collecting account（UID or nickname）
+:to:  Receiving account（UID or nickname）
+:amount:   Collecting the amount
+:asset_symbol: Collecting the token type (the token type can only be YOYO)
+:broadcast:  Whether to broadcast
 
-注意事项
+Precautions
 """"""""""""""""
-无
+null
 
-调用样例及调试工具
+Call sample and debug tools
 """""""""""""""""""""""""""""""""
 WebSocket:
 ::
@@ -3164,7 +3204,7 @@ JSON-RPC:
     curl --data '{"jsonrpc": "2.0", "method": "call", "params":[0, "collect_csaf", ["250926091", "250926091", 1, "YOYO", true]], "id": 1}' http://localhost:8091/rpc
 
 
-返回结果
+Return results
 """"""""""""""""
 ::
 
@@ -3214,41 +3254,42 @@ JSON-RPC:
 2.4.11 create_platform
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 创建平台
+Creating platforms
 
-支持格式
+Supported format
 """"""""""""""""
 JSON 
 
-请求方式
+Request method
 """"""""""""""""
 WebSocket; JSON-RPC
 
-所需密钥权限
+Required private key authority
 """"""""""""""""""
-需要申请者的Active key
+It needs the Active key of the applier.
 
-访问授权限制
+Access authorization limit
 """"""""""""""""""
-| 访问级别: 普通接口
-| 频次限制: 是
+| Access level: normal interface
+| Frequency limit: True
 
 
-请求参数
+Request parameters
 """"""""""""""""
 
-:owner_account:  创建者账号
-:name:  平台名称
-:pledge_amount:   抵押数量，当前不得少于10000 YOYO
-:pledge_asset_symbol: 抵押币种（YOYO）
-:url: 平台链接
-:extra_data:  平台额外数据
-:broadcast:  是否广播
+:owner_account:  Creator account
+:name:  Platform name
+:pledge_amount:   The collateral amount, currently not less than 10,000 YOYO
+:pledge_asset_symbol: collateral token type（YOYO）
+:url: platform link
+:extra_data:  Platform additional data
+:broadcast:  Whether to broadcast
 
-注意事项
+Precautions
 """"""""""""""""
-无
+null
 
-调用样例及调试工具
+Call sample and debug tools
 """""""""""""""""""""""""""""""""
 WebSocket:
 ::
@@ -3262,7 +3303,7 @@ JSON-RPC:
     curl --data '{"jsonrpc": "2.0", "method": "call", "params":[0, "create_platform", ["223331844", "yoyow.club", "10000", "YOYO", "", "", true]], "id": 1}' http://localhost:8091/rpc
 
 
-返回结果
+Return results
 """"""""""""""""
 ::
 
@@ -3304,47 +3345,47 @@ JSON-RPC:
 
 2.4.12 update_platform
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-修改平台信息。
+Modify platform information
 
-支持格式
+Supported format
 """"""""""""""""
 JSON 
 
-请求方式
+Request method
 """"""""""""""""
 WebSocket; JSON-RPC
 
-所需密钥权限
+Required private key authority
 """"""""""""""""""
-否
+null
 
-访问授权限制
+Access authorization limit
 """"""""""""""""""
-| 访问级别: 普通接口
-| 频次限制: 是
+| Access level: normal interface
+| Frequency limit: True
 
 
-请求参数
+Request parameters
 """"""""""""""""
 
-:platform_account:  账号（UID或昵称）
-:name: 新的平台名称，不需修改则输入 null
-:pledge_amount:  新的抵押金额，不需修改则输入 null
-:pledge_asset_symbol:   新的抵押币种（YOYO），不需修改则输入 null
-:url: 新的介绍链接，不需修改则输入 null
-:extra_data:  新的平台额外数据
-:broadcast:  是否广播
+:platform_account:  Account（UID or nickname）
+:name: new platform name; enter null if without modification
+:pledge_amount:  New collateral amount; enter null if without modification
+:pledge_asset_symbol:   New collateral token type (YOYO); enter null if without modification
+:url: New intro link; enter null if without modification
+:extra_data:  New platform additional data
+:broadcast:  Whether to broadcast
 
-注：
-抵押金额和币种必须同时出现或者同时不出现，目前币种只能是 YOYO。
-抵押金额为 0 则为关闭平台
+Note:
+The amount of the collateral and the token type must appear at the same time or not at the same time. The current token type can only be YOYO.
+If the collateral amount is 0, it means closing the platform.
 
 
-注意事项
+Precautions
 """"""""""""""""
-无
+null
 
-调用样例及调试工具
+Call sample and debug tools
 """""""""""""""""""""""""""""""""
 WebSocket:
 ::
@@ -3358,7 +3399,7 @@ JSON-RPC:
     curl --data '{"jsonrpc": "2.0", "method": "call", "params":[0, "update_platform", ["223331844", "NUUUU", null, null, "http://www.example.com", "http://www.example.com", true]], "id": 1}' http://localhost:8091/rpc
 
 
-返回结果
+Return results
 """"""""""""""""
 ::
 
@@ -3403,40 +3444,41 @@ JSON-RPC:
 2.4.13 update_platform_votes
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 为平台投票
+Vote for the platforms
 
-支持格式
+Supported format
 """"""""""""""""
 JSON 
 
-请求方式
+Request method
 """"""""""""""""
 WebSocket; JSON-RPC
 
-所需密钥权限
+Required private key authority
 """"""""""""""""""
-需要投票者的Active key
+It needs the Active key of the voter.
 
-访问授权限制
+Access authorization limit
 """"""""""""""""""
-| 访问级别: 普通接口
-| 频次限制: 是
+| Access level: normal interface
+| Frequency limit: True
 
 
-请求参数
+Request parameters
 """"""""""""""""
 
-:voting_account:  投票人账号（UID或昵称）
-:platforms_to_add:  增加支持的平台清单（UID或昵称）
-:platforms_to_remove:   移除支持的平台清单（UID或昵称）
-:broadcast:  是否广播
+:voting_account:  Voter account（UID or nickname）
+:platforms_to_add:  Add a list of supported platforms (UID or nickname)
+:platforms_to_remove:   Remove a list of supported platforms (UID or nickname)
+:broadcast:  Whether to broadcast
 
-latforms_to_add，platforms_to_remove 两个清单可以都为空，表示刷新投票意向。
+Both latforms_to_add and platforms_to_remove lists can be empty, indicating the voting intention is refreshed.
 
-注意事项
+Precautions
 """"""""""""""""
-无
+null
 
-调用样例及调试工具
+Call sample and debug tools
 """""""""""""""""""""""""""""""""
 WebSocket:
 ::
@@ -3450,7 +3492,7 @@ JSON-RPC:
     curl --data '{"jsonrpc": "2.0", "method": "call", "params":[0, "update_platform_votes", ["250926091", ["223331844"], [], true]], "id": 1}' http://localhost:8091/rpc
 
 
-返回结果
+Return results
 """"""""""""""""
 ::
 
@@ -3497,37 +3539,38 @@ JSON-RPC:
 2.4.14 account_auth_platform
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 账户对平台授权。
+The account authorizes the platform.
 
-支持格式
+Supported format
 """"""""""""""""
 JSON 
 
-请求方式
+Request method
 """"""""""""""""
 WebSocket; JSON-RPC
 
-所需密钥权限
+Required private key authority
 """"""""""""""""""
-主控密钥
+The Owner key
 
-访问授权限制
+Access authorization limit
 """"""""""""""""""
-| 访问级别: 普通接口
-| 频次限制: 是
+| Access level: normal interface
+| Frequency limit: True
 
 
-请求参数
+Request parameters
 """"""""""""""""
 
-:account:  授权账号（UID或昵称）
-:platform_owner:  平台所有者账号（UID或昵称）
-:broadcast:  是否广播
+:account:  Authorizing account（UID or nickname）
+:platform_owner:  platform owner account（UID or nickname）
+:broadcast:  Whether to broadcast
 
-注意事项
+Precautions
 """"""""""""""""
-无
+null
 
-调用样例及调试工具
+Call sample and debug tools
 """""""""""""""""""""""""""""""""
 WebSocket:
 ::
@@ -3541,7 +3584,7 @@ JSON-RPC:
     curl --data '{"jsonrpc": "2.0", "method": "call", "params":[0, "account_auth_platform", ["250926091", "223331844", true]], "id": 1}' http://localhost:8091/rpc
 
 
-返回结果
+Return results
 """"""""""""""""
 ::
 
@@ -3585,37 +3628,39 @@ JSON-RPC:
 2.4.15 account_cancel_auth_platform
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 账户取消对平台授权。
+The account unauthorizes the platform.
 
-支持格式
+
+Supported format
 """"""""""""""""
 JSON 
 
-请求方式
+Request method
 """"""""""""""""
 WebSocket; JSON-RPC
 
-所需密钥权限
+Required private key authority
 """"""""""""""""""
-主控密钥
+The Owner key
 
-访问授权限制
+Access authorization limit
 """"""""""""""""""
-| 访问级别: 普通接口
-| 频次限制: 是
+| Access level: normal interface
+| Frequency limit: True
 
 
-请求参数
+Request parameters
 """"""""""""""""
-:account:  授权账号（UID或昵称）
-:platform_owner:  平台所有者账号（UID或昵称）
-:broadcast:  是否广播
+:account:  Authorizing account（UID of nickname）
+:platform_owner:  platform owner account（UID or nickname）
+:broadcast:  Whether to broadcast
 
 
-注意事项
+Precautions
 """"""""""""""""
-无
+null
 
-调用样例及调试工具
+Call sample and debug tools
 """""""""""""""""""""""""""""""""
 WebSocket:
 ::
@@ -3629,7 +3674,7 @@ JSON-RPC:
     curl --data '{"jsonrpc": "2.0", "method": "call", "params":[0, "account_cancel_auth_platform", ["250926091", "223331844", true], "id": 1}' http://localhost:8091/rpc
 
 
-返回结果
+Return results
 """"""""""""""""
 ::
 
@@ -3671,84 +3716,86 @@ JSON-RPC:
 2.4.16 create_asset
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 创建资产
+Creating assets
 
-支持格式
+Supported format
 """"""""""""""""
 JSON 
 
-请求方式
+Request method
 """"""""""""""""
 WebSocket; JSON-RPC
 
-所需密钥权限
+Required private key authority
 """"""""""""""""""
-需要申请者的Active key
+It needs the Active key of the applier.
 
-访问授权限制
+Access authorization limit
 """"""""""""""""""
-| 访问级别: 普通接口
-| 频次限制: 是
+| Access level: normal interface
+| Frequency limit: True
 
 
-请求参数
+Request parameters
 """"""""""""""""
 
-:issuer:  创建人UID
-:symbol:  要创建资产的符号
-:precision:   精度（保留几位小数）
-:common: 选项，详见下文选项参数结构
-:initial_supply:  初始流通量为整型表示，即：实际金额 = initial_supply / ( 10 ^ precision )
-:broadcast:  是否广播
+:issuer:  Creator UID
+:symbol:  The symbol to create an asset
+:precision:   Precision (retains a few decimal places)
+:common: Options, see the option parameter structure below
+:initial_supply:  The initial liquidity is an integer representation, ie: actual amount = initial_supply / ( 10 ^ precision )
+:broadcast:  Whether to broadcast
 
-其中选项参数结构
+Option parameter structure
 ::
     asset_options {
-          // 该资产在任何给定时间可能存在的最大供应量。 这可以和 GRAPHENE_MAX_SHARE_SUPPLY 一样大 
-          // 特别说明：该最大供应量为最小单位Token的数量，比如发行的最大供应量为30000，精度设为2，则实际的供应量为30000/(10^2)=300个Token，最小的交易单位为0.01。
+          // The maximum supply that the asset may have at any given time. This can be as big as GRAPHENE_MAX_SHARE_SUPPLY. 
+          // Special note: The maximum supply is the number of minimum unit of tokens. For example, the maximum supply is 30,000 and the precision is set to 2 so the actual supply is 30000/(10^2)=300 Token. The smallest trading unit is 0.01.
           max_supply = GRAPHENE_MAX_SHARE_SUPPLY;
-          // （预留字段，暂未使用，必须为 0 ）
-          market_fee_percent = 0;
-          // （预留字段，暂未使用，必须为 0 ）
+          // (reserved field, not used yet, must be 0)
+          Market_fee_percent = 0;
+          // (reserved field, not used yet, must be 0)
           max_market_fee = GRAPHENE_MAX_SHARE_SUPPLY;
 
-          // 发行人有权更新的标志
+          // The logo that the issuer has the right to update
           issuer_permissions = UIA_ASSET_ISSUER_PERMISSION_MASK;
-          // 此权限上的当前活动标志
+          // current activity flag on this permission
           flags = 0;
 
-          // 一组白名单的账户可以使用此资产。 如果whitelist_authorities不为空，则只有whitelist_authorities中的帐户才可以持有，使用或转让资产。
+          // This asset can be used by a group of whitelisted accounts. If whitelist_authorities is not empty, only accounts in whitelist_authorities can hold, use or transfer assets.
           whitelist_authorities;
-          // 一组黑名单的帐户，不可以持有，使用此资产。 
+          // A set of blacklisted accounts cannot hold and use the assets.
           blacklist_authorities;
 
-          // 定义该资产可能在市场上交易的资产（预留字段，暂未使用）
+          // Define the assets that the asset may trade on the market (reserved fields, not used yet)
           whitelist_markets;
-          // 定义该资产不得在市场上交易的资产，不得重叠白名单 （预留字段，暂未使用）
+          // Define assets that the asset must not trade on the market, and must not overlap whitelists (reserved fields, not used yet)
           blacklist_markets;
 
-          // 描述该资产的含义/目的的数据，费用将按照描述的大小进行收费。
+          // Data describing the meaning/purpose of the asset, the fee will be charged according to the size of the description.
           string description;
        };
-其中， issuer_permisisons 和 flags 两个字段，是以整数方式表示，该整数转换为二进制后，每一位代表一个权限或者标志。目前定义如下：
+       
+The issuer_permisisons and flags fields are represented by integers. After the integer is converted to binary, each bit represents a permission or flag. Currently defined as follows:
 ::
       enum asset_issuer_permission_flags
          {
-            white_list           = 0x02,    // 白名单，如果启用，则该资产发行人可以控制他人是否可以使用该资产（这里的“使用”包含转账等操作）
-            override_authority   = 0x04,    // 强制转账，如果启用，则该资产发行人可以强制转走或者收回其他人账户里的该类资产
-            transfer_restricted  = 0x08,    // 限制转账，如果启用，则转账的发起者或者接收者必须是该资产发行人
-            issue_asset          = 0x200,   // 发行资产，如果启用，则该资产发行人可以增加一定数量的该类资产到某账户，同时增加该资产的当前流通总量
-            change_max_supply    = 0x400,   // 修改流通量上限，如果启用，则该资产发行人可以修改该资产的流通量上限
+            white_list           = 0x02,    // whitelist, if enabled, the asset issuer can control whether others can use the assets ("use" here includes transfers, etc.)
+            override_authority   = 0x04,    // Forced transfer, if enabled, the asset issuer can force a transfer or take back the assets in another person's account
+            transfer_restricted  = 0x08,    // Restricted transfer, if enabled, the originator or recipient of the transfer must be the issuer of the assets
+            issue_asset          = 0x200,   // Issuing the assets, if enabled, the asset issuer can add a certain amount of that assets to an account and increase the current total circulation amount of the assets
+            change_max_supply    = 0x400,   // modifying the circulation limit, if enabled, the asset issuer can modify the circulation limit of the assets
          };
 
-目前尚未使用的位，在 issuer_permissions 和 flags 两个字段中必须为 0 。
-在flags 字段里，某一位如果为 1 ，则表示该资产启用了这一位对应的参数；如果为 0 ，则表示没有启用。
-在issuer_permissions 字段里，如果某一位如果为 0 ，则表示资产发行人可以修改 flags 字段里对应的参数位；如果为 1 ，则表示不可修改。
+Bits that are not currently in use must be 0 in both issuer_permissions and flags fields.
+In the flags field, if a bit is 1, it means that the corresponding parameter is enabled for the asset; if it is 0, it means that it is not enabled.
+In the issuer_permissions field, if a bit is 0, it means that the issuer of the asset can modify the corresponding parameter bit in the flags field; if it is 1, it means that it cannot be modified.
 
-注意事项
+Precautions
 """"""""""""""""
-无
+null
 
-调用样例及调试工具
+Call sample and debug tools
 """""""""""""""""""""""""""""""""
 WebSocket:
 ::
@@ -3762,7 +3809,7 @@ JSON-RPC:
     curl --data '{"jsonrpc": "2.0", "method": "call", "params":[0, "create_asset", ["250926091","TOTOTO", 4, {"max_supply":300000,"market_fee_percent":0,"max_market_fee":0,"issuer_permissions":4}, 200000, true]], "id": 1}' http://localhost:8091/rpc
 
 
-返回结果
+Return results
 """"""""""""""""
 ::
 
@@ -3812,40 +3859,41 @@ JSON-RPC:
 2.4.17 update_asset
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 更新资产信息。
+Update asset information
 
-支持格式
+Supported format
 """"""""""""""""
 JSON 
 
-请求方式
+Request method
 """"""""""""""""
 WebSocket; JSON-RPC
 
-所需密钥权限
+Required private key authority
 """"""""""""""""""
-需要资产所有者的Active key
+It needs the Active key of the asset owner.
 
-访问授权限制
+Access authorization limit
 """"""""""""""""""
-| 访问级别: 普通接口
-| 频次限制: 是
+| Access level: normal interface
+| Frequency limit: True
 
 
-请求参数
+Request parameters
 """"""""""""""""
 
-:symbol:  资产符号
-:new_issuer:  新的资产所有人
-:new_options:   新的资产选项（见create_asset 中的 common参数结构），不需修改则输入 null
-:broadcast:  是否广播
+:symbol:  asset symbol
+:new_issuer:  new asset owner
+:new_options:   New asset option (see common parameter structure in create_asset); enter null if without modification
+:broadcast:  Whether to broadcast
 
-注意事项
+Precautions
 """"""""""""""""
-只有资产发行人才能使用这个功能。
+This feature is only available to asset issuers.
 
-只有当前流通量为零时，才能修改精度。
+The precision can only be modified if the current circulation amount is zero.
 
-调用样例及调试工具
+Call sample and debug tools
 """""""""""""""""""""""""""""""""
 WebSocket:
 ::
@@ -3858,7 +3906,7 @@ JSON-RPC:
     curl --data '{"jsonrpc": "2.0", "method": "call", "params":[0, "update_asset", ["WOWO", null, {"max_supply":"2000000000"}, true]]}, "id": 1}' http://localhost:8091/rpc
 
 
-返回结果
+Return results
 """"""""""""""""
 ::
 
@@ -3907,45 +3955,50 @@ JSON-RPC:
 2.4.18 enable_allowed_assets
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 账户主动启用或停用账户端资产白名单。
+The account actively enables or disables the whitelist of account-side assets.
 
 该白名单默认为停用状态，停用白名单即 账户可以发送和接收任何资产。
+The whitelist is deactivated by default, and when the whitelist is disabled, the account can send and receive any assets.
 
 白名单处于启用状态时，该账户只能发送和接收名单内的资产，同时可使用 update_allowed_assets 命令更新白名单。
+When the whitelist is enabled, the account can only send and receive assets in the list, and the whitelist can be updated using the update_allowed_assets command.
 
 从停用状态变更为启用状态时，白名单中默认只有“核心资产”，即 YOYO 。
+When the state is changed from deactivated to enabled, there is only "core assets" in the whitelist by default, which is YOYO.
 
 从启用状态停用白名单后，数据清除。重新启用时需重新添加需要的资产。
+Data is cleared when the whitelist is deactivated from the enabled state. To re-enable it, the required assets need to be re-added.
 
-支持格式
+Supported format
 """"""""""""""""
 JSON 
 
-请求方式
+Request method
 """"""""""""""""
 WebSocket; JSON-RPC
 
-所需密钥权限
+Required private key authority
 """"""""""""""""""
-需要资产所有者的Active key
+It needs the Active key of the asset owner.
 
-访问授权限制
+Access authorization limit
 """"""""""""""""""
-| 访问级别: 普通接口
-| 频次限制: 是
+| Access level: normal interface
+| Frequency limit: True
 
 
-请求参数
+Request parameters
 """"""""""""""""
 
-:account:  账号（UID或昵称）
-:enable:  是否启用（ true 为启用， false 为停用 ）
-:broadcast:  是否广播
+:account:  Account（UID or nickname）
+:enable:  Whether to enable（true is to enable，false is to disable）
+:broadcast:  Whether to broadcast
 
-注意事项
+Precautions
 """"""""""""""""
-无
+null
 
-调用样例及调试工具
+Call sample and debug tools
 """""""""""""""""""""""""""""""""
 WebSocket:
 ::
@@ -3959,7 +4012,7 @@ JSON-RPC:
     curl --data '{"jsonrpc": "2.0", "method": "call", "params":[0, "issue_asset", "250926091", false, true]], "id": 1}' http://localhost:8091/rpc
 
 
-返回结果
+Return results
 """"""""""""""""
 ::
 
@@ -4000,41 +4053,45 @@ JSON-RPC:
 2.4.19 update_allowed_assets
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 更新账户端资产白名单。
+Update the whitelist of account-side assets
+
 
 只有白名单处于开启状态时，才能更新。
 不能移除 YOYO 。
+Updates can only be made when the whitelist is open.
+Cannot remove YOYO.
 
-支持格式
+Supported format
 """"""""""""""""
 JSON 
 
-请求方式
+Request method
 """"""""""""""""
 WebSocket; JSON-RPC
 
-所需密钥权限
+Required private key authority
 """"""""""""""""""
-需要资产所有者的Active key
+It needs the Active key of the asset owner.
 
-访问授权限制
+Access authorization limit
 """"""""""""""""""
-| 访问级别: 普通接口
-| 频次限制: 是
+| Access level: normal interface
+| Frequency limit: True
 
 
-请求参数
+Request parameters
 """"""""""""""""
 
-:account:  账号（UID或昵称）
-:assets_to_add:  添加到白名单的资产清单（资产代码或 id ）
-:assets_to_remove:   从白名单移除的资产清单（资产代码或 id ）
-:broadcast:  是否广播
+:account:  Account（UID or nickname）
+:assets_to_add:  List of assets added to the whitelist (asset code or id)
+:assets_to_remove:   List of assets removed from the whitelist (asset code or id)
+:broadcast:  Whether to broadcast
 
-注意事项
+Precautions
 """"""""""""""""
-无
+null
 
-调用样例及调试工具
+Call sample and debug tools
 """""""""""""""""""""""""""""""""
 WebSocket:
 ::
@@ -4048,7 +4105,7 @@ JSON-RPC:
     curl --data '{"jsonrpc": "2.0", "method": "call", "params":[0, "issue_asset", ["250926091", "100000", "WOWO", "memo", true]], "id": 1}' http://localhost:8091/rpc
 
 
-返回结果
+Return results
 """"""""""""""""
 ::
   
@@ -4088,39 +4145,40 @@ JSON-RPC:
 2.4.20 issue_asset
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 分配发行的资产给某个账号
+Assign the issued assets to an account
 
-支持格式
+Supported format
 """"""""""""""""
 JSON 
 
-请求方式
+Request method
 """"""""""""""""
 WebSocket; JSON-RPC
 
-所需密钥权限
+Required private key authority
 """"""""""""""""""
-需要资产所有者的Active key
+It needs the Active key of the asset owner.
 
-访问授权限制
+Access authorization limit
 """"""""""""""""""
-| 访问级别: 普通接口
-| 频次限制: 是
+| Access level: normal interface
+| Frequency limit: True
 
 
-请求参数
+Request parameters
 """"""""""""""""
 
-:to_account:  发行到的目标账号
-:amount:  数量
-:symbol:   资产符号
-:memo:  备注
-:broadcast:  是否广播
+:to_account:  Target account issued
+:amount:  amount
+:symbol:   asset symbol
+:memo:  memo
+:broadcast:  Whether to broadcast
 
-注意事项
+Precautions
 """"""""""""""""
-无
+null
 
-调用样例及调试工具
+Call sample and debug tools
 """""""""""""""""""""""""""""""""
 WebSocket:
 ::
@@ -4134,7 +4192,7 @@ JSON-RPC:
     curl --data '{"jsonrpc": "2.0", "method": "call", "params":[0, "issue_asset", ["250926091", "100000", "WOWO", "memo", true]], "id": 1}' http://localhost:8091/rpc
 
 
-返回结果
+Return results
 """"""""""""""""
 ::
   
@@ -4175,38 +4233,40 @@ JSON-RPC:
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 销毁自己账户中指定数量的指定资产。
 操作完成后，该资产类型的流通总量相应减少。
+Destroy the specified number of specified assets in your account.
+After the operation is completed, the total amount of circulation of the asset type is correspondingly reduced.
 
-支持格式
+Supported format
 """"""""""""""""
 JSON 
 
-请求方式
+Request method
 """"""""""""""""
 WebSocket; JSON-RPC
 
-所需密钥权限
+Required private key authority
 """"""""""""""""""
-需要资产所有者的Active key
+It needs the Active key of the asset owner.
 
-访问授权限制
+Access authorization limit
 """"""""""""""""""
-| 访问级别: 普通接口
-| 频次限制: 是
+| Access level: normal interface
+| Frequency limit: True
 
 
-请求参数
+Request parameters
 """"""""""""""""
 
-:from:  账号（UID或昵称）
-:amount:  金额
-:symbol:   币种（资产代码）
-:broadcast:  是否广播
+:from:  Account（UID or nickname）
+:amount:  Amount
+:symbol:   Token type（asset code）
+:broadcast:  Whether to broadcast
 
-注意事项
+Precautions
 """"""""""""""""
-无
+null
 
-调用样例及调试工具
+Call sample and debug tools
 """""""""""""""""""""""""""""""""
 WebSocket:
 ::
@@ -4220,7 +4280,7 @@ JSON-RPC:
     curl --data '{"jsonrpc": "2.0", "method": "call", "params":[0, "reserve_asset", ["250926091", "1000", "WOWO", true]], "id": 1}' http://localhost:8091/rpc
 
 
-返回结果
+Return results
 """"""""""""""""
 ::
 
@@ -4260,44 +4320,47 @@ JSON-RPC:
 2.4.22 override_transfer
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 强制转账。资产发行人强制某账户将一定数量资产转到另一账户。
+Forced transfer. An asset issuer forces an account to transfer a certain amount of assets to another account.
 
 只有资产发行人才能使用这个功能。
+Only asset issuers can use this feature.
 
 备注用发行人备注私钥加密，转入人可解密备注，转出人不可解密。
+Remarks are encrypted with the issuer's Memo key, and the transferee can decrypt the remarks, and the transferrer cannot decrypt.
 
-支持格式
+Supported format
 """"""""""""""""
 JSON 
 
-请求方式
+Request method
 """"""""""""""""
 WebSocket; JSON-RPC
 
-所需密钥权限
+Required private key authority
 """"""""""""""""""
-需要资产发行人的Active key和memo key
+It needs the Active key and Memo key of the asset issuer.
 
-访问授权限制
+Access authorization limit
 """"""""""""""""""
-| 访问级别: 普通接口
-| 频次限制: 是
+| Access level: normal interface
+| Frequency limit: True
 
 
-请求参数
+Request parameters
 """"""""""""""""
 
-:from:  转出人（UID或昵称）
-:to:  转入人（UID或昵称）
-:amount:  金额
-:symbol:   币种（资产代码）
-:memo:  备注（不带备注的话用空串""）
-:broadcast:  是否广播
+:from:  Transferrer（UID or nickname）
+:to:  Transferee（UID or nickname）
+:amount:  Amount
+:symbol:   Token type（asset code）
+:memo:  Memo（use empty string "" if without a memo）
+:broadcast:  Whether to broadcast
 
-注意事项
+Precautions
 """"""""""""""""
-无
+null
 
-调用样例及调试工具
+Call sample and debug tools
 """""""""""""""""""""""""""""""""
 WebSocket:
 ::
@@ -4312,7 +4375,7 @@ JSON-RPC:
     curl --data '{"jsonrpc": "2.0", "method": "call", "params":[0, "override_transfer", ["216494599", "250926091", 2, "SOSO", "memo", true]], "id": 1}' http://localhost:8091/rpc
 
 
-返回结果
+Return results
 """"""""""""""""
 ::
 
