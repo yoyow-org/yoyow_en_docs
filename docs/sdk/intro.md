@@ -174,7 +174,7 @@ The steps for platform owners to get the private keys of different authority lev
     }
 
 ##### 2.5 更新平台
-##### 2.5 Upgrading Platforms
+##### 2.5 Updating Platforms
 
     unlocked >>> update_platform yoyow账号uid "平台名称" 抵押金额 货币符号 "平台url地址" "平台拓展信息json字符串" true
 
