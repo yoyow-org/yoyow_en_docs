@@ -21,7 +21,7 @@ A group of committee members voted in by the shareholders are responsible for se
 - The number of committee members is initially fixed at five, and cannot be modified.
 
 - 每届理事会成员任期30天，不可修改
-- The tenure of committee members is set at one month, and cannot be modified.
+- The tenure of committee members is set at 30 days, and cannot be modified.
 
 - 初始理事会成员名单由系统指定，后续理事会由持币人投票选举产生
 - The committee members on the initial list will be appointed by the system, with subsequent committee members decided by votes taken by token holders.
