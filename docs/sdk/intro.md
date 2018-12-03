@@ -620,7 +620,7 @@ Request Type：POST
         "title":"test title in js for update", - post title
         "body":"test boyd in js for update", - post content
         "create_time":"2018-03-12T10:22:03", - post creating time
-        "last_update_time":"2018-03-12T10:23:24", - post latest upgrade time
+        "last_update_time":"2018-03-12T10:23:24", - post latest update time
         "origin_platform", - original post platform account （Only exist for forwarding a post when posting）
         "origin_poster", - original post poster account （Only exist for forwarding a post when posting）
         "origin_post_pid" - original post posting number （Only exist for forwarding a post when posting）
