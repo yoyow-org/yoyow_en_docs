@@ -29,7 +29,7 @@ Refer to `Transaction Instructions <https://github.com/yoyow-org/yoyow-core/wiki
 
     Use -s to specify the IP and port of the connected node program;
     Use the -r option to open a websocket interface;
-    Use the -H option to open an HTTP-RPC service for easy access by our other programs. For example, the script program for processing recharge/withdrawal separately.
+    Use the -H option to open an HTTP-RPC service for easy access by our other programs. For example, the script program for processing deposit/withdrawal separately.
     Yoyow_node will only listen to the RPC port after the synchronization is completed, so please be patient and wait for the yoyow_node synchronization to complete.
     You can start multiple clients to connect to the same yoyow_node. But please be careful not to use the same -H, the monitor will fail because the port is occupied.
 
