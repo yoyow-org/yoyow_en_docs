@@ -131,7 +131,7 @@ The steps for platform owners to get the private keys of different authority lev
 
     unlocked >>> create_platform yoyow账号uid "平台名称" 抵押金额 货币符号 "平台url地址" "平台拓展信息json字符串" true
 
-    Unlocked >>> create_platform yoyow account uid "platform name" collateral amount currency symbol "platform url address" "platform extension information json string" true
+    Unlocked >>> create_platform yoyow account uid "platform name" collateral amount currency symbol "platform url address" "platform extra data json string" true
     
     For example:
 
@@ -178,7 +178,7 @@ The steps for platform owners to get the private keys of different authority lev
 
     unlocked >>> update_platform yoyow账号uid "平台名称" 抵押金额 货币符号 "平台url地址" "平台拓展信息json字符串" true
 
-    Unlocked >>> update_platform yoyow account uid "platform name" collateral amount currency symbol "platform url address" "platform extension information json string" true
+    Unlocked >>> update_platform yoyow account uid "platform name" collateral amount currency symbol "platform url address" "platform extra data json string" true
     
     For example:
 
@@ -190,12 +190,12 @@ The steps for platform owners to get the private keys of different authority lev
 
     平台名称、平台url地址和平台拓展信息如没有变动则填入null，如示例操作，不会改变平台url地址和拓展信息
 
-    The platform name, platform url address, and platform extension information are filled in with null if there is no change. As the operation in the example, the platform url address and extension information will not be changed.
+    The platform name, platform url address, and platform extra data are filled in with null if there is no change. As the operation in the example, the platform url address and extra data will not be changed.
     
 ##### 2.6 平台拓展信息协议
-##### 2.6 Platform Extension Information Protocol
+##### 2.6 Platform Extra Data Protocol
 
-    platform attributes extra_data extension information 
+    platform attributes extra_data extra data
     JSON object format string
 
     {
@@ -219,7 +219,7 @@ The steps for platform owners to get the private keys of different authority lev
 
     App扫码授权登录，将访问拓展信息平台的扫码、登录请求接口， 发送回用户签名对象
     
-    App scans code and is authorized to log in and send the scan code and login request interface of the extended information platform back to the user signature object.
+    App scans code and is authorized to log in and send the scan code and login request interface of the extra data platform back to the user signature object.
 
     {
 
@@ -513,7 +513,7 @@ Normal state of starting is as shown below
 
     {String} body - post content
 
-    {String} extra_data - post extension information
+    {String} extra_data - post extra data
 
     {String} origin_platform - original post platform account（default null）
 
@@ -567,7 +567,7 @@ Request Type：POST
 
     {String} body - post content
 
-    {String} extra_data - post extension information
+    {String} extra_data - post extra data
 
     {Number} time - operation time
 
