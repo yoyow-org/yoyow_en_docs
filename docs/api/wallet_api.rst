@@ -2782,7 +2782,7 @@ Return results
 Set up a voting proxy
 
 账户A设置账户B为投票代理，则B的投票对象得到的票数为A的有效票数+B的有效票数。 A 称之为委托人，B 称之为代理人
-Account A sets account B as a voting proxy, and the number of votes obtained by the voting object of B is the number of valid votes of A + the number of valid votes of B. A is called the principal, and B is called the proxy.
+Account A sets account B as a voting proxy, and the number of votes obtained by the voting object of B is the number of valid votes of A + the number of valid votes of B. A is called the client, and B is called the proxy.
 
 Supported format
 """"""""""""""""
@@ -2794,7 +2794,7 @@ WebSocket; JSON-RPC
 
 Required private key authority
 """"""""""""""""""
-It needs the active key of the principal.
+It needs the active key of the client.
 
 Access authorization limit
 """"""""""""""""""
@@ -2805,7 +2805,7 @@ Access authorization limit
 Request parameters
 """"""""""""""""
 
-:account_to_modify:  Principal account（UID or nickname）
+:account_to_modify:  Client account（UID or nickname）
 :voting_account:  Proxy account（set the proxy with a UID or nickname; null is for canceling the proxy）
 :broadcast:  Whether to broadcast
 
