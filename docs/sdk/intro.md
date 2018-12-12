@@ -329,7 +329,7 @@ Normal state of starting is as shown below
 
     2006 invalid asset symbol or id
 
-    3001 Article ID must be the previous article ID +1 of the issuer of the platform (platform article management id)
+    3001 Post ID must be the previous post ID +1 of the issuer of the platform (platform post management id)
       
 ### 请求文档及示例
 ### Request Documentation and Examples
@@ -771,7 +771,7 @@ Request Type：POST
 
   request parameters：
     
-    {Number} uid - all platform account uid
+    {Number} uid - platform owner account uid
 
   request example：
 
@@ -793,7 +793,7 @@ Request Type：POST
     "average_pledge": 176601774, - platform average collateral
     "average_pledge_last_update": "2018-02-11T06:49:12", - platform average collateral last update time
     "average_pledge_next_update_block": 4562164, - latform average collateral next update block number
-    "extra_data": "{}", - platform extended block number 
+    "extra_data": "{}", - platform extra data 
     "create_time": "2018-02-10T01:03:57", - platform creating time
     "last_update_time": "2018-02-11T06:49:12" - platform latest update date
 
@@ -803,7 +803,7 @@ Request Type：POST
 #### 2. About Auth 
 
 ##### 2.1. 签名平台 sign
-##### 2.1. Platform Signature sign
+##### 2.1. Signature Platform sign
   Requst Type：GET
 
   request parameters：null
@@ -854,14 +854,14 @@ Request Type：POST
     }
 
 ##### 2.3 签名平台 返回二维码 signQR
-##### 2.3 Signature Platform Returned OR Code signQR
+##### 2.3 Signature Platform Returned QR Code signQR
   
   Request Type：GET
 
   request parameters：
 
     {String} state - 
-    The extended information will be sent to the platform together with the user signature information when the platform login interface is invoked. It is used when the platform login interface needs a customized parameter. If there is no such requirement, it may not be transmitted.
+    The extra data will be sent to the platform together with the user signature information when the platform login interface is invoked. It is used when the platform login interface needs a customized parameter. If there is no such requirement, it may not be transmitted.
 
   request example：
 
