@@ -141,7 +141,7 @@ At present, the only use of Bonus Points is for paying fees. You can use Bonus P
 When the “balance” of your account reaches a certain amount of YOYO, the system will automatically accumulate Bonus Points for you. There is a limit to the highest amount of accumulation.
 
 ###### 积分使用方法
-###### Using Method for Bonus Point 
+###### Using Method for Bonus Points 
 积分需要手动领取，可手动将待领取积分领取至您的账户，也可以领取至其他联系人账户，作为奖励赠予。积分也可以租借给其他人使用。
 
 Bonus Points are withdrawn manually. You can manually withdraw available Bonus Points to your account or other accounts of your contact as incentives. Bonus Points can be rented to others for use.
