@@ -186,16 +186,16 @@ After completing the registration, you can view your Owner key, Active key, Seco
 
 A common account needs to be upgraded to a platform account to obtain the user's authorization. The upgraded platform currently needs to deposit a collateral of 10,000 YOYO and a fee of 1000 YOYO. This operation is temporarily performed through the YOYOW client. You need to perform the create_platform operation through the interface, and set the name of the platform, the symbol of the Token and the related url address and other extended information, such as the API access interface provided by the platform.
 
-具体抵押升级平台账号的操作，详见YOYOW中间件[yoyow-middleware](https://github.com/yoyow-org/yoyow-node-sdk/tree/master/middleware#2-%E5%88%9B%E5%BB%BA%E5%B9%B3%E5%8F%B0) 的使用教程。
+具体抵押升级平台账号的操作，详见 [从0开始创建YOYOW平台账户](/others/create_platform.html)。
 
-For details on how to deposit the upgraded platform account, see the tutorials on using YOYOW middleware [yoyow-middleware](https://github.com/yoyow-org/yoyow-node-sdk/tree/master/middleware#2-%E5%88%9B%E5%BB%BA%E5%B9%B3%E5%8F%B0).
+For details on how to deposit the upgraded platform account, see [Creating YOYOW Platform Account from 0](/others/create_platform.html).
 
 ### 授权认证
 ### Authorization Certification
 
 YOYOW提供类似于OAuth的授权认证。YOYOW提供了中间件来方便平台进行接入，中间件中提供包括签名平台 （sign），签名验证（ verify），以及签名平台返回二维码（signQR）等接口（详见：[《yoyow-middleware》#Auth 相关](https://github.com/yoyow-org/yoyow-node-sdk/tree/master/middleware#2-auth-%E7%9B%B8%E5%85%B3)）。平台可以通过SDK中sign或signQR接口生成绑定链接，verify接口验证用户授权。通过授权，平台可以获得用户的零钱管理权限以及登陆授权。  
 
-YOYOW provides an authorization certification similar to OAuth. YOYOW provides middleware to facilitate platform integration. The middleware provides interfaces such as signature platform (sign), signaturea authentication (verify), and return QR code on signature platform (SignQR) (see: [《yoyow-middleware》#Auth related](https://github.com/yoyow-org/yoyow-node-sdk/tree/master/middleware#2-auth-%E7%9B%B8%E5%85%B3)). The platform can generate a binding link through the sign or signQR interface in the SDK, and can verify user authorization through the verify interface. Through authorization, the platform can obtain the user's liquid asset management authority and login authorization.
+YOYOW provides an authorization certification similar to OAuth. YOYOW provides middleware to facilitate platform integration. The middleware provides interfaces such as signature platform (sign), signaturea authentication (verify), and return QR code on signature platform (SignQR) (see: [《yoyow-middleware》#About Auth](https://github.com/yoyow-org/yoyow-node-sdk/tree/master/middleware#2-auth-%E7%9B%B8%E5%85%B3)). The platform can generate a binding link through the sign or signQR interface in the SDK, and can verify user authorization through the verify interface. Through authorization, the platform can obtain the user's liquid asset management authority and login authorization.
 
 授权流程：
 
@@ -260,14 +260,6 @@ Through the YOYOW network, the platform can easily integrate to the system of cr
 
 The platform can encourage users to forward transactions between them, and build a platform for paid reading and rewarding content based on YOYO assets or assets issued by itself. YoYow's blockchain service ensures that forwarding transactions between users is secure, non-tamperable, and transparent, thereby motivating users to deliver higher quality content.
 
-在YOYOW的SDK中提供了transferFromUser，可以支持用户对用户通过平台转账（只可以转出零钱内存放的YOYO代理），同时将转账数据写入YOYOW链上。详见：[《yoyow-middleware》#用户对用户通过平台转账](https://github.com/yoyow-org/yoyow-node-sdk/tree/master/middleware#19-%E7%94%A8%E6%88%B7%E5%AF%B9%E7%94%A8%E6%88%B7%E9%80%9A%E8%BF%87%E5%B9%B3%E5%8F%B0%E8%BD%AC%E8%B4%A6-transferfromuser%E9%9C%80%E8%A6%81%E5%AE%89%E5%85%A8%E9%AA%8C%E8%AF%81%E7%9A%84%E8%AF%B7%E6%B1%82)。
-
-The transferFromUser is provided in the YOYOW SDK, which can support the transfer between users through the platform (only the YOYO agent stored in the liquid assets), and write the transfer data to the YOYOW chain. See: [《yoyow-middleware》#transfers between users through the platform](https://github.com/yoyow-org/yoyow-node-sdk/tree/master/middleware#19-%E7%94%A8%E6%88%B7%E5%AF%B9%E7%94%A8%E6%88%B7%E9%80%9A%E8%BF%87%E5%B9%B3%E5%8F%B0%E8%BD%AC%E8%B4%A6-transferfromuser%E9%9C%80%E8%A6%81%E5%AE%89%E5%85%A8%E9%AA%8C%E8%AF%81%E7%9A%84%E8%AF%B7%E6%B1%82).
-
 更多：
-
 More:
-
-1. YOYOW Node SDK: <https://github.com/yoyow-org/yoyow-node-sdk>.
-2. YOYOW Node SDK Middleware: <https://github.com/yoyow-org/yoyow-node-sdk/tree/master/middleware>.
-
+1. YOYOW Middleware <https://github.com/yoyow-org/yoyow-middleware>.
