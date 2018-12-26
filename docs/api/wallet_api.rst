@@ -56,8 +56,6 @@ http rpc interface address： http://localhost:8093
 ::
     curl --data '{"method": "call", "params": [0, "get_accounts_by_uid", [["250926091"]]], "id": 1}' http://localhost:8093
 
-备注：websocket和http接口的区别：websocket接口同样可以使用curl获取数据，会遵循jsonrpc格式，请求和返回的json数据均需携带{"jsonrpc": "2.0"}。http 的接口不需携带{"jsonrpc": "2.0"}的标签。
-
 Remarks: The difference between websocket and http interface: websocket interface can also use curl to get data, and it will follow jsonrpc format, and the requested and returned json data must carry {"jsonrpc": "2.0"}. The interface of http does not need to carry the label of {"jsonrpc": "2.0"}.
 
 
@@ -66,7 +64,6 @@ Remarks: The difference between websocket and http interface: websocket interfac
 
 2.1.1 calculate_account_uid
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-给定一个数，计算出对应的账户 uid
 Give a number, calculate the corresponding account uid
 
 Supported format
@@ -125,7 +122,6 @@ Return results
 
 2.1.2 suggest_brain_key
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-随机生成一个脑密钥，根据脑密钥得出一对公私钥
 Randomly generate a brain key and derive a pair of public and private keys based on the brain key
 
 Supported format
@@ -185,7 +181,6 @@ Return results
 
 2.1.3 get_transaction_id
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-返回给定交易的 tx id （交易 ID ，或称交易哈希）
 Return the tx id (transaction ID, or transaction hash) of a given transaction
 
 Supported format
@@ -244,7 +239,6 @@ Return results
 
 2.2.1 get_account
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-获取账户基本信息。
 Get basic account information
 
 Supported format
@@ -365,7 +359,6 @@ Return results
 
 2.2.2 get_full_account
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-获取账户详细信息。
 Get account details
 
 Supported format
@@ -529,7 +522,6 @@ Return results
 
 2.2.3 get_relative_account_history
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-获取账户历史。
 Get the account history
 
 
@@ -559,9 +551,6 @@ Request parameters
 :start:   query start number（sequence number）
 :limit:   Return the total number of results
 :end:  When the value is 0, the most recent operation record is available.
-
-返回结果的数量会在end - start 范围之内；如果limit值比end - start 要小，则返回满足limit条件的最新操作记录。
-返回结果的排序方式为： 最新的优先
 
 The number of returned results will be in the end - start range; if the limit value is smaller than end - start, the latest operation record that satisfies the limit condition is returned.
 The returned results are sorted in the way that the latest ones are returned first.
@@ -679,7 +668,6 @@ Return results
 
 2.2.4 list_account_balances
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-获取账户余额。
 Get the account balance
 
 Supported format
@@ -739,7 +727,6 @@ Return results
 
 2.2.5 list_accounts_by_name
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-根据名称查找账号UID。
 Find the account UID by name
 
 Supported format
@@ -838,7 +825,6 @@ Return results
 
 2.2.6 get_witness
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-获取见证人信息。
 Get witness information.
 
 Supported format
@@ -920,10 +906,8 @@ Return results
 
 2.2.7 list_witnesses
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-查询指定借出人的币龄租借（借出）清单。
 Query the list of the token age rental (lending) of the specified lender.
 
-结果按借入人  uid 从小到大排序
 Results are sorted by borrower uid from small to large.
 
 Supported format
@@ -955,7 +939,6 @@ Request parameters
 
 Precautions
 """"""""""""""""
-接口采用分页设计，若要获取全部的见证人，可以循环调用，直至返回见证人数小于limit为止。
 The interface uses a pagination design. To get all the witnesses, you can cycle through them until the number of witnesses returned is less than the limit.
 
 Call sample and debug tools
@@ -1112,7 +1095,6 @@ Return results
 
 2.2.8 get_committee_member
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-获取理事成员信息。
 Get the committee member information
 
 Supported format
@@ -1178,7 +1160,6 @@ Return results
 
 2.2.9 list_committee_members
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-列出当前有效的候选理事清单。
 List the current valid committee candidates
 
 Supported format
@@ -1207,7 +1188,6 @@ Request parameters
 
 Precautions
 """"""""""""""""
-接口采用分页设计，若要获取全部的理事会，可以循环调用，直至返回理事会人数小于limit为止。
 The interface adopts a pagination design. To obtain all the committees, you can call them cyclically until the number of committee members returned is less than the limit.
 
 Call sample and debug tools
@@ -1289,8 +1269,7 @@ Return results
 
 2.2.10 list_committee_proposals
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-列出所有尚未成功执行的理事会提案，包含正在投票表决的、已表决通过但还没到执行时间的。
-List all the Board proposals that have not been successfully implemented, including those that are being voted on, have been voted through but have not yet reached the execution time.
+List all the committee proposals that have not been successfully implemented, including those that are being voted on, have been voted through but have not yet reached the execution time.
 
 Supported format
 """"""""""""""""
@@ -1346,7 +1325,6 @@ Return results
 
 2.2.11 get_platform_count
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-获取网络上平台的总数量
 Get the total number of platforms on the network
 
 Supported format
@@ -1403,7 +1381,6 @@ Return results
 
 2.2.12 get_platform
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-根据平台所有人（owner）账号，获取平台对象信息
 Get platform object information according to the platform owner account
 
 Supported format
@@ -1475,7 +1452,6 @@ Return results
 
 2.2.13 list_platforms
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-按平台拥有者进行查询，列出当前有效的平台清单。
 Query by platform owner to list the current valid platforms
 
 
@@ -1592,7 +1568,6 @@ Return results
 
 2.2.14 get_asset
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-根据给定的资产代码或者 id ，返回资产详细信息。
 Return the asset details based on the given asset code or id
 
 Supported format
@@ -1664,11 +1639,8 @@ Return results
 
 2.2.15 list_assets
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-分页查询资产详细信息。
 Query asset details by page
 
-返回结果按资产代码的 ASCII 码顺序排序
 The returned results are sorted by the ASCII code order of the asset code.
 
 Supported format
@@ -1836,7 +1808,6 @@ Return results
 
 2.3.1 save_wallet_file
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-保存钱包文件，会保存到yoyo_client的执行文件夹下
 Save the wallet file and it will be saved to the yoyo_client executable folder
 
 Supported format
@@ -1895,7 +1866,6 @@ Return results
 
 2.3.2 set_password
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-设置钱包密码
 Set the wallet password
 
 Supported format
@@ -1953,7 +1923,6 @@ Return results
 
 2.3.3 unlock
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-解锁钱包
 Unlock the wallet
 
 Supported format
@@ -2011,7 +1980,6 @@ Return results
 
 2.3.4 lock
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-锁定钱包
 Lock the wallet
 
 Supported format
@@ -2066,7 +2034,6 @@ Return results
 
 2.3.5 import_key
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-将一个私钥导入钱包，并指定一个相关账号。私钥和账号并不一定要有关联。
 Import a private key into your wallet and assign a related account. The private key and account number do not have to be associated.
 
 Supported format
@@ -2184,10 +2151,8 @@ Return results
 
 2.3.7 list_my_accounts_cached
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-列出钱包文件中所有缓存的账户（导入私钥时指定的账户）的信息。
 List the information about all cached accounts in the wallet file (the account specified when the private key was imported)
 
-注：该缓存信息不一定与链上数据同步。要想进行同步，请重新打开钱包文件。
 Note: This cached information is not necessarily synchronized with the data on the chain. To sync, reopen the wallet file.
 
 Supported format
@@ -2312,12 +2277,10 @@ Return results
 
 2.4 Operations/Transactions API
 -----------------------------
-以下操作涉及密钥权限的，需要导入相关的私钥，同时，保证wallet需处于解锁（unlocked）状态
 The following operations involve key authority. You need to import the relevant private keys. At the same time, ensure that the wallet is in unlocked state.
 
 2.4.1 transfer
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-根据uid列表 查询平台
 Query the platforms according to the uid list
 
 Supported format
@@ -2502,7 +2465,6 @@ Return results
 
 2.4.3 update_witness
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-修改见证人信息。
 Modify witness information
 
 Supported format
@@ -2597,7 +2559,6 @@ Return results
 
 2.4.4 create_committee_member
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-创建候选理事身份。
 Create a committee candidate identity
 
 Supported format
@@ -2685,7 +2646,6 @@ Return results
 
 2.4.5 update_committee_member
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-修改候选理事信息。
 Modify committee candidate information
 
 Supported format
@@ -2778,10 +2738,8 @@ Return results
 
 2.4.6 set_voting_proxy
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-设置投票代理。
 Set up a voting proxy
 
-账户A设置账户B为投票代理，则B的投票对象得到的票数为A的有效票数+B的有效票数。 A 称之为委托人，B 称之为代理人
 Account A sets account B as a voting proxy, and the number of votes obtained by the voting object of B is the number of valid votes of A + the number of valid votes of B. A is called the client, and B is called the proxy.
 
 Supported format
@@ -2870,7 +2828,6 @@ Return results
 
 2.4.7 update_witness_votes
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-见证人投票。
 Witness voting
 
 Supported format
@@ -2965,7 +2922,6 @@ Return results
 
 2.4.8 update_committee_member_votes
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-理事会选举投票。
 The committee election voting
 
 Supported format
@@ -2989,7 +2945,7 @@ Access authorization limit
 Request parameters
 """"""""""""""""
 
-:voting_account:  Voter account（UID或昵称）
+:voting_account:  Voter account (UID or nickname)
 :committee_members_to_add:  Array; add a list of supported committee candidates (UID or nickname)
 :committee_members_to_remove:  Array; remove a list of supported committee candidates (UID or nickname)
 :broadcast:  Whether to broadcast
@@ -3059,7 +3015,6 @@ Return results
 
 2.4.9 collect_csaf_with_time
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-领取积分，需指定时间参数，领取积累到指定时间的积分。
 To collect points, you need to specify the time parameters to collect the points accumulated to the specified time.
 
 Supported format
@@ -3156,7 +3111,6 @@ Return results
 
 2.4.10 collect_csaf
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-领取积分，领取积累到当前时间（分钟）的积分。
 Collect points and collect points accumulated to the current time (minutes).
 
 Supported format
@@ -3253,7 +3207,6 @@ Return results
 
 2.4.11 create_platform
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-创建平台
 Creating platforms
 
 Supported format
@@ -3443,7 +3396,6 @@ Return results
 
 2.4.13 update_platform_votes
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-为平台投票
 Vote for the platforms
 
 Supported format
@@ -3538,7 +3490,6 @@ Return results
 
 2.4.14 account_auth_platform
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-账户对平台授权。
 The account authorizes the platform.
 
 Supported format
@@ -3627,7 +3578,6 @@ Return results
 
 2.4.15 account_cancel_auth_platform
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-账户取消对平台授权。
 The account unauthorizes the platform.
 
 
@@ -3715,7 +3665,6 @@ Return results
 
 2.4.16 create_asset
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-创建资产
 Creating assets
 
 Supported format
@@ -3858,7 +3807,6 @@ Return results
 
 2.4.17 update_asset
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-更新资产信息。
 Update asset information
 
 Supported format
@@ -3954,19 +3902,14 @@ Return results
 
 2.4.18 enable_allowed_assets
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-账户主动启用或停用账户端资产白名单。
 The account actively enables or disables the whitelist of account-side assets.
 
-该白名单默认为停用状态，停用白名单即 账户可以发送和接收任何资产。
 The whitelist is deactivated by default, and when the whitelist is disabled, the account can send and receive any assets.
 
-白名单处于启用状态时，该账户只能发送和接收名单内的资产，同时可使用 update_allowed_assets 命令更新白名单。
 When the whitelist is enabled, the account can only send and receive assets in the list, and the whitelist can be updated using the update_allowed_assets command.
 
-从停用状态变更为启用状态时，白名单中默认只有“核心资产”，即 YOYO 。
 When the state is changed from deactivated to enabled, there is only "core assets" in the whitelist by default, which is YOYO.
 
-从启用状态停用白名单后，数据清除。重新启用时需重新添加需要的资产。
 Data is cleared when the whitelist is deactivated from the enabled state. To re-enable it, the required assets need to be re-added.
 
 Supported format
@@ -4052,12 +3995,8 @@ Return results
 
 2.4.19 update_allowed_assets
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-更新账户端资产白名单。
 Update the whitelist of account-side assets
 
-
-只有白名单处于开启状态时，才能更新。
-不能移除 YOYO 。
 Updates can only be made when the whitelist is open.
 Cannot remove YOYO.
 
@@ -4144,7 +4083,6 @@ Return results
 
 2.4.20 issue_asset
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-分配发行的资产给某个账号
 Assign the issued assets to an account
 
 Supported format
@@ -4231,8 +4169,6 @@ Return results
 
 2.4.21 reserve_asset
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-销毁自己账户中指定数量的指定资产。
-操作完成后，该资产类型的流通总量相应减少。
 Destroy the specified number of specified assets in your account.
 After the operation is completed, the total amount of circulation of the asset type is correspondingly reduced.
 
@@ -4319,13 +4255,10 @@ Return results
 
 2.4.22 override_transfer
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-强制转账。资产发行人强制某账户将一定数量资产转到另一账户。
 Forced transfer. An asset issuer forces an account to transfer a certain amount of assets to another account.
 
-只有资产发行人才能使用这个功能。
 Only asset issuers can use this feature.
 
-备注用发行人备注私钥加密，转入人可解密备注，转出人不可解密。
 Remarks are encrypted with the issuer's Memo key, and the transferee can decrypt the remarks, and the transferrer cannot decrypt.
 
 Supported format
