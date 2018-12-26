@@ -150,7 +150,8 @@ Normal start as shown below
 #### 1. Basic Query Related Interface
 
 ##### 1.1. 获取指定账户信息 getAccount
-##### 1.1. Get the Specified Account Information getAccount
+##### 1.1. Get the Specified Account Information 
+getAccount
 
  Request Type：GET
 
@@ -207,7 +208,8 @@ Normal start as shown below
     }
 
 ##### 1.2. 获取指定账户近期活动记录 getHistory
-##### 1.2. Get Recent Activity Records for a Given account getHistory
+##### 1.2. Get Recent Activity Records for a Given account 
+getHistory
  Request Type：GET
 
  Request Parameters：
@@ -231,7 +233,8 @@ Normal start as shown below
 ```
 
 ##### 1.3. 验证块是否不可退回 confirmBlock
-##### 1.3. Verify Whether Block is Unreturnable confirmBlock
+##### 1.3. Verify Whether Block is Unreturnable 
+confirmBlock
 
  Request Type：GET
 
@@ -253,7 +256,8 @@ Request Parameters：
 ```
 
 ##### 1.4. 获取指定资产信息 getAsset
-##### 1.4. Get Specified Asset Information getAsset
+##### 1.4. Get Specified Asset Information 
+getAsset
 
   Request Type：GET
 
@@ -310,7 +314,8 @@ http://localhost:3001/api/v1/getAsset?search=YOYOW
 
 
 ##### 1.5. 获取指定平台信息 getPlatformById
-##### 1.5. Get Specified Platform Information getPlatformById
+##### 1.5. Get Specified Platform Information 
+getPlatformById
 
   Request Type：GET
 
@@ -431,7 +436,8 @@ http://localhost:3001/api/v1/getQRReceive?amount=98&memo=new transfer&asset_id=0
 ```
 
 ##### 2.3. 修改（仅增加白名单）授权用户资产白名单 updateAllowedAssets（需要安全验证的请求）
-##### 2.3. Modify (whitelist only) Authorized User Asset Whitelist updateAllowedAssets (requiring security verification request)
+##### 2.3. Modify (whitelist only) Authorized User Asset Whitelist 
+updateAllowedAssets (requiring security verification request)
 
 如果用户启用了资产白名单，则需要将UIA（用户发行资产）添加到用户的资产白名单中，才可以进行转账等交易。
 
@@ -528,7 +534,8 @@ localhost:3000/api/v1/post
     }
 
 ##### 3.2. 更新文章 postUpdate（需要安全验证的请求）
-##### 3.2. Update Post postUpdate (requiring security verification request)
+##### 3.2. Update Post 
+postUpdate (requiring security verification request)
 
 Request Type：POST
 
@@ -583,7 +590,8 @@ localhost:3000/api/v1/postUpdate
 }
 ```
 ##### 3.3. 获取文章 getPost
-##### 3.3. Get Post getPost
+##### 3.3. Get Post 
+getPost
 
   Request Type：GET
 
@@ -622,7 +630,8 @@ localhost:3000/api/v1/postUpdate
 ```
 
 ##### 3.4. 获取文章列表 getPostList
-##### 3.4. Get Post List getPostList
+##### 3.4. Get Post List 
+getPostList
 
   Request Type：GET
 
@@ -653,7 +662,8 @@ localhost:3000/api/v1/postUpdate
 #### 4. Auth 相关
 #### 4. About Auth 
 ##### 4.1. 签名平台 sign
-##### 4.1. Signature Platform sign
+##### 4.1. Signature Platform 
+sign
 
   Requst Type：GET
 
@@ -679,7 +689,8 @@ localhost:3000/api/v1/postUpdate
 ```
 
 ##### 4.2 签名验证 verify
-##### 4.2 Signature Verification verify
+##### 4.2 Signature Verification 
+verify
 
   Request Type：GET
 
@@ -706,7 +717,8 @@ localhost:3000/api/v1/postUpdate
 
 
 ##### 4.3 签名平台 返回二维码 signQR
-##### 4.3 Signature Platform Returned QR Code signQR
+##### 4.3 Signature Platform Returned QR Code 
+signQR
   Request Type：GET
 
   Request Parameters：
@@ -744,7 +756,7 @@ platform attributes extra_data extra data
 ```
 
 ##### 4.5 平台扫码登录
-##### 4.5 Platform Login by Scanning Code
+##### 4.5 Platform Login by Scanning QR Code
 
 App扫码授权登录将访问 平台拓展信息的 平台扫码登录请求接口 ，发送回用户签名对象
 
