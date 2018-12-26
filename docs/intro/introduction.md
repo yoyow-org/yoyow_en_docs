@@ -28,7 +28,7 @@ Common users are the main participants of the YOYOW network. In the YOYOW networ
 ### Platforms
 普通用户抵押一定的YOYO代币可称为平台。普通用户通过 YOYOW 钱包对平台进行授权，授权平台使用其零钱权限，用于跨站点登陆、对内容评分、发布内容、评论等操作，普通用户也可以随时撤销授权。
 
-Common user that deposits a collateral of a certain amount of YOYO tokens can be called a platform. Common users can authorize the platform through the YOYOW wallet, and the authorized platform uses its liquid asset authority for cross-site login, content rating, content posting, comments, etc., and common users can also revoke authorization at any time.
+Common user that deposits a collateral of a certain amount of YOYO tokens can be called a platform. Common users can authorize the platform through the YOYOW wallet, and the authorized platform uses its tipping authority for cross-site login, content rating, content posting, comments, etc., and common users can also revoke authorization at any time.
 
 
 ### 理事会
@@ -55,7 +55,7 @@ In the blockchain project, the private key is the top priority of the account. H
 
 - The Owner Key is the key of highest authority, and the Owner Key should not be used unless it is absolutely necessary;
 - The Active Key can operate the balance;
-- The Secondary Key can operate the liquid assets, and can also be used for posting, giving likes, login authentication, etc.
+- The Secondary Key can operate the tipping, and can also be used for posting, giving likes, login authentication, etc.
 - In addition to the asset-related 3-level keys, there is also a **Memo Key** used to encrypt and view the note information for the transactions.
 
 ## 资产类型
@@ -68,13 +68,13 @@ There are three types of assets in the YOYOW network: **YOYO token**, **user-iss
 ### YOYO Token
 在YOYOW的账户里，基础资产为YOYO 代币，有两处可进行存放：『**余额**』和『**零钱**』。
 
-In YOYO's account, the base asset is YOYO token, and there are two places to store: 『**balance**』and『**liquid assets**』
+In YOYO's account, the base asset is YOYO token, and there are two places to store: 『**balance**』and『**tipping**』
 
 - 『**余额**』拥有较高的安全性，建议大额的YOYO在余额中存储。
 - 『**零钱**』进行小额的存储与转账，当用户授予零钱权限给平台时，平台可以拥有操作”零钱” 的权限，可理解为免密支付。
 
 - 『**Balance**』 has a high level of security, and it is recommended that a large amount of YOYO be stored in the balance.
-- 『**Liquid assets**』is for small amount of savings and transfer. When the user grants the authority of liquid assets to the platform, the platform can have the right to operate "liquid assets", which can be understood as password-free payment.
+- 『**Tipping**』is for small amount of savings and transfer. When the user grants the authority of tipping to the platform, the platform can have the right to operate "tipping", which can be understood as password-free payment.
 
 ### 用户发行资产（UIA）
 ### User-Issued Assets（UIA）
