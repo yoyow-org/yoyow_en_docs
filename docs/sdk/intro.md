@@ -746,7 +746,7 @@ platform attributes extra_data extra data
     
 ```javascript
 {
-    "login":"http://example/login" //Platform scan-code login request interface
+    "login":"http://example/login" //Platform QR code scanning login request interface
     "description":"platform description"  //platform description
     "image":"http://example.image.jpg" //platform image，platform image displayed in yoyow app 1.1
     "h5url":"http://exampleH5.com" //Platform h5 address, used to adjust the h5 page without the app jumping
@@ -760,7 +760,7 @@ platform attributes extra_data extra data
 
 App扫码授权登录将访问 平台拓展信息的 平台扫码登录请求接口 ，发送回用户签名对象
 
-App scans code and is authorized to log in and send the scan code and login request interface of the extra data platform back to the user signature object.
+When the wallet App scans QR code and it will access and post signature object to "login" url in extra data.
 
 ```
 {
