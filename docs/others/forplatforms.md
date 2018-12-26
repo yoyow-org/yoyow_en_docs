@@ -42,7 +42,7 @@ Common users are the main participants of the YOYOW network. In the YOYOW networ
 普通用户通过 YOYOW 钱包对平台进行授权，授权平台使用其零钱权限，用于跨站点登陆、对内容评分、发布内容、评论等操作，普通用户也可以随时撤销授权。  
 接入后，平台可获得YOYOW网络的Token激励。
 
-The platform is a special kind of user. Common user that deposits a collateral of a certain amount of YOYO tokens can be called a platform. Common users can authorize the platform through the YOYOW wallet, and the authorized platform uses its liquid asset authority for cross-site login, content rating, content posting, comments, etc., and common users can also revoke authorization at any time. After integration, the platforms can get token incentives of the YOYOW network.
+The platform is a special kind of user. Common user that deposits a collateral of a certain amount of YOYO tokens can be called a platform. Common users can authorize the platform through the YOYOW wallet, and the authorized platform uses its Tipping authority for cross-site login, content rating, content posting, comments, etc., and common users can also revoke authorization at any time. After integration, the platforms can get token incentives of the YOYOW network.
 
 #### 理事会
 #### Committees
@@ -73,7 +73,7 @@ Under the current mechanism, YOYOW users can fully exercise their rights. Both t
 #### Private Key System
 在区块链项目中，私钥是账号的重中之重。然而，当一个用户做任何操作都使用账号私钥签名的话，无疑极大的增加了账号的风险。对于YOYOW而言，考虑到不同权限不同的安全级别，设定了三级密钥体系：**主控密钥**，**资金密钥**，**零钱密钥**。主控密钥为最高权限密钥，不到不得已的时候不应该使用主控密钥；资金密钥可以操作余额；零钱密钥可以操作零钱，也可以用来发帖，点赞，登陆鉴权等。
 
-In the blockchain project, the private key is the top priority of the account. However, when a user does any operation and uses the account private key to sign, it will undoubtedly greatly increase the risk of the account. Considering the different security levels of different authorities, the three-level key system is set in the YOYOW system: **the Owner Key**, **the Active Key**, and **the Secondary Key**. The Owner Key is the key of highest authority, and the Owner Key should not be used unless it is absolutely necessary. The Active Key can operate the balance. The Secondary Key can operate the liquid assets, and can also be used for posting, giving likes, login authentication, etc.
+In the blockchain project, the private key is the top priority of the account. However, when a user does any operation and uses the account private key to sign, it will undoubtedly greatly increase the risk of the account. Considering the different security levels of different authorities, the three-level key system is set in the YOYOW system: **the Owner Key**, **the Active Key**, and **the Secondary Key**. The Owner Key is the key of highest authority, and the Owner Key should not be used unless it is absolutely necessary. The Active Key can operate the balance. The Secondary Key can operate the Tipping, and can also be used for posting, giving likes, login authentication, etc.
 
 通俗来讲：  
 
@@ -84,7 +84,7 @@ In the blockchain project, the private key is the top priority of the account. H
  Simply speaking:
 1. The Owner key is the core. If other low-level keys are lost, you can use the Owner key to reset and update. Therefore, it must be kept properly and once lost, it cannot be retrieved.
 2. For fund operations such as transfer, you can use the Active key.
-3. The users who want to authorize the platforms only need to grant the Secondary key (liquid asset authority), through which the platforms can act as proxy for the users to post, give likes and make small-amount transfers.
+3. The users who want to authorize the platforms only need to grant the Secondary key (Tipping authority), through which the platforms can act as proxy for the users to post, give likes and make small-amount transfers.
 
 除了跟资产相关的三级密钥，还有一个**备注密钥**用来加密和查看交易的备注信息。
 
@@ -108,13 +108,13 @@ There are three types of assets in the YOYOW network: **YOYO token**, **user-iss
 ##### YOYO Token
 在YOYOW的账户里，基础资产为YOYO 代币，有两处可进行存放：『**余额**』和『**零钱**』。
 
-In YOYO's account, the base asset is YOYO token, and there are two places to store: 『**balance**』and『**liquid assets**』.
+In YOYO's account, the base asset is YOYO token, and there are two places to store: 『**balance**』and『**tipping**』.
 
 - 『**余额**』拥有较高的安全性，建议大额的YOYO在余额中存储。
 - 『**Balance**』 has a high level of security, and it is recommended that a large amount of YOYO be stored in the balance.
 
 - 『**零钱**』可理解为免密支付，进行小额的存储与转账，当用户授予零钱权限给平台时，平台甚至可拥有操作”零钱” 的权限。
-- 『**Liquid assets**』, which can be understood as password-free payment, is for small amount of savings and transfer. When the user grants the authority of liquid assets to the platform, the platform can even have the right to operate "liquid assets".
+- 『**Tipping**』, which can be understood as password-free payment, is for small amount of savings and transfer. When the user grants the authority of tipping to the platform, the platform can even have the right to operate "Tipping".
 
 ##### 用户发行资产（UIA）
 ##### User-Issued Assets（UIA）
@@ -195,7 +195,7 @@ For details on how to deposit the upgraded platform account, see [Creating YOYOW
 
 YOYOW提供类似于OAuth的授权认证。YOYOW提供了中间件来方便平台进行接入，中间件中提供包括签名平台 （sign），签名验证（ verify），以及签名平台返回二维码（signQR）等接口（详见：[《yoyow-middleware》#Auth 相关](https://github.com/yoyow-org/yoyow-node-sdk/tree/master/middleware#2-auth-%E7%9B%B8%E5%85%B3)）。平台可以通过SDK中sign或signQR接口生成绑定链接，verify接口验证用户授权。通过授权，平台可以获得用户的零钱管理权限以及登陆授权。  
 
-YOYOW provides an authorization certification similar to OAuth. YOYOW provides middleware to facilitate platform integration. The middleware provides interfaces such as signature platform (sign), signaturea authentication (verify), and return QR code on signature platform (SignQR) (see: [《yoyow-middleware》#About Auth](https://github.com/yoyow-org/yoyow-node-sdk/tree/master/middleware#2-auth-%E7%9B%B8%E5%85%B3)). The platform can generate a binding link through the sign or signQR interface in the SDK, and can verify user authorization through the verify interface. Through authorization, the platform can obtain the user's liquid asset management authority and login authorization.
+YOYOW provides an authorization certification similar to OAuth. YOYOW provides middleware to facilitate platform integration. The middleware provides interfaces such as signature platform (sign), signaturea authentication (verify), and return QR code on signature platform (SignQR) (see: [《yoyow-middleware》#About Auth](https://github.com/yoyow-org/yoyow-node-sdk/tree/master/middleware#2-auth-%E7%9B%B8%E5%85%B3)). The platform can generate a binding link through the sign or signQR interface in the SDK, and can verify user authorization through the verify interface. Through authorization, the platform can obtain the user's Tipping management authority and login authorization.
 
 授权流程：
 
@@ -216,7 +216,7 @@ Considering security issues, the YOYOW middleware SDK is strongly recommended to
 
 2. YOYOW中间件 SDK 需要零钱权限，使用时，记得修改配置文件中默认的零钱密钥和备注密钥。 
 
-YOYOW middleware SDK requires liquid asset authority. When using, remember to modify the default Secondary key and Memo key in the configuration file.
+YOYOW middleware SDK requires Tipping authority. When using, remember to modify the default Secondary key and Memo key in the configuration file.
 
 
 ### 资产发行
