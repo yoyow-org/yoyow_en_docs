@@ -3,7 +3,7 @@
 
 理事会由一组股东投票通过的理事会成员组成，理事会成员的职责在于设定系统运行参数。
 
-A group of committee members voted in by the shareholders are responsible for setting parameters of the system operation.
+A group of committee members voted in by the token holders are responsible for setting parameters of the system operation.
 
 
 ## 理事会职责
