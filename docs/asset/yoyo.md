@@ -22,7 +22,7 @@ We recommend storing small amount of YOYO in the Tipping. For daily small paymen
 
 余额和零钱的设计主要是为了平衡易用性和安全性。动用余额和零钱是分别需要两个不同的权限，主控密钥控制余额，零钱密钥（次级密钥）控制零钱。 
 
-Balance and Tipping are designed primarily to balance usability and security. The use of balance and tipping requires two different permissions. The active key controls the balance, and the liquid asset key (secondary key) controls the tipping.
+Balance and Tipping are designed primarily to balance usability and security. The use of balance and tipping requires two different permissions. The active key controls the balance, and the tipping key (secondary key) controls the tipping.
 
 零钱权限可以授权给平台，以方便在平台构建的生态中自动交易，不用每次都动用自己密钥，以便减少风险。
 
