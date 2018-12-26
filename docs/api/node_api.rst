@@ -26,20 +26,13 @@ use curl post data to connect
 
 API Classification
 ----------------
-YOYOW的API分类与BTS类似，以下重点介绍database api和history api。
-在通过websocket 请求时，参数为一个json字符串，格式如下：
-
 YOYOW's API classification is similar to BTS. The following focuses on database api and history api. When requesting via websocket, the parameter is a json string in the following format:
 
     {"id":1, "method":"call", "params":[API level,"function name",[specific parameters]]}
 
-在使用时，需要填写API等级，函数名，和具体参数3项，其中API等级可以通过websocket 发送
-
 In use, you need to fill in API level, function name, and specific parameters, of which the API level can be obtained by sending the following strings via websocket:
 
     {"id":2, "method":"call", "params":[1,"history",[]]}
-
-来获取。比如以上请求会返回：
 
 For example, the above request will return:
 
@@ -50,30 +43,19 @@ For example, the above request will return:
       "result": 2
     }
 
-其中result 为 2，代表着使用history api 时，API等级需要填写2.（注意：不一定每个YOYOW节点都返回同样的配置，这取决于每个节点对暴露API的限制）
-
 Here the result is 2, which means that when using the history api, the API level needs to be filled in 2. (Note: not every YOYOW node returns the same configuration; it depends on each node's limit on exposing the API)
-
-database的API默认可以直接通过指定API等级为0来调用，也可以使用通过
 
 The database API can be called directly by default by specifying the API level to 0 or by querying the result value through using the following strings:
 
     {"id":2, "method":"call", "params":[1,"database",[]]}
-
-查询到的result的值来调用。
-
 
 Database API
 ----------------
 
 1.1.1 get_required_signatures
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-根据给定的交易（可能已包含签名），和给定的备用公钥集合，返回与签署该交易有关的 3 个集合：
 Return the 3 sets associated with signing the transaction based on the given transaction (which may already contain the signature), and the given set of spare public keys:
 ::
- 备用公钥集合的一个可用子集，可以用来签署该交易
- 可能还需要的公钥（不在签名中，也不在备用公钥集合中）
- 交易中已包含的多余签名
  A subset of the available spare public key set, can be used to sign the transaction
  Public key that may also be needed (not in the signature, nor in the set of spare public keys)
  Extra signature already included in the transaction
@@ -140,10 +122,6 @@ Return results
 
 1.1.2 get_accounts_by_uid
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-根据 uid 返回多个账号信息。数量必须 <= 1000。
-
-如果该 uid 不存在，对应位置结果为 null 。
-
 Return multiple account information based on uid. The quantity must be <= 1000.
 
 If the uid does not exist, the corresponding position result is null .
@@ -266,7 +244,6 @@ Return results
 
 1.1.3 get_account_balances
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-根据 uid和资产类型查询资产余额。
 Query the asset balance based on uid and asset type.
 
 
@@ -333,7 +310,6 @@ Return results
 
 1.1.4 get_post
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-根据平台所有者 uid 、发帖者 uid 、帖子 pid 返回帖子信息。
 Return post information based on platform owner uid, poster uid, and post pid.
 
 Supported format
@@ -402,7 +378,6 @@ Return results
 
 1.1.5 get_posts_by_platform_poster
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-根据平台所有者 uid 、 发帖者 uid 、发帖时间段 查询帖子列表。
 Query the list of posts according to the platform owner uid, poster uid, post time period.
 
 Supported format
@@ -448,8 +423,6 @@ JSON-RPC:
 
 Return results
 """"""""""""""""
-
-结果按时间排序，最新的排最前。时间相同的，按实际入块顺序，后入块的排在前面。
 The results are sorted by time, with the latest one being the top. If the time is the same, the results are sorted by the actual order of receiving blocks, with the later block reception being in the front.
 ::
 
@@ -477,7 +450,6 @@ The results are sorted by time, with the latest one being the top. If the time i
 
 1.1.6 get_required_fee_data
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-给定一组操作，返回操作需要的手续费信息。该 API 只支持核心资产。
 Give a set of operations, return the fee information required for the operation. The API only supports core assets.
 
 wherein，
@@ -485,8 +457,8 @@ wherein，
     required_fee_data
     {
        account_uid_type fee_payer_uid; // payer uid
-       int64_t          min_fee;       // 最低总费用，单位是核心资产去掉小数点后的值（与 asset 类型用法相同）；The lowest total cost and the unit is the value of core asset after being removed the part after the decimal point (same usage as the asset type)
-       int64_t          min_real_fee;  // 最低真实费用（不能用币天抵扣的部分），单位同上 The lowest real cost (the part that cannot be deducted using tokens), and the unit is the same as above
+       int64_t          min_fee;       // The lowest total cost and the unit is the value of core asset after being removed the part after the decimal point (same usage as the asset type)
+       int64_t          min_real_fee;  // The lowest real cost (the part that cannot be deducted using tokens), and the unit is the same as above
     };
 
 
@@ -550,7 +522,6 @@ Return results
 
 1.1.7 get_full_accounts_by_uid
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-根据一组账户 uid 获取对应信息。
 Get the corresponding information based on a set of account uid.
 
 Supported format
@@ -757,7 +728,6 @@ return the structure definition of full_account in map as：
 
 1.1.8 get_witness_by_account
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-给定一个账户的 uid ，返回对应的见证人信息
 Give the uid of an account, return the corresponding witness information
 
 Supported format
@@ -837,11 +807,6 @@ Return results
 
 Return field descriptions
 """""""""""""""""""""""""""""""""""
-只有当 options 中对应选项为 true 时，返回结果中才包含对应字段数据。
-其中，币龄借入明细、借出明细只返回前 100 条
-
-如果 uid 不存在，则返回 map 中没有相应 uid 。
-
 The corresponding field data is only included in the returned result if the corresponding option in options is true.
 Among them, the token age borrowing details and lending details are only returned for the top 100 items.
 
@@ -850,7 +815,6 @@ If uid does not exist, there is no corresponding uid in the returned map.
 
 1.1.9 get_witnesses
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-给定一组 uid ，返回对应的见证人信息
 Give a set of uids, return the corresponding witness information
 
 Supported format
@@ -957,7 +921,6 @@ Return results
 
 1.1.10 lookup_witnesses
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-列出当前有效的见证人清单。
 List current valid witnesses
 
 Supported format
@@ -1208,7 +1171,6 @@ Return results
 
 1.1.13 lookup_committee_members
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-列出当前有效的候选理事清单
 List the current valid committee candidate list
 
 Supported format
@@ -1288,7 +1250,6 @@ Return results
 
 1.1.14 list_committee_proposals
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-列出所有尚未成功执行的理事会提案，包含正在投票表决的、已表决通过但还没到执行时间的。
 List all the committee proposals that have not been successfully implemented, including those that are being voted on, have been voted through but have not yet reached the execution time.
 
 Supported format
@@ -1344,9 +1305,8 @@ Return results
 
 1.1.15 lookup_accounts_by_name
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-根据名称查找账号UID。
 Find the account UID by name.
-普通账户名称目前为yoyo+uid
+
 The normal account name is currently yoyo+uid
 
 Supported format
@@ -1404,7 +1364,6 @@ Return results
 
 1.1.16 get_platform_by_account
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-给定一个 uid ，返回对应的账户拥有的平台信息
 Give a uid, return the platform information owned by the corresponding account
 
 Supported format
@@ -1564,7 +1523,6 @@ Return results
 
 1.1.18 lookup_platforms
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-按平台拥有者进行查询，列出当前有效的平台清单。
 Query by platform owner to list the current valid platforms
 
 Supported format
@@ -1658,7 +1616,6 @@ Return results
 
 1.1.19 get_platform_count
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-返回平台总数量
 Return the total number of platforms
 
 Supported format
@@ -1714,7 +1671,6 @@ Return results
 
 1.1.20 get_assets
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-给定一组资产 id ，返回对应的资产的详细信息。
 Give a set of asset ids, return the details of the corresponding assets.
 
 Parameters：
@@ -1796,13 +1752,12 @@ Return results
       ]
     }
 
-    返回结果中的 dynamic_asset_data 字段包括资产动态数据明细。
+    The dynamic_asset_data field in the returned result includes the asset dynamic data details.
 
 
 
 1.1.21 list_assets
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-分页查询资产详细信息。返回结果按资产代码的 ASCII 码顺序排序。
 Query asset details by page. The returned results are sorted in ASCII code order of the asset code.
 
 Supported format
@@ -1964,7 +1919,6 @@ Return results
 
 1.1.22 lookup_asset_symbols
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-给定一组资产代码或 id ，返回对应的资产的详细信息。
 Give a set of asset codes or ids, return the details of the corresponding assets.
 
 Supported format
@@ -2049,7 +2003,6 @@ History API
 1.2.1 get_relative_account_history
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-获取账户历史。
 Get account history
 
 Supported format
@@ -2075,10 +2028,6 @@ Request parameters
 :limit:   Return the total number of results
 :end:  When the value is 0, the most recent history of operations can be obtained.
 
-
-返回结果的数量会在end - start 范围之内；如果limit值比end - start 要小，则返回满足limit条件的最新操作记录。
-返回结果的排序方式为： 最新的优先
-
 The number of returned results will be in the end - start range; if the limit value is smaller than end - start, the latest operation record that satisfies the limit condition is returned.
 The returned results are sorted in the way that the latest ones are returned first.
 
@@ -2102,8 +2051,6 @@ JSON-RPC:
 
 Return results
 """"""""""""""""
-返回列表中每条数据是 pair 类型，pair 中第一个元素为该条记录在该账号历史中的序列号（sequence），第二个元素为具体操作
-
 Each piece of data in the returned list is a pair type. The first element in the pair is the sequence number recorded in the account history, and the second element is the specific operation.
 
 ::
