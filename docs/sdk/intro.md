@@ -353,7 +353,8 @@ http://localhost:3001/api/v1/getPlatformById?uid=217895094
 #### 2. 平台激励相关接口
 #### 2. Platform Incentives Related Interface
 ##### 2.1. 转账到指定用户 transfer （需要安全验证的请求）
-##### 2.1. Transfer to Specified User transfer （requiring security verification request）
+##### 2.1. Transfer to Specified User 
+transfer （requiring security verification request）
 
  Request Type：POST
 
