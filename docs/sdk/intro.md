@@ -86,7 +86,7 @@ The path to the configuration file is in the `conf/config.js` file in the code p
     // Whether to use points for the operating fee
     use_csaf: true,
     
-    // Whether the transfer is transferred to the balance, otherwise it is transferred to liquid assets
+    // Whether the transfer is transferred to the balance, otherwise it is transferred to tipping
     to_balance: false,
     
     // Wallet authorization page URL, testnet address is as follows, official network address “https://wallet.yoyow.org/#/authorize-service”
@@ -107,7 +107,7 @@ Note:
 
 1. In the general use scenario, the middleware value needs to use the secondary key and the memo key at most, and just the secondary key and the memo key can satisfy most of the requirements. Do not write the active key into the configuration file unless you are sure you need to use the active key.
 2. The middleware uses the restriction IP (`allow_ip`) and encryption request (`secure_key`) to ensure security. However, it is still strongly recommended that the intranet be deployed and isolated, and the security of the private key is quite important.
-3. It is recommended to use the point deduction for the operation fee. If the deduction fails, it will directly report the error and will not automatically deduct the liquid assets as the fee.
+3. It is recommended to use the point deduction for the operation fee. If the deduction fails, it will directly report the error and will not automatically deduct the tipping as the fee.
 
 ### Docker 一键部署
 ### Docker One-Click Deployment
@@ -184,7 +184,7 @@ Normal start as shown below
         statistics: { //user YOYO asset details
           obj_id: asset object id
           core_balance: balance
-          prepaid: liquid assets
+          prepaid: tipping
           csaf: bonus points
           total_witness_pledge: witnesses' total collateral (collateral amount of creating witnesses by users)
           total_committee_member_pledge: committee total collateral（collateral amount of creating committee by users）
@@ -790,9 +790,9 @@ the interface provided by the platform must return the following information
 
 2003 invalid transfer amount
 
-2004 liquid assets and points are insufficient for paying fees
+2004 tipping and points are insufficient for paying fees
 
-2005 insufficient liquid assets
+2005 insufficient tipping
 
 2006 invalid asset symbol or id
 
