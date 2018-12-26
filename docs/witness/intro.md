@@ -100,7 +100,7 @@ Witnesses can withdraw “available” rewards into their balance at any time.
 
 - 强制离线：当见证人丢块时，如果上次出块时间在24小时外，该见证人自动设置为暂时离线，不再安排后续出块，位置由排名靠后的补上
 
-- Go offline forcibly: When the witnesses lose the block, if the last time of the block production is earlier than 24 hours before, the witness is automatically set to be temporarily offline with no further block production arranged, and the position is replaced by the witness of a lower rank.
+- Go offline forcibly: When the witnesses lose blocks, if the last time of the block production is earlier than 24 hours before, the witness is automatically set to be temporarily offline with no further block production arranged, and the position is replaced by the witness of a lower rank.
 
 - 见证人手动重新在线后，即可重新参与后续出块安排
 - Witnesses can be arranged in the later block production if the witnesses reset an online status manually.
