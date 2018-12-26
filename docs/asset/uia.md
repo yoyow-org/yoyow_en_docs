@@ -11,7 +11,7 @@ User-issued assets can be transferred in transactions, so they can be used as re
 
 后期会开放YOYO与用户发行资产之间的兑换关系，更多有价值的玩法也会陆续推出。
 
-Later, the exchange relationship between YOYO and UIA will be opened, and more valuable operations will be launched.
+Later, the exchange relationship between YOYO and UIA will be introduced.
 
 ## 发行资产
 ## Issuing Assets
@@ -41,7 +41,7 @@ The fees for issuing assets include the basic fees and the cost per kilobyte. Th
 ## Advanced Options
 除了简单的Token供应量外，用户发行资产可以定义更多功能。
 
-In addition to the simple feature of Token supply, users issuing assets can define more features.
+In addition to the simple feature of UIA, users issuing assets can define more features.
 
 - 白名单：资产可以选择启用白名单，如果定义了白名单，则只有白名单的账户才可以持有，使用资产。
 
