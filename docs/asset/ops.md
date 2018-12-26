@@ -34,8 +34,6 @@ For details, please refer to: [get_account_balances](../api/node_api.html#get-ac
 
 ### Checking Bonus Points
 
-get_full_account 可以查看积分，在返回结果中的"statistics"中，返回有csaf，core_balance，prepaid，分别对应积分，余额，零钱
-
 Bonus Points can be viewed by using the command "get_full_account" and the "statistics" in the returned results include "csaf""core balance""prepaid", corresponding to "Bonus Points""Balance""Tipping".
 ```
 # get_full_account <account_name_or_id>
@@ -58,8 +56,6 @@ collect_csaf_with_time 250926091 209414065 100 YOYO "2018-04-16T02:44:00" true
 For details, please refer to: [collect_csaf_with_time](../api/wallet_api.html#collect-csaf-with-time)
 
 ## User-Issued Assets
-
-用户发行资产有两个核心的操作，创建资产（create_asset）和发行资产（issue_asset），刚创建完成的资产并不能使用（没有流通），需要issue给指定的账户才可以使用。
 
 There are two core operations for the user-issued assets, including creating assets (create_asset) and issuing assets (issue_asset). The newly created assets are not available (no circulation) and need to be issued to the specified account before they can be used.
 
