@@ -2571,7 +2571,7 @@ WebSocket; JSON-RPC
 
 Required private key authority
 """"""""""""""""""
-否
+null
 
 Access authorization limit
 """"""""""""""""""
@@ -2658,7 +2658,7 @@ WebSocket; JSON-RPC
 
 Required private key authority
 """"""""""""""""""
-否
+null
 
 Access authorization limit
 """"""""""""""""""
