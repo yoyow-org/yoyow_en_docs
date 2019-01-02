@@ -8,13 +8,15 @@ Node Connection Method
 
 Testing Environment：
 :: 
-  websocket interface address： ws://47.52.155.181:10011
-  jsonrpc interface address： http://47.52.155.181:10011/rpc
+
+    websocket interface address： ws://47.52.155.181:10011
+    jsonrpc interface address： http://47.52.155.181:10011/rpc
 
 Formal Environment：
 ::
-  websocket interface address：ws://139.198.1.234:9000
-  jsonrpc interface address： http://139.198.1.234:9000/rpc
+
+    websocket interface address：ws://139.198.1.234:9000
+    jsonrpc interface address： http://139.198.1.234:9000/rpc
 
 
 use wscat to connect， `wscat installation method <https://www.npmjs.com/package/wscat>`_  
@@ -37,6 +39,7 @@ In use, you need to fill in API level, function name, and specific parameters, o
 For example, the above request will return:
 
 ::
+
     {
       "id": 2,
       "jsonrpc": "2.0",
@@ -56,6 +59,7 @@ Database API
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Return the 3 sets associated with signing the transaction based on the given transaction (which may already contain the signature), and the given set of spare public keys:
 ::
+
  A subset of the available spare public key set, can be used to sign the transaction
  Public key that may also be needed (not in the signature, nor in the set of spare public keys)
  Extra signature already included in the transaction
@@ -79,8 +83,7 @@ Request parameters
 """""""""""""""""""""""""""""
 
 :trx:             transaction, may have already contained signature
-:available_keys:  array of public keys 
-For example：["YYW5eDSFYeiqyFRajfPP8tTZMm7fUeyc7H65zmnHtDW4SQJdwqTBD"]
+:available_keys:  array of public keys For example：["YYW5eDSFYeiqyFRajfPP8tTZMm7fUeyc7H65zmnHtDW4SQJdwqTBD"]
 
 Precautions
 """""""""""""""""""""""""""""
@@ -454,6 +457,7 @@ Give a set of operations, return the fee information required for the operation.
 
 wherein，
 ::
+
     required_fee_data
     {
        account_uid_type fee_payer_uid; // payer uid
@@ -547,6 +551,7 @@ Request parameters
 
 Options The array can have the following parameters
 ::
+
     {
     optional fetch_account_object;
     optional fetch_statistics;
@@ -857,6 +862,7 @@ JSON-RPC:
 
 Return results
 """""""""""""""""""""""""""""
+
 ::
 
     {
@@ -943,8 +949,7 @@ Request parameters
 
 :lower_bound_uid:  Start the query with this as the starting uid, set it to 0 and start from the beginning.
 :limit:  Return quantity limit, up to 101
-:ops:  Sort type; value range [0, 1, 2]. 
-0:Sort by uid from big to small; 1: Sort by number of votes; 2: Sort by collateral amount
+:ops:  Sort type; value range [0, 1, 2]. 0:Sort by uid from big to small; 1: Sort by number of votes; 2: Sort by collateral amount
 
 Precautions
 """""""""""""""""""""""""""""
@@ -1101,6 +1106,7 @@ Supported format
 """""""""""""""""""""""""""""
 JSON 
 
+
 Request method
 """""""""""""""""""""""""""""
 WebSocket; JSON-RPC
@@ -1193,8 +1199,7 @@ Request parameters
 
 :lower_bound_uid:   Start the query with this as the starting uid, set it to 0 and start from the beginning
 :limit:  Return quantity limit, up to 101
-:ops:   Sort type, value range [0,1,2] 
-0:Sort by uid from big to small; 1: Sort by number of votes; 2: Sort by collateral amount
+:ops:   Sort type, value range [0,1,2]. 0:Sort by uid from big to small; 1: Sort by number of votes; 2: Sort by collateral amount
 
 Precautions
 """""""""""""""""""""""""""""
@@ -1545,8 +1550,7 @@ Request parameters
 
 :lower_bound_uid: Start the query with this as the starting uid, set it to 0 and start from the beginning.
 :limit:  Return quantity limit, up to 101
-:ops:   Sort type, value range [0,1,2] 
-0: Sort by uid from big to small; 1: Sort by number of votes; 2: Sort by collateral amount
+:ops:   Sort type, value range [0,1,2], 0: Sort by uid from big to small; 1: Sort by number of votes; 2: Sort by collateral amount
 
 Precautions
 """""""""""""""""""""""""""""
@@ -2041,12 +2045,12 @@ WebSocket:
 ::
 
     wscat -c ws://47.52.155.181:10011
-    {"id":1, "method":"call", "params":[2, "get_relative_account_history", [223331844, null, 1,3,10]]}
+    {"id":1, "method":"call", "params":["history", "get_relative_account_history", [223331844, null, 1,3,10]]}
 
 JSON-RPC:
 ::
 
-    curl --data '{"jsonrpc": "2.0", "method": "call", "params": [0, "get_relative_account_history", [223331844, null, 1,3,10]], "id": 1}' http://47.52.155.181:10011/rpc
+    curl --data '{"jsonrpc": "2.0", "method": "call", "params": ["history", "get_relative_account_history", [223331844, null, 1,3,10]], "id": 1}' http://47.52.155.181:10011/rpc
 
 
 Return results

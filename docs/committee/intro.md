@@ -28,7 +28,7 @@ A group of committee members voted in by the token holders are responsible for s
 
 - Each token holder has one vote that can be used for one candidate—that is to say, an account can only support one candidate at a time, and the voter can change their vote at any time.
 
-- Other rules such as voting qualification, total valid votes, validity period for voting, and proxies are used in conjunction with witness voting. Please refer to [Voting](./vote_pledge/vote.html)
+- Other rules such as voting qualification, total valid votes, validity period for voting, and proxies are used in conjunction with witness voting. Please refer to [Voting](../vote_pledge/vote.html)
 
 - The five candidates with the most votes at re-election time will become the new incumbent committee members. Currently, there is no regulation on minimum votes.
 

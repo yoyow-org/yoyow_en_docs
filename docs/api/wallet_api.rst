@@ -45,15 +45,18 @@ http rpc interface address： http://localhost:8093
 
 1. Use wscat to connect to websocket interface: 
 ::
+
     wscat -c ws://localhost:8091
 
 
 2. Use curl to connect to websocket interface:
 ::
+
     curl --data '{"jsonrpc": "2.0", "method": "call", "params": [0, "get_accounts_by_uid", [["250926091"]]], "id": 1}' http://localhost:8091
 
 3. Use curl to connect http interface:
 ::
+
     curl --data '{"method": "call", "params": [0, "get_accounts_by_uid", [["250926091"]]], "id": 1}' http://localhost:8093
 
 Remarks: The difference between websocket and http interface: websocket interface can also use curl to get data, and it will follow jsonrpc format, and the requested and returned json data must carry {"jsonrpc": "2.0"}. The interface of http does not need to carry the label of {"jsonrpc": "2.0"}.
@@ -151,7 +154,7 @@ Precautions
 null
 
 Call sample and debug tools
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""
 WebSocket:
 ::
 
@@ -933,8 +936,7 @@ Request parameters
 
 :lower_bound:   Start the query with this as the starting uid, set it to 0 and start from the beginning.
 :limit: Return quantity limit, up to 101
-:order_by:   Sort type. The value range is [0, 1, 2]. 
-0:Sort by uid from big to small; 1: Sort by number of votes; 2: Sort by collateral amout.
+:order_by:   Sort type. The value range is [0, 1, 2].  0:Sort by uid from big to small; 1: Sort by number of votes; 2: Sort by collateral amout.
 
 
 Precautions
@@ -1183,8 +1185,7 @@ Request parameters
 """""""""""""""""""""""""""""
 :lower_bound:   Start the query with this as the starting uid, set it to 0 and start from the beginning.
 :limit:  Return quantity limit, up to 101
-:order_by:   Sort type. Value range is [0, 1, 2]. 
-0:Sort by uid from big to small; 1: Sort by number of votes; 2: Sort by collateral amount.
+:order_by:   Sort type. Value range is [0, 1, 2]. 0:Sort by uid from big to small; 1: Sort by number of votes; 2: Sort by collateral amount.
 
 Precautions
 """""""""""""""""""""""""""""
@@ -1478,8 +1479,7 @@ Request parameters
 
 :lower_bound:  Start the query with this as the starting uid, set it to 0 and start from the beginning.
 :limit:  Return quantity limit, up to 100
-:order_by:   Sort type. The value range is [0, 1, 2]. 
-0:Sort by uid from big to small; 1: Sort by number of votes; 2: Sort by collateral amount.
+:order_by:   Sort type. The value range is [0, 1, 2].  0:Sort by uid from big to small; 1: Sort by number of votes; 2: Sort by collateral amount.
 
 
 Precautions
@@ -1663,6 +1663,7 @@ Access authorization limit
 
 Request parameters
 """""""""""""""""""""""""""""
+
 :lower_bound_symbol:  Start the query with this as the starting code, sorted by the ASCII code of the asset code.
 :limit:  Return quantity limit, up to 101
 
@@ -3697,6 +3698,7 @@ Request parameters
 
 Option parameter structure
 ::
+
     asset_options {
           // The maximum supply that the asset may have at any given time. This can be as big as GRAPHENE_MAX_SHARE_SUPPLY. 
           // Special note: The maximum supply is the number of minimum unit of tokens. For example, the maximum supply is 30,000 and the precision is set to 2 so the actual supply is 30000/(10^2)=300 Token. The smallest trading unit is 0.01.
@@ -3724,9 +3726,11 @@ Option parameter structure
           // Data describing the meaning/purpose of the asset, the fee will be charged according to the size of the description.
           string description;
        };
-       
+
+
 The issuer_permisisons and flags fields are represented by integers. After the integer is converted to binary, each bit represents a permission or flag. Currently defined as follows:
 ::
+
       enum asset_issuer_permission_flags
          {
             white_list           = 0x02,    // whitelist, if enabled, the asset issuer can control whether others can use the assets ("use" here includes transfers, etc.)
@@ -3735,6 +3739,7 @@ The issuer_permisisons and flags fields are represented by integers. After the i
             issue_asset          = 0x200,   // Issuing the assets, if enabled, the asset issuer can add a certain amount of that assets to an account and increase the current total circulation amount of the assets
             change_max_supply    = 0x400,   // modifying the circulation limit, if enabled, the asset issuer can modify the circulation limit of the assets
          };
+
 
 Bits that are not currently in use must be 0 in both issuer_permissions and flags fields.
 In the flags field, if a bit is 1, it means that the corresponding parameter is enabled for the asset; if it is 0, it means that it is not enabled.
@@ -3848,6 +3853,7 @@ WebSocket:
 
     wscat -c ws://localhost:8091
     {"id":1, "method":"call", "params":[0, "update_asset", ["WOWO", null, {"max_supply":"2000000000"}, true]]}
+
 JSON-RPC:
 ::
 

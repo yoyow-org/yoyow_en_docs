@@ -97,11 +97,11 @@ After completing the registration, you can view your Owner key, Active key, Seco
 
 A common account needs to be upgraded to a platform account to obtain the user's authorization. The upgraded platform currently needs to deposit a collateral of 10,000 YOYO and a fee of 1000 YOYO. This operation is temporarily performed through the YOYOW client. You need to perform the create_platform operation through the interface, and set the name of the platform, the symbol of the Token and the related url address and other extra data, such as the API access interface provided by the platform.
 
-For details on how to deposit the upgraded platform account, see [Creating YOYOW Platform Account from 0](/others/create_platform.html).
+For details on how to deposit the upgraded platform account, see [Creating YOYOW Platform Account from scratch](../others/create_platform.html).
 
 ### Authorization Certification 
 
-YOYOW provides an authorization certification similar to OAuth. YOYOW provides middleware to facilitate platform integration. The middleware provides interfaces such as signature platform (sign), signaturea authentication (verify), and return QR code on signature platform (SignQR) (see: [《yoyow-middleware》#About Auth](https://github.com/yoyow-org/yoyow-node-sdk/tree/master/middleware#2-auth-%E7%9B%B8%E5%85%B3)). The platform can generate a binding link through the sign or signQR interface in the SDK, and can verify user authorization through the verify interface. Through authorization, the platform can obtain the user's Tipping management authority and login authorization.
+YOYOW provides an authorization certification similar to OAuth. YOYOW provides middleware to facilitate platform integration. The middleware provides interfaces such as signature platform (sign), signaturea authentication (verify), and return QR code on signature platform (SignQR) (see: [《yoyow-middleware》#About Auth](../sdk/intro.html#about-auth)). The platform can generate a binding link through the sign or signQR interface in the SDK, and can verify user authorization through the verify interface. Through authorization, the platform can obtain the user's Tipping management authority and login authorization.
 
 Authorization Process：
  
@@ -119,15 +119,13 @@ The media can issue its own assets as needed, and the number of assets and excha
 
 The issued assets are temporarily operated by the create_asset function of the wallet client, and the total amount of assets, the transaction rate of the transaction, and the whitelist and blacklist settings need to be specified.
 
-See：[《YOYOW Wallet API》#create_assets](../Wallet%20API#2417-create_asset).
+See：[《YOYOW Wallet API》#create_assets](../api/wallet_api.html#create-asset).
 
 ### User Incentives
 
 The platform can specify the incentive plan for its own business needs. The target of the incentive can be YOYO or the toekns issued by itself.
 
 Taking Biask as an example, Biask has been integrated to the YOYOW network. In the platform of Biask, the system reward period is one week, and the likes, the like energy and the number of comments obtained by the user's posted content in a week are regularly counted and a bonus value is calculated, and YOYO token will be issued according to the proportion of the user's bonus value. According to the user's activity and content contribution value, the user will have prestige attributes. If praised by users with higher prestige, the users get higher like energy, and the liked users will also get higher rewards. Users can withdraw YOYO from the web wallet to other places for trading.
-
-The transfer operation is provided in the YOYOW SDK, which can be distributed to the platform users by transferring their own assets (YOYO or assets created by themselves). See: [《yoyow-middleware》#transfer to specified user](https://github.com/yoyow-org/yoyow-node-sdk/tree/master/middleware#13-%E8%BD%AC%E8%B4%A6%E5%88%B0%E6%8C%87%E5%AE%9A%E7%94%A8%E6%88%B7-transfer-%E9%9C%80%E8%A6%81%E5%AE%89%E5%85%A8%E9%AA%8C%E8%AF%81%E7%9A%84%E8%AF%B7%E6%B1%82).  
 
 ### Paid Reading/Rewards
 

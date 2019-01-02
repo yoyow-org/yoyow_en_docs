@@ -177,7 +177,7 @@ then you can directly run
 
     "image":"http://example.image.jpg" platform image，platform image displayed in yoyow app 1.1
 
-    "h5url":"http://exampleH5.com" Platform h5 address, used to adjust the h5 page without the app jumping
+    "h5url":"http://exampleH5.com" Platform h5 address, skip to the h5 page if the app hasn't been installed
 
     "packagename":"com.example.app" Platform android jump
 

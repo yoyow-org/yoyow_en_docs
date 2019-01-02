@@ -3,7 +3,7 @@
 ## Registering Accounts
 The account of the YOYOW platform is a string of numbers (similar to the QQ number). It is assigned by the system when registering, and the nickname function will be released in the future.
 
-Currently, accounts can only be registered through [Web Wallet](https://wallet.yoyow.org) or [Client Wallet](https://yoyow.org/client/index.html).
+Currently, accounts can only be registered through [Web Wallet](https://wallet.yoyow.org) or [Client Wallet](https://yoyow.org/client1.html).
 You can refer to: [Web Wallet Registration Method](https://steemit.com/cn/@peterchen145/yoyow-online-wallet-sign-up-tutorial)
 
 Special attention is needed here. The system will generate a private Owner Key when registering. The private key only appears once upon successful registration. Please make sure to back up and save it properly since the web wallet and client wallet will not store your private Owner Key. 

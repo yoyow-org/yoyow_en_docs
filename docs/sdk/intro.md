@@ -5,7 +5,7 @@ Using YOYOW middleware is the easiest way to integrate with the platform. It mai
 YOYOW middleware communicates with YOYOW network through the API interface of YOYOW node, which provides platform service providers with convenient access to data on the chain, ensuring that the traditional business codes can also reach the requirements of being on chain with only minimal changes. The specific diagram is as follows:
 ![YOYOW middleware role diagram](/images/sdk/architecture.png)
 
-For the creation steps of the platform, please refer to: [Create a YOYOW platform account from 0](/others/create_platform.html)
+For the creation steps of the platform, please refer to: [Create a YOYOW platform account from scratch](../others/create_platform.html)
 
 
 ## Deployment Start
@@ -429,9 +429,10 @@ localhost:3000/api/v1/updateAllowedAssets
     {String} title - post title
     {String} body - post content
     {String} extra_data - post extra data
-    {String} origin_platform - original post platform account（default null）
-    {String} origin_poster - original post poster account（default null）
-    {String} origin_post_pid - original post number（default null）
+    {String} hash_value - hash value, the defalut value will be the sha256 value of the body content if not provided.
+    {Number} origin_platform - original post platform account（default null）
+    {Number} origin_poster - original post poster account（default null）
+    {Number} origin_post_pid - original post number（default null）
     {Number} time - operation time
 
   Request Example: refer to Security Request Verification
@@ -503,7 +504,7 @@ localhost:3000/api/v1/postUpdate
   }
 }
 ```
-##### 3.3. 获取文章 getPost
+
 ##### 3.3. Get Post 
 getPost
 
@@ -628,6 +629,7 @@ verify
 
 ##### 4.3 Signature Platform Returned QR Code 
 signQR
+
   Request Type：GET
 
   Request Parameters：
@@ -731,6 +733,7 @@ For example：transfer operation
     let sendObj = {
       "uid": 9638251,
       "amount": 100,
+      "asset_id": 0,
       "memo": "hello yoyow",
       "time": Date.now()  //time field 
       The operation time takes the current time millisecond value. 

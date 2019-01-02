@@ -41,8 +41,8 @@ In YOYO's account, the base asset is YOYO token, and there are two places to sto
 Users can issue custom assets: users can create Tokens that circulate within their own platforms based on their business. A convenient exchange method between the user-issued assets (UIA) and YOYO will be provided subsequently, sharing convenient monetization channels.
 
 ### Bonus Points
-The function of the bonus points is to pay fees. When the account "balance" has a certain amount of YOYO, the system will automatically accumulate points. When paying fees, you can choose to deduct the points. For more information, please refer to: [Bonus Points](../others/csaf.html)
+The function of the bonus points is to pay fees. When the account "balance" has a certain amount of YOYO, the system will automatically accumulate points. When paying fees, you can choose to deduct the points. For more information, please refer to: [Bonus Points](../asset/csaf.html)
 
 ## White Paper
 
-For the content of white paper, please refer to [White Paper Download](https://yoyow.org/files/white-paper3.pdf)
+For the content of white paper, please refer to [White Paper Download](https://yoyow.org/)

@@ -4,7 +4,7 @@ Currently, the collateral can be used for updating the platform accounts or appl
 
 ## Platform Collateral
 
-Currently, the minimum collateral value for the platform is 10000 YOYO. The qualification of the platform is evaluated according to the current collateral value, which can be modified by the committee. Please refer to the parameter `platform_min_pledge` in [parameter table](https://yoyow.bts.ai/fees/index#tab-parameters).
+Currently, the minimum collateral value for the platform is 10000 YOYO. The qualification of the platform is evaluated according to the current collateral value, which can be modified by the committee. Please refer to the parameter `platform_min_pledge` in [parameter table](https://yoyow.bts.ai/fees).
 
 ## Committee Collateral
 

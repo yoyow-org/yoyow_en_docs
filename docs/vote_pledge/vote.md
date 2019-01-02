@@ -4,7 +4,7 @@ YOYOW uses the DPoS consensus algorithm. All token holders are able to choose wi
 
 ## Voting Qualification
 
-- Voting qualification is assigned to those holders owning a certain amount of tokens. The current value is 10,000 YOYO. Please refer to the field `min_governance_voting_balance` in [Parameter Table](https://yoyow.bts.ai/fees/index#tab-parameters).
+- Voting qualification is assigned to those holders owning a certain amount of tokens. The current value is 10,000 YOYO. Please refer to the field `min_governance_voting_balance` in [Parameter Table](https://yoyow.bts.ai/fees#parameters).
 - Accounts included in the committee's blacklist are disqualified from voting.
 
 ## Validity Period of Voting

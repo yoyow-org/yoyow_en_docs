@@ -18,6 +18,10 @@ Set up a testnet node, run the downloaded yoyow_node of the testnet directly, ta
 ./yoyow_node  --rpc-endpoint 127.0.0.1:8090 
 ```
 
+## Testnet Explorer
+
+Testnet Explorer: <https://testnet.explorer.yoyow.org/>
+
 ## Testnet Public Node
 
 If you don't want to build a testnet full node by yourself, you can use the public full node directly:
