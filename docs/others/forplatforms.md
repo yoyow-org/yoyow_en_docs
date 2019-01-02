@@ -79,7 +79,7 @@ YOYOW introduces Bonus Points, which can reduce the expenditure of common users'
 
 ## Integration Process
 
-![Integration Process Diagram](/images/others/join_up_process.png)
+![Integration Process Diagram](/images/others/joinup_process.png)
 
 <center>Integration Process</center>
 
