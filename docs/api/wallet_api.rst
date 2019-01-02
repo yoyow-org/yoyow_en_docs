@@ -1,21 +1,21 @@
 
 Wallet API Descriptions
-=============
+==========================
 
 .. contents:: :depth: 3
 
 Wallet Connection Method
--------------
+----------------------------
 
 Download Method：
-^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^
 
 `Testnet wallet address <https://github.com/yoyow-org/yoyow-core-testnet/releases>`_
 
 `Official web wallet address <https://github.com/yoyow-org/yoyow-core/releases>`_
 
 Starting Method：
-^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^
 
 Using wallet:
 
@@ -67,37 +67,37 @@ Remarks: The difference between websocket and http interface: websocket interfac
 Give a number, calculate the corresponding account uid
 
 Supported format
-""""""""""""""""""
+"""""""""""""""""""""""""""""""
 
 JSON 
 
 Request method
-""""""""""""""""""
+"""""""""""""""""""""""""""""""
 
 WebSocket; JSON-RPC
 
 Required private key authority
-""""""""""""""""""
+"""""""""""""""""""""""""""""""
 null
 
 Access authorization limit
-""""""""""""""""""
+"""""""""""""""""""""""""""""""
 
 | Access level: normal interface
 | Frequency limit: True
 
 Request parameters
-""""""""""""""""
+"""""""""""""""""""""""""""""
 
 :n:  number
 
 
 Precautions
-""""""""""""""""
+"""""""""""""""""""""""""""""
 null
 
 Call sample and debug tools
-"""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 WebSocket:
 ::
 
@@ -111,7 +111,7 @@ JSON-RPC:
 
 
 Return results
-""""""""""""""""
+"""""""""""""""""""""""""""""
 ::
 
     {
@@ -125,33 +125,33 @@ Return results
 Randomly generate a brain key and derive a pair of public and private keys based on the brain key
 
 Supported format
-""""""""""""""""
+"""""""""""""""""""""""""""""
 JSON 
 
 Request Method
-""""""""""""""""
+"""""""""""""""""""""""""""""
 WebSocket; JSON-RPC
 
 Required private key authority
-""""""""""""""""""
+"""""""""""""""""""""""""""""""
 null
 
 Access authorization limit
-""""""""""""""""""
+"""""""""""""""""""""""""""""""
 | Access level: normal interface
 | Frequency limit: True
 
 
 Request parameters
-""""""""""""""""
+"""""""""""""""""""""""""""""
 null
 
 Precautions
-""""""""""""""""
+"""""""""""""""""""""""""""""
 null
 
 Call sample and debug tools
-"""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 WebSocket:
 ::
 
@@ -165,7 +165,7 @@ JSON-RPC:
 
 
 Return results
-""""""""""""""""
+"""""""""""""""""""""""""""""
 ::
 
     {
@@ -184,33 +184,33 @@ Return results
 Return the tx id (transaction ID, or transaction hash) of a given transaction
 
 Supported format
-""""""""""""""""
+"""""""""""""""""""""""""""""
 JSON 
 
 Request Method
-""""""""""""""""
+"""""""""""""""""""""""""""""
 WebSocket; JSON-RPC
 
 Required private key authority
-""""""""""""""""""
+"""""""""""""""""""""""""""""""
 null
 
 Access authorization limit
-""""""""""""""""""
+"""""""""""""""""""""""""""""""
 | Access level: normal interface
 | Frequency limit: True
 
 
 Request parameters
-""""""""""""""""
+"""""""""""""""""""""""""""""
 :trx: Complete transaction in JSON format
 
 Precautions
-""""""""""""""""
+"""""""""""""""""""""""""""""
 null
 
 Call sample and debug tools
-"""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 WebSocket:
 ::
 
@@ -224,7 +224,7 @@ JSON-RPC:
 
 
 Return results
-""""""""""""""""
+"""""""""""""""""""""""""""""
 ::
 
     {
@@ -242,34 +242,34 @@ Return results
 Get basic account information
 
 Supported format
-""""""""""""""""
+"""""""""""""""""""""""""""""
 JSON 
 
 Request Method
-""""""""""""""""
+"""""""""""""""""""""""""""""
 WebSocket; JSON-RPC
 
 Required private key authority
-""""""""""""""""""
+"""""""""""""""""""""""""""""""
 null
 
 Access authorization limit
-""""""""""""""""""
+"""""""""""""""""""""""""""""""
 | Access level: normal interface
 | Frequency limit: True
 
 
 Request parameters
-""""""""""""""""
+"""""""""""""""""""""""""""""
 
 :account_name_or_id: uid or account nickname, for example: "250926091"
 
 Precautions
-""""""""""""""""
+"""""""""""""""""""""""""""""
 null
 
 Call sample and debug tools
-"""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 WebSocket:
 ::
 
@@ -283,7 +283,7 @@ JSON-RPC:
 
 
 Return results
-""""""""""""""""
+"""""""""""""""""""""""""""""
 ::
 
     {
@@ -362,33 +362,33 @@ Return results
 Get account details
 
 Supported format
-""""""""""""""""
+"""""""""""""""""""""""""""""
 JSON 
 
 Request Method
-""""""""""""""""
+"""""""""""""""""""""""""""""
 WebSocket; JSON-RPC
 
 Required private key authority
-""""""""""""""""""
+"""""""""""""""""""""""""""""""
 null
 
 Access authorization limit
-""""""""""""""""""
+"""""""""""""""""""""""""""""""
 | Access level: normal interface
 | Frequency limit: True
 
 Request parameters
-""""""""""""""""
+"""""""""""""""""""""""""""""
 
 :account_name_or_id:   uid or account nickname, for example: "250926091"
 
 Precautions
-""""""""""""""""
+"""""""""""""""""""""""""""""
 null
 
 Call sample and debug tools
-"""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 WebSocket:
 ::
 
@@ -402,7 +402,7 @@ JSON-RPC:
 
 
 Return results
-""""""""""""""""
+"""""""""""""""""""""""""""""
 ::
 
     {
@@ -526,25 +526,25 @@ Get the account history
 
 
 Supported format
-""""""""""""""""
+"""""""""""""""""""""""""""""
 JSON 
 
 Request Method
-""""""""""""""""
+"""""""""""""""""""""""""""""
 WebSocket; JSON-RPC
 
 Required private key authority
-""""""""""""""""""
+"""""""""""""""""""""""""""""""
 null
 
 Access authorization limit
-""""""""""""""""""
+"""""""""""""""""""""""""""""""
 | Access level: normal interface
 | Frequency limit: True
 
 
 Request parameters
-""""""""""""""""
+"""""""""""""""""""""""""""""
 
 :account:   can be uid or account nickname
 :op_type:   the type of limited operation; see the types of operation. When the value is null, all operation types are returned; when 0, all transfer operations are available.
@@ -556,11 +556,11 @@ The number of returned results will be in the end - start range; if the limit va
 The returned results are sorted in the way that the latest ones are returned first.
 
 Precautions
-""""""""""""""""
+"""""""""""""""""""""""""""""
 null
 
 Call sample and debug tools
-"""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 WebSocket:
 ::
 
@@ -574,7 +574,7 @@ JSON-RPC:
 
 
 Return results
-""""""""""""""""
+"""""""""""""""""""""""""""""
 ::
 
     {
@@ -671,34 +671,34 @@ Return results
 Get the account balance
 
 Supported format
-""""""""""""""""
+"""""""""""""""""""""""""""""
 JSON 
 
 Request Method
-""""""""""""""""
+"""""""""""""""""""""""""""""
 WebSocket; JSON-RPC
 
 Required private key authority
-""""""""""""""""""
+"""""""""""""""""""""""""""""""
 null
 
 Access authorization limit
-""""""""""""""""""
+"""""""""""""""""""""""""""""""
 | Access level: normal interface
 | Frequency limit: True
 
 
 Request parameters
-""""""""""""""""
+"""""""""""""""""""""""""""""
 
 :account:   uid or account nickname, for example: "250926091"
 
 Precautions
-""""""""""""""""
+"""""""""""""""""""""""""""""
 null
 
 Call sample and debug tools
-"""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 WebSocket:
 ::
 
@@ -711,7 +711,7 @@ JSON-RPC:
     curl --data '{"jsonrpc": "2.0", "method": "call", "params":[0,"list_account_balances",["250926091"]], "id": 1}' http://localhost:8091
 
 Return results
-""""""""""""""""
+"""""""""""""""""""""""""""""
 ::
 
     {
@@ -730,35 +730,35 @@ Return results
 Find the account UID by name
 
 Supported format
-""""""""""""""""
+"""""""""""""""""""""""""""""
 JSON 
 
 Request Method
-""""""""""""""""
+"""""""""""""""""""""""""""""
 WebSocket; JSON-RPC
 
 Required private key authority
-""""""""""""""""""
+"""""""""""""""""""""""""""""""
 null
 
 Access authorization limit
-""""""""""""""""""
+"""""""""""""""""""""""""""""""
 | Access level: normal interface
 | Frequency limit: True
 
 
 Request parameters
-""""""""""""""""
+"""""""""""""""""""""""""""""
 
 :lowerbound:   Start the query with this as the starting name, set it to the empty string and start from the beginning.
 :limit:  Return quantity limit, up to 1001
 
 Precautions
-""""""""""""""""
+"""""""""""""""""""""""""""""
 null
 
 Call sample and debug tools
-"""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 WebSocket:
 ::
 
@@ -771,7 +771,7 @@ JSON-RPC:
     curl --data '{"jsonrpc": "2.0", "method": "call", "params":[0,"list_accounts_by_name",["yoyo",10]], "id": 1}' http://localhost:8091
 
 Return results
-""""""""""""""""
+"""""""""""""""""""""""""""""
 ::
 
     {
@@ -828,34 +828,34 @@ Return results
 Get witness information.
 
 Supported format
-""""""""""""""""
+"""""""""""""""""""""""""""""
 JSON 
 
 Request Method
-""""""""""""""""
+"""""""""""""""""""""""""""""
 WebSocket; JSON-RPC
 
 Required private key authority
-""""""""""""""""""
+"""""""""""""""""""""""""""""""
 null
 
 Access authorization limit
-""""""""""""""""""
+"""""""""""""""""""""""""""""""
 | Access level: normal interface
 | Frequency limit: True
 
 
 Request parameters
-""""""""""""""""
+"""""""""""""""""""""""""""""
 
 :owner_account:   The parameter can be uid or an account nickname.
 
 Precautions
-""""""""""""""""
+"""""""""""""""""""""""""""""
 null
 
 Call sample and debug tools
-"""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 WebSocket:
 ::
 
@@ -869,7 +869,7 @@ JSON-RPC:
 
 
 Return results
-""""""""""""""""
+"""""""""""""""""""""""""""""
 ::
 
     {
@@ -911,25 +911,25 @@ Query the list of the token age rental (lending) of the specified lender.
 Results are sorted by borrower uid from small to large.
 
 Supported format
-""""""""""""""""
+"""""""""""""""""""""""""""""
 JSON 
 
 Request Method
-""""""""""""""""
+"""""""""""""""""""""""""""""
 WebSocket; JSON-RPC
 
 Required private key authority
-""""""""""""""""""
+"""""""""""""""""""""""""""""""
 null
 
 Access authorization limit
-""""""""""""""""""
+"""""""""""""""""""""""""""""""
 | Access level: normal interface
 | Frequency limit: True
 
 
 Request parameters
-""""""""""""""""
+"""""""""""""""""""""""""""""
 
 :lower_bound:   Start the query with this as the starting uid, set it to 0 and start from the beginning.
 :limit: Return quantity limit, up to 101
@@ -938,11 +938,11 @@ Request parameters
 
 
 Precautions
-""""""""""""""""
+"""""""""""""""""""""""""""""
 The interface uses a pagination design. To get all the witnesses, you can cycle through them until the number of witnesses returned is less than the limit.
 
 Call sample and debug tools
-"""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 WebSocket:
 ::
 
@@ -956,7 +956,7 @@ JSON-RPC:
 
 
 Return results
-""""""""""""""""
+"""""""""""""""""""""""""""""
 ::
 
     {
@@ -1098,34 +1098,34 @@ Return results
 Get the committee member information
 
 Supported format
-""""""""""""""""
+"""""""""""""""""""""""""""""
 JSON 
 
 Request Method
-""""""""""""""""
+"""""""""""""""""""""""""""""
 WebSocket; JSON-RPC
 
 Required private key authority
-""""""""""""""""""
+"""""""""""""""""""""""""""""""
 null
 
 Access authorization limit
-""""""""""""""""""
+"""""""""""""""""""""""""""""""
 | Access level: normal interface
 | Frequency limit: True
 
 
 Request parameters
-""""""""""""""""
+"""""""""""""""""""""""""""""
 
 :owner_account:   Uid or account nickname. For example: "25997"
 
 Precautions
-""""""""""""""""
+"""""""""""""""""""""""""""""
 null
 
 Call sample and debug tools
-"""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 WebSocket:
 ::
 
@@ -1139,7 +1139,7 @@ JSON-RPC:
 
 
 Return results
-""""""""""""""""
+"""""""""""""""""""""""""""""
 ::
 
     {
@@ -1163,35 +1163,35 @@ Return results
 List the current valid committee candidates
 
 Supported format
-""""""""""""""""
+"""""""""""""""""""""""""""""
 JSON 
 
 Request Method
-""""""""""""""""
+"""""""""""""""""""""""""""""
 WebSocket; JSON-RPC
 
 Required private key authority
-""""""""""""""""""
+"""""""""""""""""""""""""""""""
 null
 
 Access authorization limit
-""""""""""""""""""
+"""""""""""""""""""""""""""""""
 | Access level: normal interface
 | Frequency limit: True
 
 Request parameters
-""""""""""""""""
+"""""""""""""""""""""""""""""
 :lower_bound:   Start the query with this as the starting uid, set it to 0 and start from the beginning.
 :limit:  Return quantity limit, up to 101
 :order_by:   Sort type. Value range is [0, 1, 2]. 
 0:Sort by uid from big to small; 1: Sort by number of votes; 2: Sort by collateral amount.
 
 Precautions
-""""""""""""""""
+"""""""""""""""""""""""""""""
 The interface adopts a pagination design. To obtain all the committees, you can call them cyclically until the number of committee members returned is less than the limit.
 
 Call sample and debug tools
-"""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 WebSocket:
 ::
 
@@ -1205,7 +1205,7 @@ JSON-RPC:
 
 
 Return results
-""""""""""""""""
+"""""""""""""""""""""""""""""
 ::
 
     {
@@ -1272,33 +1272,33 @@ Return results
 List all the committee proposals that have not been successfully implemented, including those that are being voted on, have been voted through but have not yet reached the execution time.
 
 Supported format
-""""""""""""""""
+"""""""""""""""""""""""""""""
 JSON 
 
 Request Method
-""""""""""""""""
+"""""""""""""""""""""""""""""
 WebSocket; JSON-RPC
 
 Required private key authority
-""""""""""""""""""
+"""""""""""""""""""""""""""""""
 null
 
 Access authorization limit
-""""""""""""""""""
+"""""""""""""""""""""""""""""""
 | Access level: normal interface
 | Frequency limit: True
 
 
 Request parameters
-""""""""""""""""
+"""""""""""""""""""""""""""""
 null
 
 Precautions
-""""""""""""""""
+"""""""""""""""""""""""""""""
 null
 
 Call sample and debug tools
-"""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 WebSocket:
 ::
 
@@ -1312,7 +1312,7 @@ JSON-RPC:
 
 
 Return results
-""""""""""""""""
+"""""""""""""""""""""""""""""
 ::
 
     {
@@ -1328,34 +1328,34 @@ Return results
 Get the total number of platforms on the network
 
 Supported format
-""""""""""""""""
+"""""""""""""""""""""""""""""
 JSON 
 
 Request method
-""""""""""""""""
+"""""""""""""""""""""""""""""
 WebSocket; JSON-RPC
 
 Required private key authority
-""""""""""""""""""
+"""""""""""""""""""""""""""""""
 null
 
 Access authorization limit
-""""""""""""""""""
+"""""""""""""""""""""""""""""""
 | Access level: normal interface
 | Frequency limit: True
 
 
 Request parameters
-""""""""""""""""
+"""""""""""""""""""""""""""""
 
 null
 
 Precautions
-""""""""""""""""
+"""""""""""""""""""""""""""""
 null
 
 Call sample and debug tools
-"""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 WebSocket:
 ::
 
@@ -1369,7 +1369,7 @@ JSON-RPC:
 
 
 Return results
-""""""""""""""""
+"""""""""""""""""""""""""""""
 ::
 
     {
@@ -1384,34 +1384,34 @@ Return results
 Get platform object information according to the platform owner account
 
 Supported format
-""""""""""""""""
+"""""""""""""""""""""""""""""
 JSON 
 
 Request method
-""""""""""""""""
+"""""""""""""""""""""""""""""
 WebSocket; JSON-RPC
 
 Required private key authority
-""""""""""""""""""
+"""""""""""""""""""""""""""""""
 null
 
 Access authorization limit
-""""""""""""""""""
+"""""""""""""""""""""""""""""""
 | Access level: normal interface
 | Frequency limit: True
 
 
 Request parameters
-""""""""""""""""
+"""""""""""""""""""""""""""""
 
 :owner_account:  Platform owner account
 
 Precautions
-""""""""""""""""
+"""""""""""""""""""""""""""""
 null
 
 Call sample and debug tools
-"""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 WebSocket:
 ::
 
@@ -1425,7 +1425,7 @@ JSON-RPC:
 
 
 Return results
-""""""""""""""""
+"""""""""""""""""""""""""""""
 ::
 
     {
@@ -1456,25 +1456,25 @@ Query by platform owner to list the current valid platforms
 
 
 Supported format
-""""""""""""""""
+"""""""""""""""""""""""""""""
 JSON 
 
 Request method
-""""""""""""""""
+"""""""""""""""""""""""""""""
 WebSocket; JSON-RPC
 
 Required private key authority
-""""""""""""""""""
+"""""""""""""""""""""""""""""""
 null
 
 Access authorization limit
-""""""""""""""""""
+"""""""""""""""""""""""""""""""
 | Access level: normal interface
 | Frequency limit: True
 
 
 Request parameters
-""""""""""""""""
+"""""""""""""""""""""""""""""
 
 :lower_bound:  Start the query with this as the starting uid, set it to 0 and start from the beginning.
 :limit:  Return quantity limit, up to 100
@@ -1483,11 +1483,11 @@ Request parameters
 
 
 Precautions
-""""""""""""""""
+"""""""""""""""""""""""""""""
 null
 
 Call sample and debug tools
-"""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 WebSocket:
 ::
 
@@ -1501,7 +1501,7 @@ JSON-RPC:
 
 
 Return results
-""""""""""""""""
+"""""""""""""""""""""""""""""
 ::
 
     {
@@ -1571,34 +1571,34 @@ Return results
 Return the asset details based on the given asset code or id
 
 Supported format
-""""""""""""""""
+"""""""""""""""""""""""""""""
 JSON 
 
 Request method
-""""""""""""""""
+"""""""""""""""""""""""""""""
 WebSocket; JSON-RPC
 
 Required private key authority
-""""""""""""""""""
+"""""""""""""""""""""""""""""""
 null
 
 Access authorization limit
-""""""""""""""""""
+"""""""""""""""""""""""""""""""
 | Access level: normal interface
 | Frequency limit: True
 
 
 Request parameters
-""""""""""""""""
+"""""""""""""""""""""""""""""
 
 :asset_name_or_id:  Asset symbol or asset id
 
 Precautions
-""""""""""""""""
+"""""""""""""""""""""""""""""
 null
 
 Call sample and debug tools
-"""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 WebSocket:
 ::
 
@@ -1612,7 +1612,7 @@ JSON-RPC:
 
 
 Return results
-""""""""""""""""
+"""""""""""""""""""""""""""""
 ::
 
   {
@@ -1644,34 +1644,34 @@ Query asset details by page
 The returned results are sorted by the ASCII code order of the asset code.
 
 Supported format
-""""""""""""""""
+"""""""""""""""""""""""""""""
 JSON 
 
 Request method
-""""""""""""""""
+"""""""""""""""""""""""""""""
 WebSocket; JSON-RPC
 
 Required private key authority
-""""""""""""""""""
+"""""""""""""""""""""""""""""""
 null
 
 Access authorization limit
-""""""""""""""""""
+"""""""""""""""""""""""""""""""
 | Access level: normal interface
 | Frequency limit: True
 
 
 Request parameters
-""""""""""""""""
+"""""""""""""""""""""""""""""
 :lower_bound_symbol:  Start the query with this as the starting code, sorted by the ASCII code of the asset code.
 :limit:  Return quantity limit, up to 101
 
 Precautions
-""""""""""""""""
+"""""""""""""""""""""""""""""
 null
 
 Call sample and debug tools
-"""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 WebSocket:
 ::
 
@@ -1685,7 +1685,7 @@ JSON-RPC:
 
 
 Return results
-""""""""""""""""
+"""""""""""""""""""""""""""""
 ::
 
   {
@@ -1811,35 +1811,35 @@ Return results
 Save the wallet file and it will be saved to the yoyo_client executable folder
 
 Supported format
-""""""""""""""""
+"""""""""""""""""""""""""""""
 JSON 
 
 Request method
-""""""""""""""""
+"""""""""""""""""""""""""""""
 WebSocket; JSON-RPC
 
 Required private key authority
-""""""""""""""""""
+"""""""""""""""""""""""""""""""
 Wallet needs to be in unlock state.
 
 Access authorization limit
-""""""""""""""""""
+"""""""""""""""""""""""""""""""
 | Access level: normal interface
 | Frequency limit: True
 
 
 Request parameters
-""""""""""""""""
+"""""""""""""""""""""""""""""
 
 :wallet_filename:   String, the name of the backup file
 
 
 Precautions
-""""""""""""""""
+"""""""""""""""""""""""""""""
 null
 
 Call sample and debug tools
-"""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 WebSocket:
 ::
 
@@ -1853,7 +1853,7 @@ JSON-RPC:
 
 
 Return results
-""""""""""""""""
+"""""""""""""""""""""""""""""
 ::
 
     {
@@ -1869,36 +1869,36 @@ Return results
 Set the wallet password
 
 Supported format
-""""""""""""""""
+"""""""""""""""""""""""""""""
 JSON 
 
 Request method
-""""""""""""""""
+"""""""""""""""""""""""""""""
 WebSocket; JSON-RPC
 
 Required private key authority
-""""""""""""""""""
+"""""""""""""""""""""""""""""""
 Wallet needs to be in new or unlocked state.
 
 The new state exists when it is the first time that the wallet has been run, and the password state has not been set.
 
 Access authorization limit
-""""""""""""""""""
+"""""""""""""""""""""""""""""""
 | Access level: normal interface
 | Frequency limit: True
 
 
 Request parameters
-""""""""""""""""
+"""""""""""""""""""""""""""""
 
 :password:   Password string, for example: "1234"
 
 Precautions
-""""""""""""""""
+"""""""""""""""""""""""""""""
 null
 
 Call sample and debug tools
-"""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 WebSocket:
 ::
 
@@ -1912,7 +1912,7 @@ JSON-RPC:
 
 
 Return results
-""""""""""""""""
+"""""""""""""""""""""""""""""
 ::
 
     {
@@ -1926,34 +1926,34 @@ Return results
 Unlock the wallet
 
 Supported format
-""""""""""""""""
+"""""""""""""""""""""""""""""
 JSON 
 
 Request method
-""""""""""""""""
+"""""""""""""""""""""""""""""
 WebSocket; JSON-RPC
 
 Required private key authority
-""""""""""""""""""
+"""""""""""""""""""""""""""""""
 The wallet is in locked state.
 
 Access authorization limit
-""""""""""""""""""
+"""""""""""""""""""""""""""""""
 | Access level: normal interface
 | Frequency limit: True
 
 
 Request parameters
-""""""""""""""""
+"""""""""""""""""""""""""""""
 
 :password:   Password string, for example: "1234"
 
 Precautions
-""""""""""""""""
+"""""""""""""""""""""""""""""
 null
 
 Call sample and debug tools
-"""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 WebSocket:
 ::
 
@@ -1967,7 +1967,7 @@ JSON-RPC:
 
 
 Return results
-""""""""""""""""
+"""""""""""""""""""""""""""""
 ::
 
     {
@@ -1983,33 +1983,33 @@ Return results
 Lock the wallet
 
 Supported format
-""""""""""""""""
+"""""""""""""""""""""""""""""
 JSON 
 
 Request method
-""""""""""""""""
+"""""""""""""""""""""""""""""
 WebSocket; JSON-RPC
 
 Required private key authority
-""""""""""""""""""
+"""""""""""""""""""""""""""""""
 null
 
 Access authorization limit
-""""""""""""""""""
+"""""""""""""""""""""""""""""""
 | Access level: normal interface
 | Frequency limit: True
 
 
 Request parameters
-""""""""""""""""
+"""""""""""""""""""""""""""""
 null
 
 Precautions
-""""""""""""""""
+"""""""""""""""""""""""""""""
 null
 
 Call sample and debug tools
-"""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 WebSocket:
 ::
 
@@ -2023,7 +2023,7 @@ JSON-RPC:
 
 
 Return results
-""""""""""""""""
+"""""""""""""""""""""""""""""
 ::
 
     {
@@ -2037,33 +2037,33 @@ Return results
 Import a private key into your wallet and assign a related account. The private key and account number do not have to be associated.
 
 Supported format
-""""""""""""""""
+"""""""""""""""""""""""""""""
 JSON 
 
 Request method
-""""""""""""""""
+"""""""""""""""""""""""""""""
 WebSocket; JSON-RPC
 
 Required private key authority
-""""""""""""""""""
+"""""""""""""""""""""""""""""""
 Wallet needs to be in unlocked state.
 
 Access authorization limit
-""""""""""""""""""
+"""""""""""""""""""""""""""""""
 | Access level: normal interface
 | Frequency limit: True
 
 Request parameters
-""""""""""""""""
+"""""""""""""""""""""""""""""
 :account_name_or_id:  Account uid or nickname
 :wif_key:  Private key string
 
 Precautions
-""""""""""""""""
+"""""""""""""""""""""""""""""
 null
 
 Call sample and debug tools
-"""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 WebSocket:
 ::
 
@@ -2076,7 +2076,7 @@ JSON-RPC:
     curl --data '{"jsonrpc": "2.0", "method": "call", "params":[0, "lock", []]}{"id":1, "method":"call", "params":[0, "import_key", ["250926091","5JLaW7u3EC4vVLbTmLo1XeSBGiTeRtqER1UsoLtYbFNnBafgPKG"]], "id": 1}' http://localhost:8091/rpc
 
 Return results
-""""""""""""""""
+"""""""""""""""""""""""""""""
 ::
 
     {
@@ -2091,33 +2091,33 @@ List all private keys and corresponding public keys in the wallet
 
 
 Supported format
-""""""""""""""""
+"""""""""""""""""""""""""""""
 JSON 
 
 Request method
-""""""""""""""""
+"""""""""""""""""""""""""""""
 WebSocket; JSON-RPC
 
 Required private key authority
-""""""""""""""""""
+"""""""""""""""""""""""""""""""
 Wallet needs to be in unlocked state
 
 Access authorization limit
-""""""""""""""""""
+"""""""""""""""""""""""""""""""
 | Access level: normal interface
 | Frequency limit: True
 
 
 Request parameters
-""""""""""""""""
+"""""""""""""""""""""""""""""
 null
 
 Precautions
-""""""""""""""""
+"""""""""""""""""""""""""""""
 null
 
 Call sample and debug tools
-"""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 WebSocket:
 ::
 
@@ -2130,7 +2130,7 @@ JSON-RPC:
     curl --data '{"jsonrpc": "2.0", "method": "call", "params": [0, "dump_private_keys",[]], "id": 1}' http://localhost:8091/rpc
 
 Return results
-""""""""""""""""
+"""""""""""""""""""""""""""""
 ::
 
     {
@@ -2156,33 +2156,33 @@ List the information about all cached accounts in the wallet file (the account s
 Note: This cached information is not necessarily synchronized with the data on the chain. To sync, reopen the wallet file.
 
 Supported format
-""""""""""""""""
+"""""""""""""""""""""""""""""
 JSON 
 
 Request method
-""""""""""""""""
+"""""""""""""""""""""""""""""
 WebSocket; JSON-RPC
 
 Required private key authority
-""""""""""""""""""
+"""""""""""""""""""""""""""""""
 Wallet needs to be in unlocked state.
 
 Access authorization limit
-""""""""""""""""""
+"""""""""""""""""""""""""""""""
 | Access level: normal interface
 | Frequency limit: True
 
 
 Request parameters
-""""""""""""""""
+"""""""""""""""""""""""""""""
 null
 
 Precautions
-""""""""""""""""
+"""""""""""""""""""""""""""""
 null
 
 Call sample and debug tools
-"""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 WebSocket:
 ::
 
@@ -2196,7 +2196,7 @@ JSON-RPC:
 
 
 Return results
-""""""""""""""""
+"""""""""""""""""""""""""""""
 ::
 
     {
@@ -2276,7 +2276,7 @@ Return results
 
 
 2.4 Operations/Transactions API
------------------------------
+----------------------------------
 The following operations involve key authority. You need to import the relevant private keys. At the same time, ensure that the wallet is in unlocked state.
 
 2.4.1 transfer
@@ -2284,25 +2284,25 @@ The following operations involve key authority. You need to import the relevant 
 Query the platforms according to the uid list
 
 Supported format
-""""""""""""""""
+"""""""""""""""""""""""""""""
 JSON 
 
 Request method
-""""""""""""""""
+"""""""""""""""""""""""""""""
 WebSocket; JSON-RPC
 
 Required private key authority
-""""""""""""""""""
+"""""""""""""""""""""""""""""""
 It needs the active key of the transferrer.
 
 Access authorization limit
-""""""""""""""""""
+"""""""""""""""""""""""""""""""
 | Access level: normal interface
 | Frequency limit: True
 
 
 Request parameters
-""""""""""""""""
+"""""""""""""""""""""""""""""
 
 :from:  Transferrer (UID or nickname)
 :to:  Transferee (UID or nickname)
@@ -2313,11 +2313,11 @@ Request parameters
 
 
 Precautions
-""""""""""""""""
+"""""""""""""""""""""""""""""
 null
 
 Call sample and debug tools
-"""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 WebSocket:
 ::
 
@@ -2331,7 +2331,7 @@ JSON-RPC:
 
 
 Return results
-""""""""""""""""
+"""""""""""""""""""""""""""""
 ::
 
     {
@@ -2384,25 +2384,25 @@ Return results
 Create a witness
 
 Supported format
-""""""""""""""""
+"""""""""""""""""""""""""""""
 JSON 
 
 Request method
-""""""""""""""""
+"""""""""""""""""""""""""""""
 WebSocket; JSON-RPC
 
 Required private key authority
-""""""""""""""""
+"""""""""""""""""""""""""""""""
 It needs the active key of the witness owner.
 
 Access authorization limit
-""""""""""""""""""
+"""""""""""""""""""""""""""""""
 | Access level: normal interface
 | Frequency limit: True
 
 
 Request parameters
-""""""""""""""""
+"""""""""""""""""""""""""""""
 :owner_account:  Account（UID or nickname）
 :block_signing_key:  Block production signature public keys
 :pledge_amount:  Collateral amount
@@ -2413,11 +2413,11 @@ Request parameters
 Wherein: if the signature public key is YYW1111111111111111111111111111111114T1Anm, it means temporary offline.
 
 Precautions
-""""""""""""""""
+"""""""""""""""""""""""""""""
 null
 
 Call sample and debug tools
-"""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 WebSocket:
 ::
 
@@ -2431,7 +2431,7 @@ JSON-RPC:
 
 
 Return results
-""""""""""""""""
+"""""""""""""""""""""""""""""
 ::
 
     {
@@ -2468,24 +2468,24 @@ Return results
 Modify witness information
 
 Supported format
-""""""""""""""""
+"""""""""""""""""""""""""""""
 JSON 
 
 Request method
-""""""""""""""""
+"""""""""""""""""""""""""""""
 WebSocket; JSON-RPC
 
 Required private key authority
-""""""""""""""""""
+"""""""""""""""""""""""""""""""
 It needs the active key of the witness owner.
 
 Access authorization limit
-""""""""""""""""""
+"""""""""""""""""""""""""""""""
 | Access level: normal interface
 | Frequency limit: True
 
 Request parameters
-""""""""""""""""
+"""""""""""""""""""""""""""""
 
 :witness_account:  Account（UID or nickname）
 :block_signing_key:  New block production signature public key; enter null if without modification
@@ -2498,11 +2498,11 @@ Among them, the amount of the collateral and the token type must appear at the s
 
 
 Precautions
-""""""""""""""""
+"""""""""""""""""""""""""""""
 null
 
 Call sample and debug tools
-"""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 WebSocket:
 ::
 
@@ -2516,7 +2516,7 @@ JSON-RPC:
 
 
 Return results
-""""""""""""""""
+"""""""""""""""""""""""""""""
 ::
 
   {
@@ -2562,25 +2562,25 @@ Return results
 Create a committee candidate identity
 
 Supported format
-""""""""""""""""
+"""""""""""""""""""""""""""""
 JSON 
 
 Request method
-""""""""""""""""
+"""""""""""""""""""""""""""""
 WebSocket; JSON-RPC
 
 Required private key authority
-""""""""""""""""""
+"""""""""""""""""""""""""""""""
 null
 
 Access authorization limit
-""""""""""""""""""
+"""""""""""""""""""""""""""""""
 | Access level: normal interface
 | Frequency limit: True
 
 
 Request parameters
-""""""""""""""""
+"""""""""""""""""""""""""""""
 
 :owner_account:  Account（UID or nickname）
 :pledge_amount:  Collateral amount
@@ -2589,11 +2589,11 @@ Request parameters
 :broadcast:  Whether to broadcast
 
 Precautions
-""""""""""""""""
+"""""""""""""""""""""""""""""
 Among the assets found, only YOYO can actually be used.
 
 Call sample and debug tools
-"""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 WebSocket:
 ::
 
@@ -2607,7 +2607,7 @@ JSON-RPC:
 
 
 Return results
-""""""""""""""""
+"""""""""""""""""""""""""""""
 
 ::
 
@@ -2649,25 +2649,25 @@ Return results
 Modify committee candidate information
 
 Supported format
-""""""""""""""""
+"""""""""""""""""""""""""""""
 JSON 
 
 Request method
-""""""""""""""""
+"""""""""""""""""""""""""""""
 WebSocket; JSON-RPC
 
 Required private key authority
-""""""""""""""""""
+"""""""""""""""""""""""""""""""
 null
 
 Access authorization limit
-""""""""""""""""""
+"""""""""""""""""""""""""""""""
 | Access level: normal interface
 | Frequency limit: True
 
 
 Request parameters
-""""""""""""""""
+"""""""""""""""""""""""""""""
 
 :committee_member_account:  Account（UID or nickname）
 :pledge_amount:  New collateral amount; enter null if without modification
@@ -2676,11 +2676,11 @@ Request parameters
 :broadcast:  Whether to broadcast
 
 Precautions
-""""""""""""""""
+"""""""""""""""""""""""""""""
 null
 
 Call sample and debug tools
-"""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 WebSocket:
 ::
 
@@ -2694,7 +2694,7 @@ JSON-RPC:
 
 
 Return results
-""""""""""""""""
+"""""""""""""""""""""""""""""
 ::
 
   {
@@ -2743,36 +2743,36 @@ Set up a voting proxy
 Account A sets account B as a voting proxy, and the number of votes obtained by the voting object of B is the number of valid votes of A + the number of valid votes of B. A is called the client, and B is called the proxy.
 
 Supported format
-""""""""""""""""
+"""""""""""""""""""""""""""""
 JSON 
 
 Request method
-""""""""""""""""
+"""""""""""""""""""""""""""""
 WebSocket; JSON-RPC
 
 Required private key authority
-""""""""""""""""""
+"""""""""""""""""""""""""""""""
 It needs the active key of the client.
 
 Access authorization limit
-""""""""""""""""""
+"""""""""""""""""""""""""""""""
 | Access level: normal interface
 | Frequency limit: True
 
 
 Request parameters
-""""""""""""""""
+"""""""""""""""""""""""""""""
 
 :account_to_modify:  Client account（UID or nickname）
 :voting_account:  Proxy account（set the proxy with a UID or nickname; null is for canceling the proxy）
 :broadcast:  Whether to broadcast
 
 Precautions
-""""""""""""""""
+"""""""""""""""""""""""""""""
 null
 
 Call sample and debug tools
-"""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 WebSocket:
 ::
 
@@ -2786,7 +2786,7 @@ JSON-RPC:
 
 
 Return results
-""""""""""""""""
+"""""""""""""""""""""""""""""
 ::
 
     {
@@ -2831,25 +2831,25 @@ Return results
 Witness voting
 
 Supported format
-""""""""""""""""
+"""""""""""""""""""""""""""""
 JSON 
 
 Request method
-""""""""""""""""
+"""""""""""""""""""""""""""""
 WebSocket; JSON-RPC
 
 Required private key authority
-""""""""""""""""""
+"""""""""""""""""""""""""""""""
 It needs the active key of the voter.
 
 Access authorization limit
-""""""""""""""""""
+"""""""""""""""""""""""""""""""
 | Access level: normal interface
 | Frequency limit: True
 
 
 Request parameters
-""""""""""""""""
+"""""""""""""""""""""""""""""
 
 :voting_account:  Account（UID of nickname）
 :witnesses_to_add:  Add a list of supported witnesses (UID or nickname)
@@ -2859,11 +2859,11 @@ Request parameters
 Both the witnesses_to_add and the witnesses_to_remove lists can be empty "[]", indicating that the voting intention is refreshed.
 
 Precautions
-""""""""""""""""
+"""""""""""""""""""""""""""""
 null
 
 Call sample and debug tools
-"""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 WebSocket:
 ::
 
@@ -2877,7 +2877,7 @@ JSON-RPC:
 
 
 Return results
-""""""""""""""""
+"""""""""""""""""""""""""""""
 ::
 
     {
@@ -2925,25 +2925,25 @@ Return results
 The committee election voting
 
 Supported format
-""""""""""""""""
+"""""""""""""""""""""""""""""
 JSON 
 
 Request method
-""""""""""""""""
+"""""""""""""""""""""""""""""
 WebSocket; JSON-RPC
 
 Required private key authority
-""""""""""""""""""
+"""""""""""""""""""""""""""""""
 It needs the active key of the voter.
 
 Access authorization limit
-""""""""""""""""""
+"""""""""""""""""""""""""""""""
 | Access level: normal interface
 | Frequency limit: True
 
 
 Request parameters
-""""""""""""""""
+"""""""""""""""""""""""""""""
 
 :voting_account:  Voter account (UID or nickname)
 :committee_members_to_add:  Array; add a list of supported committee candidates (UID or nickname)
@@ -2953,11 +2953,11 @@ Request parameters
 Both committee_members_to_add and committee_members_to_remove lists can be empty "[]", indicating the voting intention is refreshed.
 
 Precautions
-""""""""""""""""
+"""""""""""""""""""""""""""""
 null
 
 Call sample and debug tools
-"""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 WebSocket:
 ::
 
@@ -2971,7 +2971,7 @@ JSON-RPC:
 
 
 Return results
-""""""""""""""""
+"""""""""""""""""""""""""""""
 ::
 
     {
@@ -3018,25 +3018,25 @@ Return results
 To collect points, you need to specify the time parameters to collect the points accumulated to the specified time.
 
 Supported format
-""""""""""""""""
+"""""""""""""""""""""""""""""
 JSON 
 
 Request method
-""""""""""""""""
+"""""""""""""""""""""""""""""
 WebSocket; JSON-RPC
 
 Required private key authority
-""""""""""""""""""
+"""""""""""""""""""""""""""""""
 It needs the Secondary Key of the collector.
 
 Access authorization limit
-""""""""""""""""""
+"""""""""""""""""""""""""""""""
 | Access level: normal interface
 | Frequency limit: True
 
 
 Request parameters
-""""""""""""""""
+"""""""""""""""""""""""""""""
 
 :from:  Collecting account（UID or nickname）
 :to:  Receiving account（UID or nickname）
@@ -3046,11 +3046,11 @@ Request parameters
 :broadcast:  Whether to broadcast
 
 Precautions
-""""""""""""""""
+"""""""""""""""""""""""""""""
 null
 
 Call sample and debug tools
-"""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 WebSocket:
 ::
 
@@ -3064,7 +3064,7 @@ JSON-RPC:
 
 
 Return results
-""""""""""""""""
+"""""""""""""""""""""""""""""
 ::
 
     {
@@ -3114,25 +3114,25 @@ Return results
 Collect points and collect points accumulated to the current time (minutes).
 
 Supported format
-""""""""""""""""
+"""""""""""""""""""""""""""""
 JSON 
 
 Request method
-""""""""""""""""
+"""""""""""""""""""""""""""""
 WebSocket; JSON-RPC
 
 Required private key authority
-""""""""""""""""""
+"""""""""""""""""""""""""""""""
 It needs the Secondary Key of the collector.
 
 Access authorization limit
-""""""""""""""""""
+"""""""""""""""""""""""""""""""
 | Access level: normal interface
 | Frequency limit: True
 
 
 Request parameters
-""""""""""""""""
+"""""""""""""""""""""""""""""
 
 :from:  Collecting account（UID or nickname）
 :to:  Receiving account（UID or nickname）
@@ -3141,11 +3141,11 @@ Request parameters
 :broadcast:  Whether to broadcast
 
 Precautions
-""""""""""""""""
+"""""""""""""""""""""""""""""
 null
 
 Call sample and debug tools
-"""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 WebSocket:
 ::
 
@@ -3159,7 +3159,7 @@ JSON-RPC:
 
 
 Return results
-""""""""""""""""
+"""""""""""""""""""""""""""""
 ::
 
     {
@@ -3210,25 +3210,25 @@ Return results
 Creating platforms
 
 Supported format
-""""""""""""""""
+"""""""""""""""""""""""""""""
 JSON 
 
 Request method
-""""""""""""""""
+"""""""""""""""""""""""""""""
 WebSocket; JSON-RPC
 
 Required private key authority
-""""""""""""""""""
+"""""""""""""""""""""""""""""""
 It needs the Active key of the applier.
 
 Access authorization limit
-""""""""""""""""""
+"""""""""""""""""""""""""""""""
 | Access level: normal interface
 | Frequency limit: True
 
 
 Request parameters
-""""""""""""""""
+"""""""""""""""""""""""""""""
 
 :owner_account:  Creator account
 :name:  Platform name
@@ -3239,11 +3239,11 @@ Request parameters
 :broadcast:  Whether to broadcast
 
 Precautions
-""""""""""""""""
+"""""""""""""""""""""""""""""
 null
 
 Call sample and debug tools
-"""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 WebSocket:
 ::
 
@@ -3257,7 +3257,7 @@ JSON-RPC:
 
 
 Return results
-""""""""""""""""
+"""""""""""""""""""""""""""""
 ::
 
     {
@@ -3301,25 +3301,25 @@ Return results
 Modify platform information
 
 Supported format
-""""""""""""""""
+"""""""""""""""""""""""""""""
 JSON 
 
 Request method
-""""""""""""""""
+"""""""""""""""""""""""""""""
 WebSocket; JSON-RPC
 
 Required private key authority
-""""""""""""""""""
+"""""""""""""""""""""""""""""""
 null
 
 Access authorization limit
-""""""""""""""""""
+"""""""""""""""""""""""""""""""
 | Access level: normal interface
 | Frequency limit: True
 
 
 Request parameters
-""""""""""""""""
+"""""""""""""""""""""""""""""
 
 :platform_account:  Account（UID or nickname）
 :name: new platform name; enter null if without modification
@@ -3335,11 +3335,11 @@ If the collateral amount is 0, it means closing the platform.
 
 
 Precautions
-""""""""""""""""
+"""""""""""""""""""""""""""""
 null
 
 Call sample and debug tools
-"""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 WebSocket:
 ::
 
@@ -3353,7 +3353,7 @@ JSON-RPC:
 
 
 Return results
-""""""""""""""""
+"""""""""""""""""""""""""""""
 ::
 
     {
@@ -3399,25 +3399,25 @@ Return results
 Vote for the platforms
 
 Supported format
-""""""""""""""""
+"""""""""""""""""""""""""""""
 JSON 
 
 Request method
-""""""""""""""""
+"""""""""""""""""""""""""""""
 WebSocket; JSON-RPC
 
 Required private key authority
-""""""""""""""""""
+"""""""""""""""""""""""""""""""
 It needs the Active key of the voter.
 
 Access authorization limit
-""""""""""""""""""
+"""""""""""""""""""""""""""""""
 | Access level: normal interface
 | Frequency limit: True
 
 
 Request parameters
-""""""""""""""""
+"""""""""""""""""""""""""""""
 
 :voting_account:  Voter account（UID or nickname）
 :platforms_to_add:  Add a list of supported platforms (UID or nickname)
@@ -3427,11 +3427,11 @@ Request parameters
 Both latforms_to_add and platforms_to_remove lists can be empty, indicating the voting intention is refreshed.
 
 Precautions
-""""""""""""""""
+"""""""""""""""""""""""""""""
 null
 
 Call sample and debug tools
-"""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 WebSocket:
 ::
 
@@ -3445,7 +3445,7 @@ JSON-RPC:
 
 
 Return results
-""""""""""""""""
+"""""""""""""""""""""""""""""
 ::
 
     {
@@ -3493,36 +3493,36 @@ Return results
 The account authorizes the platform.
 
 Supported format
-""""""""""""""""
+"""""""""""""""""""""""""""""
 JSON 
 
 Request method
-""""""""""""""""
+"""""""""""""""""""""""""""""
 WebSocket; JSON-RPC
 
 Required private key authority
-""""""""""""""""""
+"""""""""""""""""""""""""""""""
 The Owner key
 
 Access authorization limit
-""""""""""""""""""
+"""""""""""""""""""""""""""""""
 | Access level: normal interface
 | Frequency limit: True
 
 
 Request parameters
-""""""""""""""""
+"""""""""""""""""""""""""""""
 
 :account:  Authorizing account（UID or nickname）
 :platform_owner:  platform owner account（UID or nickname）
 :broadcast:  Whether to broadcast
 
 Precautions
-""""""""""""""""
+"""""""""""""""""""""""""""""
 null
 
 Call sample and debug tools
-"""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 WebSocket:
 ::
 
@@ -3536,7 +3536,7 @@ JSON-RPC:
 
 
 Return results
-""""""""""""""""
+"""""""""""""""""""""""""""""
 ::
 
     {
@@ -3582,36 +3582,36 @@ The account unauthorizes the platform.
 
 
 Supported format
-""""""""""""""""
+"""""""""""""""""""""""""""""
 JSON 
 
 Request method
-""""""""""""""""
+"""""""""""""""""""""""""""""
 WebSocket; JSON-RPC
 
 Required private key authority
-""""""""""""""""""
+"""""""""""""""""""""""""""""""
 The Owner key
 
 Access authorization limit
-""""""""""""""""""
+"""""""""""""""""""""""""""""""
 | Access level: normal interface
 | Frequency limit: True
 
 
 Request parameters
-""""""""""""""""
+"""""""""""""""""""""""""""""
 :account:  Authorizing account（UID of nickname）
 :platform_owner:  platform owner account（UID or nickname）
 :broadcast:  Whether to broadcast
 
 
 Precautions
-""""""""""""""""
+"""""""""""""""""""""""""""""
 null
 
 Call sample and debug tools
-"""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 WebSocket:
 ::
 
@@ -3625,7 +3625,7 @@ JSON-RPC:
 
 
 Return results
-""""""""""""""""
+"""""""""""""""""""""""""""""
 ::
 
     {
@@ -3668,25 +3668,25 @@ Return results
 Creating assets
 
 Supported format
-""""""""""""""""
+"""""""""""""""""""""""""""""
 JSON 
 
 Request method
-""""""""""""""""
+"""""""""""""""""""""""""""""
 WebSocket; JSON-RPC
 
 Required private key authority
-""""""""""""""""""
+"""""""""""""""""""""""""""""""
 It needs the Active key of the applier.
 
 Access authorization limit
-""""""""""""""""""
+"""""""""""""""""""""""""""""""
 | Access level: normal interface
 | Frequency limit: True
 
 
 Request parameters
-""""""""""""""""
+"""""""""""""""""""""""""""""
 
 :issuer:  Creator UID
 :symbol:  The symbol to create an asset
@@ -3741,11 +3741,11 @@ In the flags field, if a bit is 1, it means that the corresponding parameter is 
 In the issuer_permissions field, if a bit is 0, it means that the issuer of the asset can modify the corresponding parameter bit in the flags field; if it is 1, it means that it cannot be modified.
 
 Precautions
-""""""""""""""""
+"""""""""""""""""""""""""""""
 null
 
 Call sample and debug tools
-"""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 WebSocket:
 ::
 
@@ -3759,7 +3759,7 @@ JSON-RPC:
 
 
 Return results
-""""""""""""""""
+"""""""""""""""""""""""""""""
 ::
 
     {
@@ -3810,25 +3810,25 @@ Return results
 Update asset information
 
 Supported format
-""""""""""""""""
+"""""""""""""""""""""""""""""
 JSON 
 
 Request method
-""""""""""""""""
+"""""""""""""""""""""""""""""
 WebSocket; JSON-RPC
 
 Required private key authority
-""""""""""""""""""
+"""""""""""""""""""""""""""""""
 It needs the Active key of the asset owner.
 
 Access authorization limit
-""""""""""""""""""
+"""""""""""""""""""""""""""""""
 | Access level: normal interface
 | Frequency limit: True
 
 
 Request parameters
-""""""""""""""""
+"""""""""""""""""""""""""""""
 
 :symbol:  asset symbol
 :new_issuer:  new asset owner
@@ -3836,13 +3836,13 @@ Request parameters
 :broadcast:  Whether to broadcast
 
 Precautions
-""""""""""""""""
+"""""""""""""""""""""""""""""
 This feature is only available to asset issuers.
 
 The precision can only be modified if the current circulation amount is zero.
 
 Call sample and debug tools
-"""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 WebSocket:
 ::
 
@@ -3855,7 +3855,7 @@ JSON-RPC:
 
 
 Return results
-""""""""""""""""
+"""""""""""""""""""""""""""""
 ::
 
   {
@@ -3913,36 +3913,36 @@ When the state is changed from deactivated to enabled, there is only "core asset
 Data is cleared when the whitelist is deactivated from the enabled state. To re-enable it, the required assets need to be re-added.
 
 Supported format
-""""""""""""""""
+"""""""""""""""""""""""""""""
 JSON 
 
 Request method
-""""""""""""""""
+"""""""""""""""""""""""""""""
 WebSocket; JSON-RPC
 
 Required private key authority
-""""""""""""""""""
+"""""""""""""""""""""""""""""""
 It needs the Active key of the asset owner.
 
 Access authorization limit
-""""""""""""""""""
+"""""""""""""""""""""""""""""""
 | Access level: normal interface
 | Frequency limit: True
 
 
 Request parameters
-""""""""""""""""
+"""""""""""""""""""""""""""""
 
 :account:  Account（UID or nickname）
 :enable:  Whether to enable（true is to enable，false is to disable）
 :broadcast:  Whether to broadcast
 
 Precautions
-""""""""""""""""
+"""""""""""""""""""""""""""""
 null
 
 Call sample and debug tools
-"""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 WebSocket:
 ::
 
@@ -3956,7 +3956,7 @@ JSON-RPC:
 
 
 Return results
-""""""""""""""""
+"""""""""""""""""""""""""""""
 ::
 
     {
@@ -4001,25 +4001,25 @@ Updates can only be made when the whitelist is open.
 Cannot remove YOYO.
 
 Supported format
-""""""""""""""""
+"""""""""""""""""""""""""""""
 JSON 
 
 Request method
-""""""""""""""""
+"""""""""""""""""""""""""""""
 WebSocket; JSON-RPC
 
 Required private key authority
-""""""""""""""""""
+"""""""""""""""""""""""""""""""
 It needs the Active key of the asset owner.
 
 Access authorization limit
-""""""""""""""""""
+"""""""""""""""""""""""""""""""
 | Access level: normal interface
 | Frequency limit: True
 
 
 Request parameters
-""""""""""""""""
+"""""""""""""""""""""""""""""
 
 :account:  Account（UID or nickname）
 :assets_to_add:  List of assets added to the whitelist (asset code or id)
@@ -4027,11 +4027,11 @@ Request parameters
 :broadcast:  Whether to broadcast
 
 Precautions
-""""""""""""""""
+"""""""""""""""""""""""""""""
 null
 
 Call sample and debug tools
-"""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 WebSocket:
 ::
 
@@ -4045,7 +4045,7 @@ JSON-RPC:
 
 
 Return results
-""""""""""""""""
+"""""""""""""""""""""""""""""
 ::
   
     {
@@ -4086,25 +4086,25 @@ Return results
 Assign the issued assets to an account
 
 Supported format
-""""""""""""""""
+"""""""""""""""""""""""""""""
 JSON 
 
 Request method
-""""""""""""""""
+"""""""""""""""""""""""""""""
 WebSocket; JSON-RPC
 
 Required private key authority
-""""""""""""""""""
+"""""""""""""""""""""""""""""""
 It needs the Active key of the asset owner.
 
 Access authorization limit
-""""""""""""""""""
+"""""""""""""""""""""""""""""""
 | Access level: normal interface
 | Frequency limit: True
 
 
 Request parameters
-""""""""""""""""
+"""""""""""""""""""""""""""""
 
 :to_account:  Target account issued
 :amount:  amount
@@ -4113,11 +4113,11 @@ Request parameters
 :broadcast:  Whether to broadcast
 
 Precautions
-""""""""""""""""
+"""""""""""""""""""""""""""""
 null
 
 Call sample and debug tools
-"""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 WebSocket:
 ::
 
@@ -4131,7 +4131,7 @@ JSON-RPC:
 
 
 Return results
-""""""""""""""""
+"""""""""""""""""""""""""""""
 ::
   
   {
@@ -4173,25 +4173,25 @@ Destroy the specified number of specified assets in your account.
 After the operation is completed, the total amount of circulation of the asset type is correspondingly reduced.
 
 Supported format
-""""""""""""""""
+"""""""""""""""""""""""""""""
 JSON 
 
 Request method
-""""""""""""""""
+"""""""""""""""""""""""""""""
 WebSocket; JSON-RPC
 
 Required private key authority
-""""""""""""""""""
+"""""""""""""""""""""""""""""""
 It needs the Active key of the asset owner.
 
 Access authorization limit
-""""""""""""""""""
+"""""""""""""""""""""""""""""""
 | Access level: normal interface
 | Frequency limit: True
 
 
 Request parameters
-""""""""""""""""
+"""""""""""""""""""""""""""""
 
 :from:  Account（UID or nickname）
 :amount:  Amount
@@ -4199,11 +4199,11 @@ Request parameters
 :broadcast:  Whether to broadcast
 
 Precautions
-""""""""""""""""
+"""""""""""""""""""""""""""""
 null
 
 Call sample and debug tools
-"""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 WebSocket:
 ::
 
@@ -4217,7 +4217,7 @@ JSON-RPC:
 
 
 Return results
-""""""""""""""""
+"""""""""""""""""""""""""""""
 ::
 
     {
@@ -4262,25 +4262,25 @@ Only asset issuers can use this feature.
 Remarks are encrypted with the issuer's Memo key, and the transferee can decrypt the remarks, and the transferrer cannot decrypt.
 
 Supported format
-""""""""""""""""
+"""""""""""""""""""""""""""""
 JSON 
 
 Request method
-""""""""""""""""
+"""""""""""""""""""""""""""""
 WebSocket; JSON-RPC
 
 Required private key authority
-""""""""""""""""""
+"""""""""""""""""""""""""""""""
 It needs the Active key and Memo key of the asset issuer.
 
 Access authorization limit
-""""""""""""""""""
+"""""""""""""""""""""""""""""""
 | Access level: normal interface
 | Frequency limit: True
 
 
 Request parameters
-""""""""""""""""
+"""""""""""""""""""""""""""""
 
 :from:  Transferrer（UID or nickname）
 :to:  Transferee（UID or nickname）
@@ -4290,11 +4290,11 @@ Request parameters
 :broadcast:  Whether to broadcast
 
 Precautions
-""""""""""""""""
+"""""""""""""""""""""""""""""
 null
 
 Call sample and debug tools
-"""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 WebSocket:
 ::
 
@@ -4309,7 +4309,7 @@ JSON-RPC:
 
 
 Return results
-""""""""""""""""
+"""""""""""""""""""""""""""""
 ::
 
   {

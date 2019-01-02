@@ -1,10 +1,10 @@
 
 Node API Descriptions
-=============
+======================
 .. contents:: :depth: 3
 
 Node Connection Method
--------------
+-------------------------
 
 Testing Environment：
 :: 
@@ -25,7 +25,7 @@ use curl post data to connect
   curl --data '{"jsonrpc": "2.0", "method": "call", "params": [0, "get_accounts_by_uid", [["250926091"]]], "id": 1}' http://47.52.155.181:10011/rpc
 
 API Classification
-----------------
+-------------------
 YOYOW's API classification is similar to BTS. The following focuses on database api and history api. When requesting via websocket, the parameter is a json string in the following format:
 
     {"id":1, "method":"call", "params":[API level,"function name",[specific parameters]]}
@@ -61,33 +61,33 @@ Return the 3 sets associated with signing the transaction based on the given tra
  Extra signature already included in the transaction
 
 Supported format
-""""""""""""""""
+""""""""""""""""""""""""""""""""
 JSON 
 
 Request method
-""""""""""""""""
+"""""""""""""""""""""""""""""
 WebSocket; JSON-RPC
 
 
 Access authorization limit
-""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""
 
 null
 
 
 Request parameters
-""""""""""""""""
+"""""""""""""""""""""""""""""
 
 :trx:             transaction, may have already contained signature
 :available_keys:  array of public keys 
 For example：["YYW5eDSFYeiqyFRajfPP8tTZMm7fUeyc7H65zmnHtDW4SQJdwqTBD"]
 
 Precautions
-""""""""""""""""
+"""""""""""""""""""""""""""""
 null
 
 Call sample and debug tools
-"""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""
 WebSocket:
 ::
 
@@ -100,7 +100,7 @@ JSON-RPC:
     curl --data '{"jsonrpc": "2.0", "method": "call", "params": [0, "get_accounts_by_uid", [{"operations":[[0,{"fee":{"total":{"amount":100000,"asset_id":0}},"from":250926091,"to":223331844,"amount":{"amount":100000,"asset_id":0},"extensions":{}}]]}, ["YYW5eDSFYeiqyFRajfPP8tTZM7mfUeyc7H65zmnHtDW4SQJdwqTBD"]]], "id": 1}' http://47.52.155.181:10011/rpc
 
 Return results
-""""""""""""""""
+"""""""""""""""""""""""""""""
 ::
 
     {
@@ -127,30 +127,30 @@ Return multiple account information based on uid. The quantity must be <= 1000.
 If the uid does not exist, the corresponding position result is null .
 
 Supported format
-""""""""""""""""
+"""""""""""""""""""""""""""""
 JSON 
 
 Request method
-""""""""""""""""
+"""""""""""""""""""""""""""""
 WebSocket; JSON-RPC
 
 
 Access authorization limit
-""""""""""""""""""
+"""""""""""""""""""""""""""""""
 null
 
 
 Request parameters
-""""""""""""""""
+"""""""""""""""""""""""""""""
 
 :account_uids:   uid array，length is less than 1000 for example：["250926091"]
 
 Precautions
-""""""""""""""""
+"""""""""""""""""""""""""""""
 null
 
 Call sample and debug tools
-"""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""
 WebSocket:
 ::
 
@@ -164,7 +164,7 @@ JSON-RPC:
 
 
 Return results
-""""""""""""""""
+"""""""""""""""""""""""""""""
 ::
 
     {
@@ -248,32 +248,32 @@ Query the asset balance based on uid and asset type.
 
 
 Supported format
-""""""""""""""""
+"""""""""""""""""""""""""""""
 JSON 
 
 Request method
-""""""""""""""""
+"""""""""""""""""""""""""""""
 WebSocket; JSON-RPC
 
 
 
 Access authorization limit
-""""""""""""""""""
+"""""""""""""""""""""""""""""""
 null
 
 
 Request parameters
-""""""""""""""""
+"""""""""""""""""""""""""""""
 
 :uid:   uid，for example:"250926091"
 :assets:    a list of asset type id, with 0 representing core assets. For example: [0,1]. If the value is empty ([]), return all asset balances in the account
 
 Precautions
-""""""""""""""""
+"""""""""""""""""""""""""""""
 null
 
 Call sample and debug tools
-"""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 WebSocket:
 ::
 
@@ -287,7 +287,7 @@ JSON-RPC:
 
 
 Return results
-""""""""""""""""
+"""""""""""""""""""""""""""""
 ::
 
     {
@@ -313,33 +313,33 @@ Return results
 Return post information based on platform owner uid, poster uid, and post pid.
 
 Supported format
-""""""""""""""""
+"""""""""""""""""""""""""""""
 JSON 
 
 Request method
-""""""""""""""""
+"""""""""""""""""""""""""""""
 WebSocket; JSON-RPC
 
 
 
 Access authorization limit
-""""""""""""""""""
+"""""""""""""""""""""""""""""""
 null
 
 
 Request parameters
-""""""""""""""""
+"""""""""""""""""""""""""""""
 
 :platform_owner:   platform owner id
 :poster_uid:   poster id
 :post_pid:   post id (for exmaple：1)
 
 Precautions
-""""""""""""""""
+"""""""""""""""""""""""""""""
 null
 
 Call sample and debug tools
-"""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 WebSocket:
 ::
 
@@ -353,7 +353,7 @@ JSON-RPC:
 
 
 Return results
-""""""""""""""""
+"""""""""""""""""""""""""""""
 ::
 
     {
@@ -381,21 +381,21 @@ Return results
 Query the list of posts according to the platform owner uid, poster uid, post time period.
 
 Supported format
-""""""""""""""""
+"""""""""""""""""""""""""""""
 JSON 
 
 Request method
-""""""""""""""""
+"""""""""""""""""""""""""""""
 WebSocket; JSON-RPC
 
 
 Access authorization limit
-""""""""""""""""""
+"""""""""""""""""""""""""""""""
 null
 
 
 Request parameters
-""""""""""""""""
+"""""""""""""""""""""""""""""
 
 :platform_owner: platform owner id
 :poster_uid: poster id; poster_uid can be null, query all users' posts at this time.
@@ -404,11 +404,11 @@ Request parameters
 :limit: the number is limited, not exceeding 100.
 
 Precautions
-""""""""""""""""
+"""""""""""""""""""""""""""""
 null
 
 Call sample and debug tools
-"""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 WebSocket:
 ::
 
@@ -422,7 +422,7 @@ JSON-RPC:
 
 
 Return results
-""""""""""""""""
+"""""""""""""""""""""""""""""
 The results are sorted by time, with the latest one being the top. If the time is the same, the results are sorted by the actual order of receiving blocks, with the later block reception being in the front.
 ::
 
@@ -463,31 +463,31 @@ wherein，
 
 
 Supported format
-""""""""""""""""
+"""""""""""""""""""""""""""""
 JSON 
 
 Request method
-""""""""""""""""
+"""""""""""""""""""""""""""""
 WebSocket; JSON-RPC
 
 
 
 Access authorization limit
-""""""""""""""""""
+"""""""""""""""""""""""""""""""
 null
 
 
 Request parameters
-""""""""""""""""
+"""""""""""""""""""""""""""""
 
 :ops:   uid array，the length is less than 1000; for example：["250926091"]
 
 Precautions
-""""""""""""""""
+"""""""""""""""""""""""""""""
 null
 
 Call sample and debug tools
-"""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 WebSocket:
 ::
 
@@ -500,7 +500,7 @@ JSON-RPC:
     curl --data '{"jsonrpc": "2.0", "method": "call", "params": [0, "get_required_fee_data", [[[0,{"fee":{"total":{"amount":200000,"asset_id":0},"options":{"from_balance":{"amount":200000,"asset_id":0}}},"from":236542328,"to":228984329,"amount":{"amount":100000,"asset_id":0},"extensions":{"from_balance":{"amount":100000,"asset_id":0},"to_balance":{"amount":100000,"asset_id":0}}}]]]], "id": 1}' http://47.52.155.181:10011/rpc
 
 Return results
-""""""""""""""""
+"""""""""""""""""""""""""""""
 ::
 
     {
@@ -525,22 +525,22 @@ Return results
 Get the corresponding information based on a set of account uid.
 
 Supported format
-""""""""""""""""
+"""""""""""""""""""""""""""""
 JSON 
 
 Request method
-""""""""""""""""
+"""""""""""""""""""""""""""""
 WebSocket; JSON-RPC
 
 
 
 Access authorization limit
-""""""""""""""""""
+"""""""""""""""""""""""""""""""
 null
 
 
 Request parameters
-""""""""""""""""
+"""""""""""""""""""""""""""""
 
 :uids:   uid array，the length is less than 1000; for example：["250926091"]
 :options:   options array 
@@ -564,11 +564,11 @@ Options The array can have the following parameters
     }
 
 Precautions
-""""""""""""""""
+"""""""""""""""""""""""""""""
 null
 
 Call sample and debug tools
-"""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 WebSocket:
 ::
 
@@ -584,7 +584,7 @@ JSON-RPC:
 
 
 Return results
-""""""""""""""""
+"""""""""""""""""""""""""""""
 ::
 
     {
@@ -702,7 +702,7 @@ Return results
 
 
 Return field description
-"""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 return the structure definition of full_account in map as：
 
 ::
@@ -731,32 +731,32 @@ return the structure definition of full_account in map as：
 Give the uid of an account, return the corresponding witness information
 
 Supported format
-""""""""""""""""
+"""""""""""""""""""""""""""""
 JSON 
 
 Request method
-""""""""""""""""
+"""""""""""""""""""""""""""""
 WebSocket; JSON-RPC
 
 
 
 Access authorization limit
-""""""""""""""""""
+"""""""""""""""""""""""""""""""
 null
 
 
 Request parameters
-""""""""""""""""
+"""""""""""""""""""""""""""""
 
 :account:   uid array，the length is less than 1000; for example：["250926091"]
 
 
 Precautions
-""""""""""""""""
+"""""""""""""""""""""""""""""
 null
 
 Call sample and debug tools
-"""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 WebSocket:
 ::
 
@@ -770,7 +770,7 @@ JSON-RPC:
 
 
 Return results
-""""""""""""""""
+"""""""""""""""""""""""""""""
 ::
 
     {
@@ -806,7 +806,7 @@ Return results
 
 
 Return field descriptions
-"""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 The corresponding field data is only included in the returned result if the corresponding option in options is true.
 Among them, the token age borrowing details and lending details are only returned for the top 100 items.
 
@@ -818,31 +818,31 @@ If uid does not exist, there is no corresponding uid in the returned map.
 Give a set of uids, return the corresponding witness information
 
 Supported format
-""""""""""""""""
+"""""""""""""""""""""""""""""
 JSON 
 
 Request method
-""""""""""""""""
+"""""""""""""""""""""""""""""
 WebSocket; JSON-RPC
 
 
 
 Access authorization limit
-""""""""""""""""""
+"""""""""""""""""""""""""""""""
 null
 
 
 Request parameters
-""""""""""""""""
+"""""""""""""""""""""""""""""
 
 :account_uids:   uid array，for example：[132826789,25997]
 
 Precautions
-""""""""""""""""
+"""""""""""""""""""""""""""""
 null
 
 Call sample and debug tools
-"""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 WebSocket:
 ::
 
@@ -856,7 +856,7 @@ JSON-RPC:
 
 
 Return results
-""""""""""""""""
+"""""""""""""""""""""""""""""
 ::
 
     {
@@ -924,22 +924,22 @@ Return results
 List current valid witnesses
 
 Supported format
-""""""""""""""""
+"""""""""""""""""""""""""""""
 JSON 
 
 Request method
-""""""""""""""""
+"""""""""""""""""""""""""""""
 WebSocket; JSON-RPC
 
 
 
 Access authorization limit
-""""""""""""""""""
+"""""""""""""""""""""""""""""""
 null
 
 
 Request parameters
-""""""""""""""""
+"""""""""""""""""""""""""""""
 
 :lower_bound_uid:  Start the query with this as the starting uid, set it to 0 and start from the beginning.
 :limit:  Return quantity limit, up to 101
@@ -947,11 +947,11 @@ Request parameters
 0:Sort by uid from big to small; 1: Sort by number of votes; 2: Sort by collateral amount
 
 Precautions
-""""""""""""""""
+"""""""""""""""""""""""""""""
 null
 
 Call sample and debug tools
-"""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 WebSocket:
 ::
 
@@ -965,7 +965,7 @@ JSON-RPC:
 
 
 Return results
-""""""""""""""""
+"""""""""""""""""""""""""""""
 ::
 
     {
@@ -1031,32 +1031,32 @@ Return results
 Give a uid, return the corresponding committee candidate information
 
 Supported format
-""""""""""""""""
+"""""""""""""""""""""""""""""
 JSON 
 
 Request method
-""""""""""""""""
+"""""""""""""""""""""""""""""
 WebSocket; JSON-RPC
 
 
 
 Access authorization limit
-""""""""""""""""""
+"""""""""""""""""""""""""""""""
 null
 
 
 Request parameters
-""""""""""""""""
+"""""""""""""""""""""""""""""
 
 :account:   uid; for example："250926091"
 
 
 Precautions
-""""""""""""""""
+"""""""""""""""""""""""""""""
 null
 
 Call sample and debug tools
-"""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 WebSocket:
 ::
 
@@ -1070,7 +1070,7 @@ JSON-RPC:
 
 
 Return results
-""""""""""""""""
+"""""""""""""""""""""""""""""
 ::
 
     {
@@ -1098,31 +1098,31 @@ Return results
 Get the corresponding information based on a set of account uid.
 
 Supported format
-""""""""""""""""
+"""""""""""""""""""""""""""""
 JSON 
 
 Request method
-""""""""""""""""
+"""""""""""""""""""""""""""""
 WebSocket; JSON-RPC
 
 
 
 Access authorization limit
-""""""""""""""""""
+"""""""""""""""""""""""""""""""
 null
 
 
 Request parameters
-""""""""""""""""
+"""""""""""""""""""""""""""""
 
 :committee_member_uids:   uid array; for example：[25997,26264] 
 
 Precautions
-""""""""""""""""
+"""""""""""""""""""""""""""""
 null
 
 Call sample and debug tools
-"""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 WebSocket:
 ::
 
@@ -1136,7 +1136,7 @@ JSON-RPC:
 
 
 Return results
-""""""""""""""""
+"""""""""""""""""""""""""""""
 ::
 
     {
@@ -1174,22 +1174,22 @@ Return results
 List the current valid committee candidate list
 
 Supported format
-""""""""""""""""
+"""""""""""""""""""""""""""""
 JSON 
 
 Request method
-""""""""""""""""
+"""""""""""""""""""""""""""""
 WebSocket; JSON-RPC
 
 
 
 Access authorization limit
-""""""""""""""""""
+"""""""""""""""""""""""""""""""
 null
 
 
 Request parameters
-""""""""""""""""
+"""""""""""""""""""""""""""""
 
 :lower_bound_uid:   Start the query with this as the starting uid, set it to 0 and start from the beginning
 :limit:  Return quantity limit, up to 101
@@ -1197,11 +1197,11 @@ Request parameters
 0:Sort by uid from big to small; 1: Sort by number of votes; 2: Sort by collateral amount
 
 Precautions
-""""""""""""""""
+"""""""""""""""""""""""""""""
 null
 
 Call sample and debug tools
-"""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 WebSocket:
 ::
 
@@ -1215,7 +1215,7 @@ JSON-RPC:
 
 
 Return results
-""""""""""""""""
+"""""""""""""""""""""""""""""
 ::
 
     {
@@ -1253,30 +1253,30 @@ Return results
 List all the committee proposals that have not been successfully implemented, including those that are being voted on, have been voted through but have not yet reached the execution time.
 
 Supported format
-""""""""""""""""
+"""""""""""""""""""""""""""""
 JSON 
 
 Request method
-""""""""""""""""
+"""""""""""""""""""""""""""""
 WebSocket; JSON-RPC
 
 
 
 Access authorization limit
-""""""""""""""""""
+"""""""""""""""""""""""""""""""
 null
 
 
 Request parameters
-""""""""""""""""
+"""""""""""""""""""""""""""""
 null
 
 Precautions
-""""""""""""""""
+"""""""""""""""""""""""""""""
 无
 
 Call sample and debug tools
-"""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 WebSocket:
 ::
 
@@ -1290,7 +1290,7 @@ JSON-RPC:
 
 
 Return results
-""""""""""""""""
+"""""""""""""""""""""""""""""
 ::
 
     {
@@ -1310,31 +1310,31 @@ Find the account UID by name.
 The normal account name is currently yoyo+uid
 
 Supported format
-""""""""""""""""
+"""""""""""""""""""""""""""""
 JSON 
 
 Request method
-""""""""""""""""
+"""""""""""""""""""""""""""""
 WebSocket; JSON-RPC
 
 
 
 Access authorization limit
-""""""""""""""""""
+"""""""""""""""""""""""""""""""
 null
 
 
 Request parameters
-""""""""""""""""
+"""""""""""""""""""""""""""""
 :lower_bound_name:   Start the query with this as the starting name, set it to an empty string and start from the beginning.
 :limit:  Return quantity limit, up to 1001
 
 Precautions
-""""""""""""""""
+"""""""""""""""""""""""""""""
 null
 
 Call sample and debug tools
-"""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 WebSocket:
 ::
 
@@ -1347,7 +1347,7 @@ JSON-RPC:
     curl --data '{"jsonrpc": "2.0", "method": "call", "params": [0, "lookup_accounts_by_name", ["",2]], "id": 1}' http://47.52.155.181:10011/rpc
 
 Return results
-""""""""""""""""
+"""""""""""""""""""""""""""""
 ::
 
     {
@@ -1367,31 +1367,31 @@ Return results
 Give a uid, return the platform information owned by the corresponding account
 
 Supported format
-""""""""""""""""
+"""""""""""""""""""""""""""""
 JSON 
 
 Request method
-""""""""""""""""
+"""""""""""""""""""""""""""""
 WebSocket; JSON-RPC
 
 
 
 Access and authorization limit
-""""""""""""""""""
+"""""""""""""""""""""""""""""""
 null
 
 
 Request parameters
-""""""""""""""""
+"""""""""""""""""""""""""""""
 
 :account:  one account uid
 
 Precautions
-""""""""""""""""
+"""""""""""""""""""""""""""""
 null
 
 Call sample and debug tools
-"""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 WebSocket:
 ::
 
@@ -1405,7 +1405,7 @@ JSON-RPC:
 
 
 Return results
-""""""""""""""""
+"""""""""""""""""""""""""""""
 ::
 
     {
@@ -1437,31 +1437,31 @@ Return results
 Give a set of uids, return the corresponding platform information; uid is the owner id of the platform
 
 Supported format
-""""""""""""""""
+"""""""""""""""""""""""""""""
 JSON 
 
 Request method
-""""""""""""""""
+"""""""""""""""""""""""""""""
 WebSocket; JSON-RPC
 
 
 
 Access authorization limit
-""""""""""""""""""
+"""""""""""""""""""""""""""""""
 null
 
 
 Request parameters
-""""""""""""""""
+"""""""""""""""""""""""""""""
 
 :account_uids:   uid list [224006453,217895094]
 
 Precautions
-""""""""""""""""
+"""""""""""""""""""""""""""""
 null
 
 Call sample and debug tools
-"""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 WebSocket:
 ::
 
@@ -1475,7 +1475,7 @@ JSON-RPC:
 
 
 Return results
-""""""""""""""""
+"""""""""""""""""""""""""""""
 ::
 
     {
@@ -1526,22 +1526,22 @@ Return results
 Query by platform owner to list the current valid platforms
 
 Supported format
-""""""""""""""""
+"""""""""""""""""""""""""""""
 JSON 
 
 Request method
-""""""""""""""""
+"""""""""""""""""""""""""""""
 WebSocket; JSON-RPC
 
 
 
 Access authorization limit
-""""""""""""""""""
+"""""""""""""""""""""""""""""""
 null
 
 
 Request parameters
-""""""""""""""""
+"""""""""""""""""""""""""""""
 
 :lower_bound_uid: Start the query with this as the starting uid, set it to 0 and start from the beginning.
 :limit:  Return quantity limit, up to 101
@@ -1549,11 +1549,11 @@ Request parameters
 0: Sort by uid from big to small; 1: Sort by number of votes; 2: Sort by collateral amount
 
 Precautions
-""""""""""""""""
+"""""""""""""""""""""""""""""
 null
 
 Call sample and debug tools
-"""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 WebSocket:
 ::
 
@@ -1567,7 +1567,7 @@ JSON-RPC:
 
 
 Return results
-""""""""""""""""
+"""""""""""""""""""""""""""""
 ::
 
     {
@@ -1619,30 +1619,30 @@ Return results
 Return the total number of platforms
 
 Supported format
-""""""""""""""""
+"""""""""""""""""""""""""""""
 JSON 
 
 Request method
-""""""""""""""""
+"""""""""""""""""""""""""""""
 WebSocket; JSON-RPC
 
 
 
 Access authorization limit
-""""""""""""""""""
+"""""""""""""""""""""""""""""""
 null
 
 
 Request parameters
-""""""""""""""""
+"""""""""""""""""""""""""""""
 null
 
 Precautions
-""""""""""""""""
+"""""""""""""""""""""""""""""
 null
 
 Call sample and debug tools
-"""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 WebSocket:
 ::
 
@@ -1656,7 +1656,7 @@ JSON-RPC:
 
 
 Return results
-""""""""""""""""
+"""""""""""""""""""""""""""""
 ::
 
     {
@@ -1677,32 +1677,32 @@ Parameters：
 asset_ids a set of assets id
 
 Supported format
-""""""""""""""""
+"""""""""""""""""""""""""""""
 JSON 
 
 Request method
-""""""""""""""""
+"""""""""""""""""""""""""""""
 WebSocket; JSON-RPC
 
 
 
 Access authorization limit
-""""""""""""""""""
+"""""""""""""""""""""""""""""""
 null
 
 
 Request parameters
-""""""""""""""""
+"""""""""""""""""""""""""""""
 
 :asset_ids:   asset id array; for the time being, only the core asset YOYO is accepted，for example： [0]
 
 
 Precautions
-""""""""""""""""
+"""""""""""""""""""""""""""""
 null
 
 Call sample and debug tools
-"""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 WebSocket:
 ::
 
@@ -1716,7 +1716,7 @@ JSON-RPC:
 
 
 Return results
-""""""""""""""""
+"""""""""""""""""""""""""""""
 ::
 
     {
@@ -1761,32 +1761,32 @@ Return results
 Query asset details by page. The returned results are sorted in ASCII code order of the asset code.
 
 Supported format
-""""""""""""""""
+"""""""""""""""""""""""""""""
 JSON 
 
 Request method
-""""""""""""""""
+"""""""""""""""""""""""""""""
 WebSocket; JSON-RPC
 
 
 
 Access authorization limit
-""""""""""""""""""
+"""""""""""""""""""""""""""""""
 null
 
 
 Request parameters
-""""""""""""""""
+"""""""""""""""""""""""""""""
 
 :lower_bound_symbol:   Start with this as the starting code
 :limit:   Return quantity limit, up to 101
 
 Precautions
-""""""""""""""""
+"""""""""""""""""""""""""""""
 null
 
 Call sample and debug tools
-"""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 WebSocket:
 ::
 
@@ -1800,7 +1800,7 @@ JSON-RPC:
 
 
 Return results
-""""""""""""""""
+"""""""""""""""""""""""""""""
 ::
 
     {
@@ -1922,31 +1922,31 @@ Return results
 Give a set of asset codes or ids, return the details of the corresponding assets.
 
 Supported format
-""""""""""""""""
+"""""""""""""""""""""""""""""
 JSON 
 
 Request method
-""""""""""""""""
+"""""""""""""""""""""""""""""
 WebSocket; JSON-RPC
 
 
 
 Access authorization limit
-""""""""""""""""""
+"""""""""""""""""""""""""""""""
 null
 
 
 Request parameters
-""""""""""""""""
+"""""""""""""""""""""""""""""
 
 :symbols_or_ids:   Array form, the symbol code or ID of the asset to be retrieved, for example: ["YOYO"] or [0]
 
 Precautions
-""""""""""""""""
+"""""""""""""""""""""""""""""
 null
 
 Call sample and debug tools
-"""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 WebSocket:
 ::
 
@@ -1961,7 +1961,7 @@ JSON-RPC:
 
 
 Return results
-""""""""""""""""
+"""""""""""""""""""""""""""""
 ::
 
     {
@@ -2006,21 +2006,21 @@ History API
 Get account history
 
 Supported format
-""""""""""""""""
+"""""""""""""""""""""""""""""
 JSON 
 
 Request method
-""""""""""""""""
+"""""""""""""""""""""""""""""
 WebSocket; JSON-RPC
 
 
 Access authorization limit
-""""""""""""""""""
+"""""""""""""""""""""""""""""""
 null
 
 
 Request parameters
-""""""""""""""""
+"""""""""""""""""""""""""""""
 
 :account:   can be uid or account nickname
 :op_type:   the type of limited operation, see the type of operation. When the value is null, all operation types are returned; when 0, all transfer operations are available.
@@ -2032,11 +2032,11 @@ The number of returned results will be in the end - start range; if the limit va
 The returned results are sorted in the way that the latest ones are returned first.
 
 Precautions
-""""""""""""""""
+"""""""""""""""""""""""""""""
 null
 
 Call sample and debug tools
-"""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 WebSocket:
 ::
 
@@ -2050,7 +2050,7 @@ JSON-RPC:
 
 
 Return results
-""""""""""""""""
+"""""""""""""""""""""""""""""
 Each piece of data in the returned list is a pair type. The first element in the pair is the sequence number recorded in the account history, and the second element is the specific operation.
 
 ::

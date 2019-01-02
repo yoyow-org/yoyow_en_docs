@@ -85,6 +85,7 @@ Welcome to YOYOW's documentation!
     others/forexchanges
     others/forplatforms
     others/create_platform
+    others/more
 
 Indices and tables
 ==================

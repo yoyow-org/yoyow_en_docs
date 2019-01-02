@@ -1,4 +1,4 @@
-# Creating YOYOW Platform Account from 0
+# Creating YOYOW Platform Account from scratch
 This article will take the testnet environment as an example to introduce the operations required to create the platform, such as registering an account in the web wallet and creating a platform through the command line in the cli.
 
 Resources Required:
