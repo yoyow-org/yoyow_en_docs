@@ -28,8 +28,8 @@ For details, please refer to: [create_witness](../api/wallet_api.html#create-wit
 
 ## Updating the Info of Witnesses
 ```
-# update_witness <lower_bound> <limit> <ops>
-update_witness 0 5 1
+# update_witness <witness_account> <block_signing_key> <pledge_amount> <pledge_asset_symbol> <url> <broadcast>
+update_witness 223331844 null 100345 YOYO null true
 ```
 For details, please refer to: [update_witness](../api/wallet_api.html#update-witness)
 
