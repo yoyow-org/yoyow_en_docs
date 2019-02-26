@@ -3028,7 +3028,8 @@ WebSocket; JSON-RPC
 
 Required private key authority
 """""""""""""""""""""""""""""""
-It needs the Secondary Key of the collector.
+If the Collecting account is the same as Receiving account, It only needs the Secondary Key of the collector.
+If the Receiving account is another account, It needs the Active Key of the collector.
 
 Access authorization limit
 """""""""""""""""""""""""""""""
@@ -3124,7 +3125,8 @@ WebSocket; JSON-RPC
 
 Required private key authority
 """""""""""""""""""""""""""""""
-It needs the Secondary Key of the collector.
+If the Collecting account is the same as Receiving account, It only needs the Secondary Key of the collector.
+If the Receiving account is another account, It needs the Active Key of the collector.
 
 Access authorization limit
 """""""""""""""""""""""""""""""
